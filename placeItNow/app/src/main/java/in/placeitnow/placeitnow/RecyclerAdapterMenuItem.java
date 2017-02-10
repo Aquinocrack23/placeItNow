@@ -50,12 +50,14 @@ public class RecyclerAdapterMenuItem extends RecyclerView.Adapter<RecyclerAdapte
         viewHolder.add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                menu.get(position).setQuantity(val);
-                ordered.add(new OrderedItemContents(menu.get(position).getMenu_item(),String.valueOf(menu.get(position).getPrice()),String.valueOf(menu.get(position).getQuantity())));
-                if(val==0){
-                    Toast.makeText(activity.getBaseContext(),"Please select some quantity",Toast.LENGTH_SHORT).show();
+                if(val ==0){
+                    Toast.makeText(activity,"Please Select Some Quantity first",Toast.LENGTH_SHORT).show();
                 }
-                Toast.makeText(activity.getBaseContext(),val+" "+menu.get(position).getMenu_item()+" added",Toast.LENGTH_SHORT).show();
+                else {
+                    menu.get(position).setQuantity(val);
+                    ordered.add(new OrderedItemContents(menu.get(position).getMenu_item(),String.valueOf(menu.get(position).getPrice()),String.valueOf(menu.get(position).getQuantity())));
+                    Toast.makeText(activity.getBaseContext(),val+" "+menu.get(position).getMenu_item()+" added",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

@@ -115,9 +115,6 @@ public class OrderSelection extends AppCompatActivity implements View.OnClickLis
 
         toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        /*ActionBar actionBar = getSupportActionBar();
-        actionBar.setHomeAsUpIndicator(R.drawable.ic_home_white_24dp);
-        actionBar.setDisplayHomeAsUpEnabled(true);*/
         toolbar.setTitleTextColor(Color.parseColor("#ffffff"));
         toolbar.inflateMenu(R.menu.order_selection_botton);
         toolbar.setTitle("Proceed");
@@ -260,7 +257,6 @@ public class OrderSelection extends AppCompatActivity implements View.OnClickLis
                 }
             }
         }
-        //RAMItemforFilter.notifyDataSetChanged();
         RAMItem.notifyDataSetChanged();
     }
 
@@ -271,6 +267,10 @@ public class OrderSelection extends AppCompatActivity implements View.OnClickLis
                 menuList.clear();
                 menuList.addAll(filteredMenuList);
                 RAMItem.notifyDataSetChanged();
+                break;
+            case R.id.snacks:
+                //Toast.makeText(OrderSelection.this,"hii",Toast.LENGTH_LONG).show();
+                filter("snacks");
                 break;
             case R.id.maincourse:
                 filter("maincourse");

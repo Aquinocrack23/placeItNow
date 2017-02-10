@@ -7,17 +7,8 @@
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="04ce4b936cda21d7a3e27f089fb8db96cb000e1e">
+        sha1="7cbb9e085a7a5aecb472d96ca876aacfe2bd73b6">
         <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_7a3bbb1f3d0c12e7b0a6f9f498226f353853ebda\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\24.2.0\jars\libs\internal_impl-24.2.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="4a7b107010e6ad293600eea8851d02b880841be2">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.0_48af296c709fa752d9098c344b39af0065216129\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -30,12 +21,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\exploded-aar\com.google.firebase\firebase-auth\10.0.1\jars\classes.jar"
+        jar="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.2.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="9cca2818594cc5348806d6662133491e7ea0fa8d">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-auth-10.0.1_cc4ffe8277b54d2567787fefd123a69d3e2c4cbb\classes.dex" />
+        sha1="beac40bcc8a320a896dd15f5109cfcaea5e1e0e3">
+        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-24.2.0_6be58d29ddb0fd4a3947ec105aa3f2224807beb8\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -48,12 +39,30 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\classes.jar"
+        jar="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\exploded-aar\com.google.firebase\firebase-storage-common\10.0.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-24.2.1_7e2c421f3272804d1c99cad30e98b018c0a2ce76\classes.dex" />
+        sha1="09cf6aa1390f95157e8295d02be7868f568825fc">
+        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-storage-common-10.0.1_da8d545c02d095c832d570f35cb095a28b23f564\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
+        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-24.2.1_4b8af1fb7035f0f98111acb9c8635d2d7838e791\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Pranav Gupta\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-databind\2.2.2\3c8f6018eaa72d43b261181e801e6f8676c16ef6\jackson-databind-2.2.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="3c8f6018eaa72d43b261181e801e6f8676c16ef6">
+        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\jackson-databind-2.2.2_b8616139c9b9a23c41e73c8fbb896130492575f1\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -66,12 +75,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\24.2.0\jars\classes.jar"
+        jar="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="c755536e5a100d9c76c8ea0b72f76c018f7a9de2">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-24.2.0_aed79e2e77ce1948eaa50fdbb9f45733a261033e\classes.dex" />
+        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
+        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-24.2.1_0aaf28f02ecb573cf252e841338f8a8920a03403\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -81,15 +90,6 @@
         revision="23.0.3"
         sha1="1dcb8005f460d87baed0abdc9ec997a58797856e">
         <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.0_92b90667f88f2188a8dc7a7975f017b16ff97d0c\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\24.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="e28aa740c04a7d525d914fd4874dfddb1ae6c37c">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-mediarouter-v7-24.2.0_85fa455279f0ee690e63fa66daf2f92971941f71\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -120,12 +120,66 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\exploded-aar\com.android.support\support-v13\24.2.0\jars\classes.jar"
+        jar="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="6bf34c4b4fcd3f6913eca652d13c51dbde51c3a4">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v13-24.2.0_54f4eff3aca09dba3037a73d2a9a1301251d12fd\classes.dex" />
+        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
+        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_13c1998717fd39b592dfd3c14f1549844eaa721d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="867dad63c33388ff8c7644b236579355036d075f">
+        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_1bbd7f96d59198a52fe297788a978ed050ad486a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Pranav Gupta\.gradle\caches\modules-2\files-2.1\com.firebase\firebase-client-jvm\2.3.1\4d53b7d6983247af02b8fe7e4228fff555a5e828\firebase-client-jvm-2.3.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="4d53b7d6983247af02b8fe7e4228fff555a5e828">
+        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\firebase-client-jvm-2.3.1_369bbc30e7ccf37f32ee8145ab4c5aef59c9eedd\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Pranav Gupta\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-core\2.2.2\d20be6a5ddd6f8cfd36ebf6dea329873a1c41f1b\jackson-core-2.2.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="d20be6a5ddd6f8cfd36ebf6dea329873a1c41f1b">
+        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\jackson-core-2.2.2_45f897a28271a8c1b792ea962325cb923c018e43\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\exploded-aar\de.hdodenhof\circleimageview\1.3.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="ac6948cce36f694f3eb3d73a135e298dc4b3527a">
+        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\de.hdodenhof-circleimageview-1.3.0_e1dc103042b7f70ecd745ea52742932bd9ca0544\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\24.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="c755536e5a100d9c76c8ea0b72f76c018f7a9de2">
+        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-24.2.0_8c50cbdc54d044fa7b124df238af677f509545c1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="25438f55fc6d906a0e72f30b21487541430ede43">
+        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-10.0.1_58c6877e1dbb0d9a520a9e3f921a53411a1c492f\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -133,8 +187,35 @@
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="b9ed6c34c1377fdca53b3c008ae8d5e8cd77c896">
+        sha1="78c3bd9da4a9e5c8a612939c4e294b47f689cbcd">
         <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_681307d420840ce7259e50ce5d6ec8936e0b2f77\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Pranav Gupta\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-annotations\2.2.2\285cb9c666f0f0f3dd8a1be04e1f457eb7b15113\jackson-annotations-2.2.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="285cb9c666f0f0f3dd8a1be04e1f457eb7b15113">
+        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\jackson-annotations-2.2.2_a3b94921cb82945ca5885ed035c00a016e3369f1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
+        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-24.2.1_8c9ea992d67d4e37b115582674b6d1e0f9e2e6da\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Sdk\extras\android\m2repository\com\android\support\support-annotations\24.2.1\support-annotations-24.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
+        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-24.2.1_93e30de50033b2cacefbdbbc7a9f3a75586cf12c\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -144,15 +225,6 @@
         revision="23.0.3"
         sha1="23eb0d2998a782213b56168cbf23a0688b9111d9">
         <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-24.2.0_45f600f9a4374d7c7966b7d9d3b9a9b1b42eef63\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-24.2.1_0f269e56bcc9b303683892c0c871fd64ef2862af\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -174,66 +246,30 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\exploded-aar\de.hdodenhof\circleimageview\1.3.0\jars\classes.jar"
+        jar="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\exploded-aar\com.android.support\gridlayout-v7\24.2.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="ac6948cce36f694f3eb3d73a135e298dc4b3527a">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\de.hdodenhof-circleimageview-1.3.0_75d96c39de36e1dd7d4bee0c07cbd1928d8719e6\classes.dex" />
+        sha1="820acba36fa86ab15cb3d472b654dedb495075fd">
+        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-gridlayout-v7-24.2.0_6980a7395ebf60380c236149bbfca05532a7a6f0\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\jars\classes.jar"
+        jar="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\10.0.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="756f6297eef79784f5e356dcd4f39865028b2bd0">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-basement-10.0.1_d7e6ecb7407a0b0409fa0cfdc79ad5b7df37285d\classes.dex" />
+        sha1="486371f97baad8e607f332f20fee1d3dd00a731a">
+        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-iid-10.0.1_530b141e11d78ff0f9916a2a5175567378af009d\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\10.0.1\jars\classes.jar"
+        jar="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics-impl\10.0.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="6addaba208e21c6da776d0ca75b6b23a6ccd5499">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-tasks-10.0.1_ade36d0d983a95a6687065be886d7f6d994a5fad\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\exploded-aar\com.google.firebase\firebase-common\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="eb0d830e3eabb9deb9ec44869cf7ac7ea1ad794c">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-common-10.0.1_778d223c3c8f6ef95e996a541e1b2c66fd83b292\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_62daade3eae9b13b09d26242f4b7b20238e8316e\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\exploded-aar\com.google.firebase\firebase-storage-common\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="09cf6aa1390f95157e8295d02be7868f568825fc">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-storage-common-10.0.1_e5bb6daf24edd43fc78ec3323136ee3ec2ed4c15\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="c3c638be6e650b165ab9ae144857b64e82787fad">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-24.2.0_633bd6571d497f872b3c8576343a7ae101a6b21e\classes.dex" />
+        sha1="6116e0e7069de7fc259aac8e08b84f32c2038231">
+        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-analytics-impl-10.0.1_64016b7bda496b0996ef5ef9cfe84e4c5ac0005a\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -269,25 +305,7 @@
         optimize="true"
         revision="23.0.3"
         sha1="d37cb67277928cf59344b4196af8d9cee1f1a27c">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\tubesock-0.0.11_4dde1012ab016beacc36877b2b0f714be222ae87\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\exploded-aar\com.android.support\leanback-v17\24.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="abe4c00e49b5f739b096d316938d51091a1fa396">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-leanback-v17-24.2.0_c802b900ffbc999164a553eff710be05ea268ee8\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-fragment-24.2.1_805351640d766a8edd80add5f38ff98b82825716\classes.dex" />
+        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\tubesock-0.0.11_4dde1012ab016beacc36877b2b0f714be222ae87\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -296,7 +314,7 @@
         optimize="true"
         revision="23.0.3"
         sha1="be29b24233711c419ce935aa0a1b12ebc49d1c9a">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\firebase-client-android-2.3.1_179f6784f979ab76cf44371a88f4b4d775fe4b63\classes.dex" />
+        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\firebase-client-android-2.3.1_179f6784f979ab76cf44371a88f4b4d775fe4b63\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -306,384 +324,6 @@
         revision="23.0.3"
         sha1="eb0d830e3eabb9deb9ec44869cf7ac7ea1ad794c">
         <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-common-10.0.1_3f5551ef2ad67c23ed9740ec4cea0e6b60239cca\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="beac40bcc8a320a896dd15f5109cfcaea5e1e0e3">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-24.2.0_18ef33964ba172ce0de8f36c81555012798c1b19\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_b40dfacb1ca8dd49c343943080c66677b913e677\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="0948d536be841173905e16ed1ded468d72f6c21c">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_08b13af8128267bf507f953c812a96cc8963cfdc\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="433f4d6aa5f21f19552afe0e6c5eff0fedba73ad">
-        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-analytics-10.0.1_4bf78d9944a585eb01eb17e30d6476f0f9adb940\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\exploded-aar\com.roughike\bottom-bar\1.4.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="c4e65d46b09bd2156ad6fdf147d08b17c0fef75c">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.roughike-bottom-bar-1.4.0.1_66c8933b9f3d0c8f873f9776df55939ddfa452c8\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="f3ee23ef25c9a8fe3d40246d0b7097267963a612">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-24.2.0_3d18ea503f95007a4b2680a6bd620250b4f406f8\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\exploded-aar\com.android.support\design\24.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="23eb0d2998a782213b56168cbf23a0688b9111d9">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-24.2.0_b858bddd351b5aeeafa4c8a626474860cfac7471\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\exploded-aar\com.android.support\support-v13\24.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="6bf34c4b4fcd3f6913eca652d13c51dbde51c3a4">
-        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v13-24.2.0_327c8c57d91f0735dcd658cbcc4b58a9c6fed847\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\exploded-aar\com.roughike\bottom-bar\1.4.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="c4e65d46b09bd2156ad6fdf147d08b17c0fef75c">
-        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.roughike-bottom-bar-1.4.0.1_3c8c9d66ed6b16b22927054273df554cebd6eb8a\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="beac40bcc8a320a896dd15f5109cfcaea5e1e0e3">
-        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-24.2.0_6be58d29ddb0fd4a3947ec105aa3f2224807beb8\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\exploded-aar\com.android.support\support-v13\24.2.0\jars\libs\internal_impl-24.2.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="1dcb8005f460d87baed0abdc9ec997a58797856e">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.0_edd93b679227d574db1ab186130dceddf2f34622\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-24.2.1_b9a543125f006a21f0aeedffdafd28e37f6fb822\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\exploded-aar\com.google.firebase\firebase-storage-common\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="09cf6aa1390f95157e8295d02be7868f568825fc">
-        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-storage-common-10.0.1_da8d545c02d095c832d570f35cb095a28b23f564\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
-        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-24.2.1_4b8af1fb7035f0f98111acb9c8635d2d7838e791\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-databind\2.2.2\3c8f6018eaa72d43b261181e801e6f8676c16ef6\jackson-databind-2.2.2.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="3c8f6018eaa72d43b261181e801e6f8676c16ef6">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\jackson-databind-2.2.2_b8616139c9b9a23c41e73c8fbb896130492575f1\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
-        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-24.2.1_0aaf28f02ecb573cf252e841338f8a8920a03403\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\exploded-aar\com.android.support\gridlayout-v7\24.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="820acba36fa86ab15cb3d472b654dedb495075fd">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-gridlayout-v7-24.2.0_dcad9c4ab1edc7efdd1c3b2a678946dda79f2988\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-24.2.1_7b2a8a1870a46be20b793113048eed0374e82921\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
-        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_13c1998717fd39b592dfd3c14f1549844eaa721d\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\exploded-aar\com.android.support\palette-v7\24.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="1ac5b6d36ed6d2e0b6b6e6909bc4e1fb86cf1923">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-palette-v7-24.2.0_9ba1fd9516533a4d218a97194d51fb4fbdb5d7be\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\24.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="96e33a7aaee00ab64270e2a9887b8f9ef32c8b73">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-cardview-v7-24.2.0_e584464252a03d38b088813e46a7aea58ec81864\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_6a5fa0bb8e5500186e8ebcfb83828ae8a4ea0f42\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="867dad63c33388ff8c7644b236579355036d075f">
-        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_1bbd7f96d59198a52fe297788a978ed050ad486a\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\.gradle\caches\modules-2\files-2.1\com.firebase\firebase-client-jvm\2.3.1\4d53b7d6983247af02b8fe7e4228fff555a5e828\firebase-client-jvm-2.3.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="4d53b7d6983247af02b8fe7e4228fff555a5e828">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\firebase-client-jvm-2.3.1_369bbc30e7ccf37f32ee8145ab4c5aef59c9eedd\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-core\2.2.2\d20be6a5ddd6f8cfd36ebf6dea329873a1c41f1b\jackson-core-2.2.2.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="d20be6a5ddd6f8cfd36ebf6dea329873a1c41f1b">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\jackson-core-2.2.2_45f897a28271a8c1b792ea962325cb923c018e43\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\exploded-aar\de.hdodenhof\circleimageview\1.3.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="ac6948cce36f694f3eb3d73a135e298dc4b3527a">
-        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\de.hdodenhof-circleimageview-1.3.0_e1dc103042b7f70ecd745ea52742932bd9ca0544\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\24.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="c755536e5a100d9c76c8ea0b72f76c018f7a9de2">
-        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-24.2.0_8c50cbdc54d044fa7b124df238af677f509545c1\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="25438f55fc6d906a0e72f30b21487541430ede43">
-        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-10.0.1_58c6877e1dbb0d9a520a9e3f921a53411a1c492f\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-annotations\2.2.2\285cb9c666f0f0f3dd8a1be04e1f457eb7b15113\jackson-annotations-2.2.2.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="285cb9c666f0f0f3dd8a1be04e1f457eb7b15113">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\jackson-annotations-2.2.2_a3b94921cb82945ca5885ed035c00a016e3369f1\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
-        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-24.2.1_8c9ea992d67d4e37b115582674b6d1e0f9e2e6da\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Sdk\extras\android\m2repository\com\android\support\support-annotations\24.2.1\support-annotations-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-24.2.1_93e30de50033b2cacefbdbbc7a9f3a75586cf12c\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="25438f55fc6d906a0e72f30b21487541430ede43">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-10.0.1_93d5c5e795c0b3d239863dc2388666e468782087\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="867dad63c33388ff8c7644b236579355036d075f">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_8bd1dcf88a12ef53852524bf42267f94715bb8d1\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\exploded-aar\com.android.support\gridlayout-v7\24.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="820acba36fa86ab15cb3d472b654dedb495075fd">
-        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-gridlayout-v7-24.2.0_6980a7395ebf60380c236149bbfca05532a7a6f0\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="486371f97baad8e607f332f20fee1d3dd00a731a">
-        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-iid-10.0.1_530b141e11d78ff0f9916a2a5175567378af009d\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics-impl\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="6116e0e7069de7fc259aac8e08b84f32c2038231">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-analytics-impl-10.0.1_b3e8bc79779a9de49d5f2812e788b2cde9e80c50\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="332046b471b0d90e39286ca2e2a05cf420bdbff5">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_38a4016d7b38215a84440558bc3cdcd66560c172\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\exploded-aar\com.google.firebase\firebase-database-connection\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="8010ae6ed32828a145b25ec97bc07b7a83c6318f">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-database-connection-10.0.1_c2d5fcb08492fd383f330fc3c632cb8f40436da1\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-24.2.1_575d867a143c999389221055f6b93a8b62bb225d\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics-impl\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="6116e0e7069de7fc259aac8e08b84f32c2038231">
-        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-analytics-impl-10.0.1_64016b7bda496b0996ef5ef9cfe84e4c5ac0005a\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="486371f97baad8e607f332f20fee1d3dd00a731a">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-iid-10.0.1_3ae0e70977e9ce40e4cf2b9f3a2a99c240a9a300\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\exploded-aar\com.google.firebase\firebase-database\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="8f128aeeb7e31271b28a7adb9dac1f3a6ed9f5e7">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-database-10.0.1_38fec65560537f5b85b6834501f4a55ff82d0265\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -732,21 +372,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_262450194934b203537a3812653e1af6ac5c1750\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\10.0.1\jars\classes.jar"
+        jar="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\10.0.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
         sha1="433f4d6aa5f21f19552afe0e6c5eff0fedba73ad">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-analytics-10.0.1_0d6fd20bef0342772d6c52fc6758476da550e010\classes.dex" />
+        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-analytics-10.0.1_4bf78d9944a585eb01eb17e30d6476f0f9adb940\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -768,21 +399,30 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\exploded-aar\com.google.firebase\firebase-storage\10.0.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="dd39827d2067497e60e21da48a7926000b6d4b0c">
-        <dex dex="C:\Users\Pranav Gupta\PlaceItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-storage-10.0.1_e3544c7e16b27eb83cb6c82fed567fd8b3ed7158\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\24.2.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
         sha1="96e33a7aaee00ab64270e2a9887b8f9ef32c8b73">
         <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-cardview-v7-24.2.0_e8901b81181c3d6c53fca213ee508bf4ce3bacb0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\exploded-aar\com.android.support\support-v13\24.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="6bf34c4b4fcd3f6913eca652d13c51dbde51c3a4">
+        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v13-24.2.0_327c8c57d91f0735dcd658cbcc4b58a9c6fed847\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\exploded-aar\com.roughike\bottom-bar\1.4.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="c4e65d46b09bd2156ad6fdf147d08b17c0fef75c">
+        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.roughike-bottom-bar-1.4.0.1_3c8c9d66ed6b16b22927054273df554cebd6eb8a\classes.dex" />
     </item>
 
 </items>
