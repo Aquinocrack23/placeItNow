@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="in.placeitnow.placeitnow">
+
+    <uses-feature
+        android:name="android.software.leanback"
+        android:required="false" />
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:largeHeap="true"
+        android:theme="@style/AppTheme"
+        android:name=".PlaceItNow">
+        <activity android:name=".MainActivity"
+            android:theme="@style/Main"
+            android:label="Order Dashboard">
+
+        </activity>
+        <activity android:name=".LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".RegisterActivity">
+        </activity>
+        <activity android:name=".BaseActivityFragment">
+        </activity>
+        <activity android:name=".VendorProfile">
+        </activity>
+        <activity android:name=".OrderLocation"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
+        <activity android:name=".OrderSelection"
+            android:label="Order Selection"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
+        <activity android:name=".OrderSummary"
+            android:label="Order Selection"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
+    </application>
+
+</manifest>
