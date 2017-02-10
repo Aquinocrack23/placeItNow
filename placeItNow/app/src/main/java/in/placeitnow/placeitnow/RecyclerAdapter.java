@@ -21,6 +21,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     private List<Vendor> vendors;
     private Activity activity;
+    private String status;
 
     public RecyclerAdapter(Activity activity, List<Vendor> vendors) {
         this.vendors = vendors;
@@ -47,11 +48,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         viewHolder.imageView.setImageResource(R.mipmap.ic_launcher);
         if(vendors.get(position).getStatus()){
             viewHolder.status.setText("Online");
+            status = "Online";
         }else {
             viewHolder.status.setText("Offline");
+            status = "Offline";
         }
         //setting onClickListener for each container
-        viewHolder.container.setOnClickListener(onClickListener(position));
+        viewHolder.container.setOnClickListener(onClickListener(viewHolder));
     }
 
     @Override
@@ -59,14 +62,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         return (null != vendors ? vendors.size() : 0);
     }
 
-    private View.OnClickListener onClickListener(final int position) {
+    private View.OnClickListener onClickListener(final RecyclerView.ViewHolder viewHolder) {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent;
                 intent = new Intent(context,OrderSelection.class);
-                intent.putExtra("vendorname",vendors.get(position).getName());
-                intent.putExtra("vid",vendors.get(position).getVid());
+                intent.putExtra("vendorname",vendors.get(viewHolder.getAdapterPosition()).getName());
+                intent.putExtra("vid",vendors.get(viewHolder.getAdapterPosition()).getVid());
+                intent.putExtra("status",status);
                 context.startActivity(intent);
             }
         };

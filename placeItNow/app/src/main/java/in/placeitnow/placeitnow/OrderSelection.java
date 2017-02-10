@@ -58,7 +58,7 @@ public class OrderSelection extends AppCompatActivity implements View.OnClickLis
     private ArrayList<Menu> filteredMenuList;
 
     private Toolbar toolbar;
-    private TextView vend_name;
+    private TextView vend_name,stat;
 
     private FirebaseAuth auth;             //FirebaseAuthentication
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -73,7 +73,7 @@ public class OrderSelection extends AppCompatActivity implements View.OnClickLis
     private EditText name,date,time,address,phno,comment;
     private FirebaseDatabase database;
     private DatabaseReference rootRef;
-    private String vid;
+    private String vid,status;
     private int amount=0;
 
     @Override
@@ -85,6 +85,7 @@ public class OrderSelection extends AppCompatActivity implements View.OnClickLis
         setOnClickCards();
         initialiseEditTexts();
         vend_name=(TextView)findViewById(R.id.vendor_name);
+        stat=(TextView)findViewById(R.id.status);
        // finalize= (Button)findViewById(R.id.finalize);
 
 
@@ -135,7 +136,9 @@ public class OrderSelection extends AppCompatActivity implements View.OnClickLis
         Intent i = getIntent();
         vendor = i.getStringExtra("vendorname");
         vid = i.getStringExtra("vid");
+        status = i.getStringExtra("status");
         vend_name.setText(vendor);
+        stat.setText(status);
 
         //fill the arraylist
         fillMenu();
@@ -269,7 +272,7 @@ public class OrderSelection extends AppCompatActivity implements View.OnClickLis
                 RAMItem.notifyDataSetChanged();
                 break;
             case R.id.snacks:
-                //Toast.makeText(OrderSelection.this,"hii",Toast.LENGTH_LONG).show();
+                Toast.makeText(OrderSelection.this,"hii",Toast.LENGTH_LONG).show();
                 filter("snacks");
                 break;
             case R.id.maincourse:

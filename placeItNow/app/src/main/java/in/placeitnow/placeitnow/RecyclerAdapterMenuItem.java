@@ -54,9 +54,9 @@ public class RecyclerAdapterMenuItem extends RecyclerView.Adapter<RecyclerAdapte
                     Toast.makeText(activity,"Please Select Some Quantity first",Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    menu.get(position).setQuantity(val);
-                    ordered.add(new OrderedItemContents(menu.get(position).getMenu_item(),String.valueOf(menu.get(position).getPrice()),String.valueOf(menu.get(position).getQuantity())));
-                    Toast.makeText(activity.getBaseContext(),val+" "+menu.get(position).getMenu_item()+" added",Toast.LENGTH_SHORT).show();
+                    menu.get(viewHolder.getAdapterPosition()).setQuantity(val);
+                    ordered.add(new OrderedItemContents(menu.get(viewHolder.getAdapterPosition()).getMenu_item(),String.valueOf(menu.get(position).getPrice()),String.valueOf(menu.get(position).getQuantity())));
+                    Toast.makeText(activity.getBaseContext(),val+" "+menu.get(viewHolder.getAdapterPosition()).getMenu_item()+" added",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -75,7 +75,7 @@ public class RecyclerAdapterMenuItem extends RecyclerView.Adapter<RecyclerAdapte
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
                 val = (int)parent.getItemAtPosition(i);
-                menu.get(position).setQuantity(val);
+                menu.get(viewHolder.getAdapterPosition()).setQuantity(val);
                 viewHolder.sp.setSelection(val);
             }
 
