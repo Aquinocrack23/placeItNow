@@ -3,7 +3,8 @@ package in.placeitnow.placeitnow;
 /**
  * Created by Pranav Gupta on 12/23/2016.
  */
-
+/** this class is used to show the cards used to represent various items in OrderSelection Activity
+ * */
 public class Menu {
     private String item_key;
     private String menu_item;
