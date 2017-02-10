@@ -58,6 +58,8 @@ public class OrderSummary extends AppCompatActivity {
     //object of OrderContent Class
     private OrderContents newOrder;
     private Intent i;
+    private String vid,status;
+    private DatabaseReference databaseReference;
 
     private HashMap<String,String> orderSummary = new HashMap<>();
     //private HashMap<String,String> orderDetails = new HashMap<>();
@@ -82,6 +84,9 @@ public class OrderSummary extends AppCompatActivity {
         i =getIntent();
         orderSummary = (HashMap<String,String>)i.getSerializableExtra("details");
         orderDetails = (ArrayList<OrderedItemContents>) i.getSerializableExtra("summary");
+        vid = i.getStringExtra("vid");
+        show(vid);
+        status = i.getStringExtra("status");
 
         customer_name.setText(orderSummary.get("Name"));
         delivery_add.setText(orderSummary.get("Address"));
@@ -104,6 +109,7 @@ public class OrderSummary extends AppCompatActivity {
 
         //getting database references
         database = FirebaseDatabase.getInstance();
+        databaseReference = database.getReference();
         rootRef = database.getReference("orders");
         vendorRef = database.getReference("vendors");
 
@@ -160,17 +166,6 @@ public class OrderSummary extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.payment:
                 final ProgressDialog pg = ProgressDialog.show(this,"PlaceItNow","Placing Your Order...");
-                //vendorRef = vendorRef.child("RiverBank");
-                final DatabaseReference databaseReference  = vendorRef.child("RiverBank");
-                databaseReference.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        //show(dataSnapshot.getKey());                           debugging purposes
-                        //show(dataSnapshot.getChildrenCount()+"");              debugging purposes
-                        for(DataSnapshot mysnapShot : dataSnapshot.getChildren()){
-                            //String key = mysnapShot.getKey();
-                            //show(key);
-                            vendorId = mysnapShot.getValue(String.class);
                             /** always remember that firebase makes asynchronous calls and results are only present in this
                              * onDataChange callback method so if one tries to use value of vendor id out of this callback
                              * function immediately than most probably it will return null as vendor id has may not received its value
@@ -178,29 +173,38 @@ public class OrderSummary extends AppCompatActivity {
                              * uses vendorID either inside this callback function or make some market to make sure that it has gor its
                              * value
                              * */
-                            orderString = uid + vendorId ;
-                            orderRef = rootRef.child(orderString).push();
-                            orderId = orderRef.getKey();
-                            newOrder = new OrderContents(orderSummary.get("Name"),orderSummary.get("Cont"),orderSummary.get("Address"),orderSummary.get("Time"),orderSummary.get("Date"),orderSummary.get("amount"),orderSummary.get("vendorName"),"5",orderId,"8",orderDetails);
-                            orderRef.setValue(newOrder, new DatabaseReference.CompletionListener() {
-                                @Override
-                                public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                                    if(databaseError==null){
-                                        pg.dismiss();
-                                        show("Order Successfully Placed");
-                                    }
-                                    else {
-                                        pg.dismiss();
-                                        show("Some Error Occurred Please try again");
-                                    }
-                                }
-                            });
+                orderString = vid+uid ;
+                orderRef = rootRef.child(orderString).push();
+                orderId = orderRef.getKey();
+                newOrder = new OrderContents(orderSummary.get("Name"),orderSummary.get("Cont"),orderSummary.get("Address"),orderSummary.get("Time"),orderSummary.get("Date"),orderSummary.get("amount"),orderSummary.get("vendorName"),"5",orderId,"8",orderDetails);
+                orderRef.setValue(newOrder, new DatabaseReference.CompletionListener() {
+                    @Override
+                    public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                        if(databaseError==null){
+                            pg.setMessage("Completing Your Order...");
+                        }
+                        else {
+                            pg.dismiss();
+                            show("Some Error Occurred Please try again");
                         }
                     }
+                });
+                String displayName = orderSummary.get("Name");
 
+                //Creating order items list
+                ArrayList<OrderItem> orderItems = new ArrayList<>();
+                orderItems.add(new OrderItem("-Kb-3CqIo_FYQ4evMoiT", "Burger", 40.0, 1));
+                //Creating order
+                OrderLayout order = new OrderLayout(uid,displayName,orderItems);
+                //Add order on Vendor side
+                DatabaseReference ref = databaseReference.child("vendors").child(vid).child("orders").push().getRef();
+                ref.setValue(order, new DatabaseReference.CompletionListener() {
                     @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                         show("Error Occurred");
+                    public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                        if(databaseError == null){
+                            pg.dismiss();
+                            show("Order Successfully Placed");
+                        }
                     }
                 });
         }

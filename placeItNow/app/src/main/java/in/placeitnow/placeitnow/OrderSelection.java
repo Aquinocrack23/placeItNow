@@ -204,6 +204,8 @@ public class OrderSelection extends AppCompatActivity implements View.OnClickLis
                 intent.putExtra("amount",amount);
                 intent.putExtra("summary",orderedList);
                 intent.putExtra("payment_mode",payment);
+                intent.putExtra("vid",vid);
+                intent.putExtra("status",status);
                 startActivity(intent);
         }
         return super.onOptionsItemSelected(item);

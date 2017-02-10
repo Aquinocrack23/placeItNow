@@ -33,6 +33,8 @@ public class OrderLocation extends AppCompatActivity {
     //private HashMap<String,String> summary = new HashMap<>();
     private ArrayList<OrderedItemContents> summary = new ArrayList<>();
     private TextView name_vendor;
+    private String vid;
+    private String status;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,6 +51,8 @@ public class OrderLocation extends AppCompatActivity {
         i = getIntent();
         name_vendor.setText(i.getStringExtra("vendorname"));
         summary = (ArrayList<OrderedItemContents>) i.getSerializableExtra("summary");
+        vid = i.getStringExtra("vid");
+        status = i.getStringExtra("status");
         pay.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -105,6 +109,8 @@ public class OrderLocation extends AppCompatActivity {
                 Intent i = new Intent(OrderLocation.this,OrderSummary.class);
                 i.putExtra("details",orderDet);
                 i.putExtra("summary",summary);
+                i.putExtra("vid",vid);
+                i.putExtra("status",status);
                 startActivity(i);
         }
         return super.onOptionsItemSelected(item);
