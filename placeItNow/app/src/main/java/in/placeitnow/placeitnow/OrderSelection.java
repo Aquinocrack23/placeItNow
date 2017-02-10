@@ -135,20 +135,17 @@ public class OrderSelection extends AppCompatActivity implements View.OnClickLis
         filteredMenuList = new ArrayList<>();
         orderedList = new ArrayList<>();
 
+        Intent i = getIntent();
+        vendor = i.getStringExtra("vendorname");
+        vid = i.getStringExtra("vid");
+        vend_name.setText(vendor);
+
         //fill the arraylist
         fillMenu();
 
         RAMItem = new RecyclerAdapterMenuItem(this,menuList,orderedList);
         recyclerView.setAdapter(RAMItem);
 
-
-
-
-
-        Intent i = getIntent();
-        vendor = i.getStringExtra("vendorname");
-        vid = i.getStringExtra("vid");
-        vend_name.setText(vendor);
         Toast.makeText(OrderSelection.this,vendor,Toast.LENGTH_SHORT).show();
 
 

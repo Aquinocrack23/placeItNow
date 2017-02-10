@@ -3,9 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/LoopingViewPager/LoopingViewPager.iml" filepath="$PROJECT_DIR$/LoopingViewPager/LoopingViewPager.iml" />
-      <module fileurl="file://$PROJECT_DIR$/PlaceItNow.iml" filepath="$PROJECT_DIR$/PlaceItNow.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/circleindicator/circleindicator.iml" filepath="$PROJECT_DIR$/circleindicator/circleindicator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/placeItNow.iml" filepath="$PROJECT_DIR$/placeItNow.iml" />
     </modules>
   </component>
 </project>
