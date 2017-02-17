@@ -119,6 +119,13 @@ public class OrderSelection extends AppCompatActivity implements View.OnClickLis
         toolbar.setTitleTextColor(Color.parseColor("#ffffff"));
         toolbar.inflateMenu(R.menu.order_selection_botton);
         toolbar.setTitle("Proceed");
+        toolbar.setNavigationIcon(R.drawable.back_button);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
 
         recyclerView = (RecyclerView)findViewById(R.id.recycler_view_menu);

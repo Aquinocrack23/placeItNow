@@ -45,8 +45,16 @@ public class OrderLocation extends AppCompatActivity {
         initialise();
         toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         toolbar.setTitleTextColor(Color.parseColor("#ffffff"));
         toolbar.inflateMenu(R.menu.order_selection_botton);
+        toolbar.setNavigationIcon(R.drawable.back_button);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         i = getIntent();
         name_vendor.setText(i.getStringExtra("vendorname"));

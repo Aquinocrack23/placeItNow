@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.IntegerRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringDef;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -64,6 +66,8 @@ public class OrderSummary extends AppCompatActivity {
     private HashMap<String,String> orderSummary = new HashMap<>();
     //private HashMap<String,String> orderDetails = new HashMap<>();
     private ArrayList<OrderedItemContents> orderDetails = new ArrayList<>();
+    private Integer order_num;
+    private DatabaseReference orderNumber;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -139,6 +143,20 @@ public class OrderSummary extends AppCompatActivity {
         toolbar.setTitleTextColor(Color.parseColor("#ffffff"));
         toolbar.inflateMenu(R.menu.order_selection_botton);
 
+        //fetching the current order number
+        orderNumber = databaseReference.child("vendors").child(vid).child("orderNumber");
+        orderNumber.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                order_num = dataSnapshot.getValue(Integer.class);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
     private void setRecyclerViewData() {
@@ -178,7 +196,7 @@ public class OrderSummary extends AppCompatActivity {
                 orderId = orderRef.getKey();
                 newOrder = new OrderContents(orderSummary.get("Name"),orderSummary.get("Cont"),
                         orderSummary.get("Address"),orderSummary.get("Time"),orderSummary.get("Date"),
-                        orderSummary.get("amount"),orderSummary.get("vendorName"),"5",orderId,"8",orderDetails);
+                        orderSummary.get("amount"),orderSummary.get("vendorName"),"5",orderId,"8",orderDetails,System.currentTimeMillis());
                 orderRef.setValue(newOrder, new DatabaseReference.CompletionListener() {
                     @Override
                     public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
@@ -196,20 +214,29 @@ public class OrderSummary extends AppCompatActivity {
                 //Creating order items list
                 ArrayList<OrderItem> orderItems = new ArrayList<>();
                 for(int i=0;i<orderDetails.size();i++){
-                    orderItems.add(new OrderItem("-Kb-3CqIo_FYQ4evMoiT",orderDetails.get(i).getMenu_item(),
+                    orderItems.add(new OrderItem(orderDetails.get(i).getItem_key(),orderDetails.get(i).getMenu_item(),
                             Double.valueOf(orderDetails.get(i).getPrice()),Integer.valueOf(orderDetails.get(i).getQuantity())));
                 }
                 //Creating order
-                OrderLayout order = new OrderLayout(uid,displayName,orderItems);
+                final OrderLayout order = new OrderLayout(uid,displayName,orderItems);
                 //Add order on Vendor side
                 DatabaseReference ref = databaseReference.child("vendors").child(vid).child("orders").push().getRef();
                 ref.setValue(order, new DatabaseReference.CompletionListener() {
                     @Override
                     public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                         if(databaseError == null){
-                            pg.dismiss();
                             show("Order Successfully Placed");
                         }
+                    }
+                });
+                orderNumber.setValue(order_num + 1, new DatabaseReference.CompletionListener() {
+                    @Override
+                    public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                        if(databaseError==null){
+                            pg.dismiss();
+                            Toast.makeText(OrderSummary.this,"Your order number is "+String.valueOf(order_num+1),Toast.LENGTH_SHORT).show();
+                        }
+
                     }
                 });
         }

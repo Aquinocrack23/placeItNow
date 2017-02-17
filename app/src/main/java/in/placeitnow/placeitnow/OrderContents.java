@@ -19,13 +19,16 @@ public class OrderContents{
     private String progress_order_number;
     private String orderId;
     private String order_payment_mode;
+    private long epoch;
     private ArrayList<OrderedItemContents> ordercontents;
 
 
     //private Map<String,ArrayList<String>> ordercontent;
 
     //constructor
-    public OrderContents(String customer,String contactnumber,String address,String time,String date,String amount,String vendor,String progress_order_number,String orderId,String order_payment_mode,ArrayList<OrderedItemContents> content){
+    public OrderContents(String customer,String contactnumber,String address,String time,String date,String amount,
+                         String vendor,String progress_order_number,String orderId,
+                         String order_payment_mode,ArrayList<OrderedItemContents> content,long epoch){
         this.customer=customer;
         this.contactnumber=contactnumber;
         this.address=address;

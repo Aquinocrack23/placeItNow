@@ -38,11 +38,9 @@ public class BaseActivityFragment extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_home);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("PlaceItNow");
         setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setHomeAsUpIndicator(R.drawable.ic_home_white_24dp);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setDisplayShowHomeEnabled(true);
+        toolbar.setNavigationIcon(R.drawable.ic_home_white_24dp);
         toolbar.setTitleTextColor(Color.parseColor("#ffffff"));
         toolbar.inflateMenu(R.menu.popup_menu);
 

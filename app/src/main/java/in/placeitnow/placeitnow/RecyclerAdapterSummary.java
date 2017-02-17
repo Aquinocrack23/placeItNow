@@ -23,7 +23,6 @@ public class RecyclerAdapterSummary extends RecyclerView.Adapter<RecyclerAdapter
     private List<OrderedItemContents> menu;
     private Activity activity;
     private int val;
-    Integer[] items = new Integer[]{0,1,2,3,4,5,6,7,8,9,10};
 
     public RecyclerAdapterSummary(Activity activity, List<OrderedItemContents> menu) {
 

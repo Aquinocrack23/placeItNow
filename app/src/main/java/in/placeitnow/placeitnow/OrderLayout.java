@@ -7,15 +7,16 @@ import java.util.ArrayList;
  */
 
 public class OrderLayout {
-    String orderKey;
-    String uid;
-    String displayName;
-    ArrayList<OrderItem> items;
-    Double amount;
-    Long time;
-    String comment;
-    boolean orderDone;
-    boolean paymentDone;
+    private String orderKey;
+    private String uid;
+    private String displayName;
+    private ArrayList<OrderItem> items;
+    private Double amount;
+    private Long time;
+    private String comment;
+    private boolean orderDone;
+    private boolean paymentDone;
+
 
     public OrderLayout() {
 

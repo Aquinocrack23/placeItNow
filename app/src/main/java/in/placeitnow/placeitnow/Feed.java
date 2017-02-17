@@ -3,8 +3,10 @@ package in.placeitnow.placeitnow;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +27,14 @@ public class Feed extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = getActivity().getLayoutInflater().inflate(R.layout.feed,container,false);
+
+        /** getSupportActionBar is only present in AppCompatActivity while getActivity returns FragmentActivity so we first
+         * need to cast to AppCompatActivity to use that method
+         *
+         * */
+        //((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Feed");
+
+
         recyclerView=(RecyclerView)view.findViewById(R.id.recycler_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         //layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
