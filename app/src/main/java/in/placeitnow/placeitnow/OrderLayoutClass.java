@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Created by swapsha96 on 1/21/2017.
  */
 
-public class OrderLayout {
+public class OrderLayoutClass {
     private String orderKey;
     private String uid;
     private String displayName;
@@ -19,7 +19,7 @@ public class OrderLayout {
     private String orderID;
 
 
-    public OrderLayout() {
+    public OrderLayoutClass() {
 
     }
 
@@ -67,7 +67,7 @@ public class OrderLayout {
         this.orderID = orderID;
     }
 
-    public OrderLayout(String orderID, String uid, String displayName, ArrayList<OrderItem> orderItems) {
+    public OrderLayoutClass(String orderID, String uid, String displayName, ArrayList<OrderItem> orderItems) {
         this.orderID = orderID;
 
         this.uid = uid;

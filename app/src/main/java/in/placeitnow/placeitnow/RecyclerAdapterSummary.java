@@ -20,11 +20,11 @@ import java.util.StringTokenizer;
 
 public class RecyclerAdapterSummary extends RecyclerView.Adapter<RecyclerAdapterSummary.ViewHolder>{
 
-    private List<OrderedItemContents> menu;
+    private List<OrderItem> menu;
     private Activity activity;
     private int val;
 
-    public RecyclerAdapterSummary(Activity activity, List<OrderedItemContents> menu) {
+    public RecyclerAdapterSummary(Activity activity, List<OrderItem> menu) {
 
         this.menu = menu;
         this.activity =activity;
@@ -40,9 +40,9 @@ public class RecyclerAdapterSummary extends RecyclerView.Adapter<RecyclerAdapter
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
-        viewHolder.name.setText(menu.get(position).getMenu_item());
-        viewHolder.price.setText(menu.get(position).getPrice());
-        viewHolder.quantity.setText(menu.get(position).getQuantity());
+        viewHolder.name.setText(menu.get(position).getItemName());
+        viewHolder.price.setText(String.valueOf(menu.get(position).getItemPrice()));
+        viewHolder.quantity.setText(menu.get(position).getItemQuantity());
     }
 
     @Override

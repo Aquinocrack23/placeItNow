@@ -31,7 +31,7 @@
         </activity>
         <activity android:name=".VendorProfile">
         </activity>
-        <activity android:name=".OrderLocation"
+        <activity android:name=".OrderDetails"
             android:windowSoftInputMode="adjustPan">
         </activity>
         <activity android:name=".OrderSelection"

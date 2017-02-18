@@ -4,10 +4,8 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.IntegerRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.annotation.StringDef;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,17 +16,14 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by Pranav Gupta on 12/24/2016.
@@ -52,7 +47,7 @@ public class OrderSummary extends AppCompatActivity {
     //recyclerview to get ordered items
     private RecyclerView recycler_view;
     private RecyclerAdapterSummary RASummary;
-    private ArrayList<OrderedItemContents> order= new ArrayList<>();
+    private ArrayList<OrderItem> order= new ArrayList<>();
     //keep track of user and vendor order id (it contain three parts)
     private String orderString;
     private String vendorId;
@@ -65,9 +60,10 @@ public class OrderSummary extends AppCompatActivity {
 
     private HashMap<String,String> orderSummary = new HashMap<>();
     //private HashMap<String,String> orderDetails = new HashMap<>();
-    private ArrayList<OrderedItemContents> orderDetails = new ArrayList<>();
+    private ArrayList<OrderItem> orderDetails = new ArrayList<>();
     private Integer order_num;
     private DatabaseReference orderNumber;
+    private String orderID;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -87,7 +83,7 @@ public class OrderSummary extends AppCompatActivity {
 
         i =getIntent();
         orderSummary = (HashMap<String,String>)i.getSerializableExtra("details");
-        orderDetails = (ArrayList<OrderedItemContents>) i.getSerializableExtra("summary");
+        orderDetails = (ArrayList<OrderItem>) i.getSerializableExtra("summary");
         vid = i.getStringExtra("vid");
         show(vid);
         status = i.getStringExtra("status");
@@ -114,7 +110,7 @@ public class OrderSummary extends AppCompatActivity {
         //getting database references
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference();
-        rootRef = database.getReference("orders");
+        rootRef = database.getReference("users");
         vendorRef = database.getReference("vendors");
 
 
@@ -183,6 +179,9 @@ public class OrderSummary extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.payment:
+                long epoch;
+                epoch = System.currentTimeMillis();
+                orderID = vid.substring(21).toUpperCase()+String.valueOf(epoch).substring(6);
                 final ProgressDialog pg = ProgressDialog.show(this,"PlaceItNow","Placing Your Order...");
                             /** always remember that firebase makes asynchronous calls and results are only present in this
                              * onDataChange callback method so if one tries to use value of vendor id out of this callback
@@ -191,13 +190,27 @@ public class OrderSummary extends AppCompatActivity {
                              * uses vendorID either inside this callback function or make some market to make sure that it has gor its
                              * value
                              * */
-                orderString = vid+uid ;
-                orderRef = rootRef.child(orderString).push();
-                orderId = orderRef.getKey();
-                newOrder = new OrderContents(orderSummary.get("Name"),orderSummary.get("Cont"),
-                        orderSummary.get("Address"),orderSummary.get("Time"),orderSummary.get("Date"),
-                        orderSummary.get("amount"),orderSummary.get("vendorName"),"5",orderId,"8",orderDetails,System.currentTimeMillis());
-                orderRef.setValue(newOrder, new DatabaseReference.CompletionListener() {
+
+                String displayName = orderSummary.get("Name");
+
+                //Creating order
+                final OrderLayoutClass order = new OrderLayoutClass(orderID,
+                        uid,displayName,orderDetails);
+                //Add order on Vendor side
+                DatabaseReference ref = databaseReference.child("vendors").child(vid).child("orders").push().getRef();
+                String key = ref.getKey();
+                orderRef = rootRef.child(uid).child("orders").child(vid).child(key);
+                ref.setValue(order, new DatabaseReference.CompletionListener() {
+                    @Override
+                    public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                        if(databaseError == null){
+                            pg.setMessage("Sending Order to Vendor...");
+                            show("Order Successfully Placed");
+                        }
+                    }
+                });
+
+                orderRef.setValue(order, new DatabaseReference.CompletionListener() {
                     @Override
                     public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                         if(databaseError==null){
@@ -206,27 +219,6 @@ public class OrderSummary extends AppCompatActivity {
                         else {
                             pg.dismiss();
                             show("Some Error Occurred Please try again");
-                        }
-                    }
-                });
-                String displayName = orderSummary.get("Name");
-
-                //Creating order items list
-                ArrayList<OrderItem> orderItems = new ArrayList<>();
-                for(int i=0;i<orderDetails.size();i++){
-                    orderItems.add(new OrderItem(orderDetails.get(i).getItem_key(),orderDetails.get(i).getMenu_item(),
-                            Double.valueOf(orderDetails.get(i).getPrice()),Integer.valueOf(orderDetails.get(i).getQuantity())));
-                }
-                //Creating order
-                final OrderLayout order = new OrderLayout(vid.substring(21).toUpperCase()+String.valueOf(newOrder.getEpoch()).substring(6),
-                        uid,displayName,orderItems);
-                //Add order on Vendor side
-                DatabaseReference ref = databaseReference.child("vendors").child(vid).child("orders").push().getRef();
-                ref.setValue(order, new DatabaseReference.CompletionListener() {
-                    @Override
-                    public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                        if(databaseError == null){
-                            show("Order Successfully Placed");
                         }
                     }
                 });

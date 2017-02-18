@@ -1,16 +1,11 @@
 package in.placeitnow.placeitnow;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -19,11 +14,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.firebase.client.Firebase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -31,16 +24,10 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.roughike.bottombar.BottomBar;
-import com.roughike.bottombar.OnMenuTabClickListener;
 
-import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 /**
  * Created by Pranav Gupta on 12/24/2016.
@@ -54,7 +41,7 @@ public class OrderSelection extends AppCompatActivity implements View.OnClickLis
 
     private CardView all,starters,maincourse,beverages,sweets,dinner;
     private ArrayList<Menu> menuList;
-    private ArrayList<OrderedItemContents> orderedList;
+    private ArrayList<OrderItem> orderedList;
     private ArrayList<Menu> filteredMenuList;
 
     private Toolbar toolbar;
@@ -206,7 +193,7 @@ public class OrderSelection extends AppCompatActivity implements View.OnClickLis
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.payment:
-                Intent intent = new Intent(OrderSelection.this,OrderLocation.class);
+                Intent intent = new Intent(OrderSelection.this,OrderDetails.class);
                 intent.putExtra("vendorname",vendor);
                 intent.putExtra("amount",amount);
                 intent.putExtra("summary",orderedList);

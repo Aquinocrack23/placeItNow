@@ -22,12 +22,12 @@ import java.util.List;
 public class RecyclerAdapterMenuItem extends RecyclerView.Adapter<RecyclerAdapterMenuItem.ViewHolder>{
 
     private List<Menu> menu;
-    private List<OrderedItemContents> ordered;
+    private List<OrderItem> ordered;
     private Activity activity;
     private int val;
     Integer[] items = new Integer[]{0,1,2,3,4,5,6,7,8,9,10};
 
-    public RecyclerAdapterMenuItem(Activity activity, List<Menu> menu,List<OrderedItemContents> ordered) {
+    public RecyclerAdapterMenuItem(Activity activity, List<Menu> menu,List<OrderItem> ordered) {
 
         this.menu = menu;
         this.ordered=ordered;
@@ -55,9 +55,9 @@ public class RecyclerAdapterMenuItem extends RecyclerView.Adapter<RecyclerAdapte
                 }
                 else {
                     menu.get(viewHolder.getAdapterPosition()).setQuantity(val);
-                    ordered.add(new OrderedItemContents(menu.get(viewHolder.getAdapterPosition()).getItem_key(),
-                            menu.get(viewHolder.getAdapterPosition()).getMenu_item(),String.valueOf(menu.get(position).getPrice()),
-                            String.valueOf(menu.get(position).getQuantity())));
+                    ordered.add(new OrderItem(menu.get(viewHolder.getAdapterPosition()).getItem_key(),
+                            menu.get(viewHolder.getAdapterPosition()).getMenu_item(), (double) menu.get(position).getPrice(),
+                            menu.get(position).getQuantity()));
                     Toast.makeText(activity.getBaseContext(),val+" "+menu.get(viewHolder.getAdapterPosition()).getMenu_item()+" added",Toast.LENGTH_SHORT).show();
                 }
             }

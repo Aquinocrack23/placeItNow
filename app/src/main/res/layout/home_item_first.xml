@@ -11,7 +11,7 @@
         android:layout_marginTop="9dp"
         android:layout_marginLeft="9dp"
         android:layout_marginRight="9dp"
-        card_view:cardElevation="0.01dp"
+        card_view:cardElevation="0.02dp"
         android:layout_marginBottom="0dp">
         <RelativeLayout
             android:id="@+id/top_layout"

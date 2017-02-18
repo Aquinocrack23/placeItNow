@@ -20,7 +20,7 @@ public class OrderContents{
     private String orderId;
     private String order_payment_status;
     private long epoch;
-    private ArrayList<OrderedItemContents> ordercontents;
+    private ArrayList<OrderItem> ordercontents;
 
 
     //private Map<String,ArrayList<String>> ordercontent;
@@ -28,7 +28,7 @@ public class OrderContents{
     //constructor
     public OrderContents(String customer,String contactnumber,String address,String time,String date,String amount,
                          String vendor,String progress_order_number,String orderId,
-                         String order_payment_mode,ArrayList<OrderedItemContents> content,long epoch){
+                         String order_payment_mode,ArrayList<OrderItem> content,long epoch){
         this.customer=customer;
         this.contactnumber=contactnumber;
         this.address=address;
@@ -41,6 +41,13 @@ public class OrderContents{
         this.order_payment_status = order_payment_mode;
         this.ordercontents = content;
         this.epoch = epoch;
+    }
+
+    public OrderContents(String orderID,String username,String progress_order_number ){
+        this.orderId = orderID;
+        this.customer = username;
+        this.progress_order_number = progress_order_number;
+
     }
     public OrderContents(){
 
@@ -133,11 +140,11 @@ public class OrderContents{
         this.address = address;
     }
 
-    public ArrayList<OrderedItemContents> getOrdercontents() {
+    public ArrayList<OrderItem> getOrdercontents() {
         return ordercontents;
     }
 
-    public void setOrdercontents(ArrayList<OrderedItemContents> ordercontents) {
+    public void setOrdercontents(ArrayList<OrderItem> ordercontents) {
         this.ordercontents = ordercontents;
     }
 }

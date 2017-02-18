@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -35,6 +36,7 @@ public class RecyclerAdapterOrderDashboard extends RecyclerView.Adapter<Recycler
         holder.vendor_name.setText(orders.get(position).getVendor());
         holder.order_id.setText(orders.get(position).getOrderId());
         holder.order_payment.setText(orders.get(position).getOrder_payment_status());
+
     }
 
     @Override
@@ -46,11 +48,13 @@ public class RecyclerAdapterOrderDashboard extends RecyclerView.Adapter<Recycler
          TextView vendor_name;
         TextView order_id;
         TextView order_payment;
+        Button status;
         ViewHolder(View itemView) {
             super(itemView);
             vendor_name = (TextView)itemView.findViewById(R.id.vendor_name);
             order_id = (TextView)itemView.findViewById(R.id.order_id);
             order_payment = (TextView)itemView.findViewById(R.id.order_payment);
+            status = (Button)itemView.findViewById(R.id.status);
         }
     }
 }

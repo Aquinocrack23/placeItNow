@@ -41,13 +41,14 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<OrderContents> orderContents;
     private ArrayList<OrderContents> selectedOrderContents = new ArrayList<>();
     private DatabaseReference rootRef;
+    private DatabaseReference vendorRef;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         rootRef = database.getReference("orders");
-
+        vendorRef = database.getReference("vendors");
 
         //insantiating the objects
         /** always make sure to instantiate the arraylist before linking it to recycler adapter otherwise no data will be shown
@@ -183,7 +184,38 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 if(dataSnapshot.getKey().contains(uid)){
-                    show(dataSnapshot.getKey());
+                    String vid =dataSnapshot.getKey().substring(0,28);
+                    vendorRef.child(vid).child("orders").addChildEventListener(new ChildEventListener() {
+                        @Override
+                        public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                            OrderLayoutClass allOrdersWithThatVendor = dataSnapshot.getValue(OrderLayoutClass.class);
+                            if(!allOrdersWithThatVendor.isOrderDone()&&(allOrdersWithThatVendor.getTime()-System.currentTimeMillis()<900000)){
+                                 orderContents.add(new OrderContents(allOrdersWithThatVendor.getOrderID(),
+                                         allOrdersWithThatVendor.getDisplayName(),""));
+                            }
+                            dashboard.notifyDataSetChanged();
+                        }
+
+                        @Override
+                        public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                        }
+
+                        @Override
+                        public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                        }
+
+                        @Override
+                        public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
                     rootRef.child(dataSnapshot.getKey()).addChildEventListener(new ChildEventListener() {
                         @Override
                         public void onChildAdded(DataSnapshot dataSnapshot, String s) {

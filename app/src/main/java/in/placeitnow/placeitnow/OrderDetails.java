@@ -11,17 +11,16 @@ import android.view.*;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by Pranav Gupta on 12/26/2016.
  */
 
-public class OrderLocation extends AppCompatActivity {
+public class OrderDetails extends AppCompatActivity {
 
     private Toolbar toolbar;
     private RadioGroup pay;
@@ -31,7 +30,7 @@ public class OrderLocation extends AppCompatActivity {
     private HashMap<String,String> orderDet = new HashMap<>();
     private Intent i;
     //private HashMap<String,String> summary = new HashMap<>();
-    private ArrayList<OrderedItemContents> summary = new ArrayList<>();
+    private ArrayList<OrderItem> summary = new ArrayList<>();
     private TextView name_vendor;
     private String vid;
     private String status;
@@ -40,7 +39,6 @@ public class OrderLocation extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.order_details);
-        pay=(RadioGroup)findViewById(R.id.select_payment_method);
         name_vendor = (TextView)findViewById(R.id.name);
         initialise();
         toolbar = (Toolbar)findViewById(R.id.toolbar);
@@ -58,27 +56,9 @@ public class OrderLocation extends AppCompatActivity {
 
         i = getIntent();
         name_vendor.setText(i.getStringExtra("vendorname"));
-        summary = (ArrayList<OrderedItemContents>) i.getSerializableExtra("summary");
+        summary = (ArrayList<OrderItem>) i.getSerializableExtra("summary");
         vid = i.getStringExtra("vid");
         status = i.getStringExtra("status");
-        pay.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId){
-                    case R.id.paytm:
-                        payment = "PayTM";
-                        break;
-                    case R.id.credit_debit:
-                        payment = "Credit Or Debit Card";
-                        break;
-                    case R.id.cod:
-                        payment = "Cash On Delivery";
-                        break;
-                }
-            }
-        });
-
-
     }
 
     private void initialise() {
@@ -103,23 +83,28 @@ public class OrderLocation extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.payment:
-
-                orderDet.put("Name",name.getText().toString());
-                orderDet.put("Date",date.getText().toString());
-                orderDet.put("Time",time.getText().toString());
-                orderDet.put("Address",address.getText().toString());
-                orderDet.put("Cont",contactno.getText().toString());
-                if(!comment.getText().toString().contentEquals("")){
-                    orderDet.put("Comment",comment.getText().toString());
+                if(name.getText().toString().contentEquals("")||name.getText().toString().contentEquals("")||
+                        name.getText().toString().contentEquals("")||name.getText().toString().contentEquals("")){
+                    Toast.makeText(OrderDetails.this,"Please  fill the required details",Toast.LENGTH_SHORT).show();
                 }
-                orderDet.put("vendorName",i.getStringExtra("vendorname"));
-                orderDet.put("amount",i.getStringExtra("amount"));
-                Intent i = new Intent(OrderLocation.this,OrderSummary.class);
-                i.putExtra("details",orderDet);
-                i.putExtra("summary",summary);
-                i.putExtra("vid",vid);
-                i.putExtra("status",status);
-                startActivity(i);
+                else {
+                    orderDet.put("Name",name.getText().toString());
+                    orderDet.put("Date",date.getText().toString());
+                    orderDet.put("Time",time.getText().toString());
+                    orderDet.put("Address",address.getText().toString());
+                    orderDet.put("Cont",contactno.getText().toString());
+                    if(!comment.getText().toString().contentEquals("")){
+                        orderDet.put("Comment",comment.getText().toString());
+                    }
+                    orderDet.put("vendorName",i.getStringExtra("vendorname"));
+                    orderDet.put("amount",i.getStringExtra("amount"));
+                    Intent i = new Intent(OrderDetails.this,OrderSummary.class);
+                    i.putExtra("details",orderDet);
+                    i.putExtra("summary",summary);
+                    i.putExtra("vid",vid);
+                    i.putExtra("status",status);
+                    startActivity(i);
+                }
         }
         return super.onOptionsItemSelected(item);
     }
