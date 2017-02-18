@@ -11,7 +11,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7ebe7d1c-5ba4-409d-b865-617e998f6b5c" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/OrderedItemContents.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" />
@@ -22,21 +21,10 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/OrderContents.java" afterPath="$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/OrderContents.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/OrderItem.java" afterPath="$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/OrderItem.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/OrderSelection.java" afterPath="$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/OrderSelection.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/OrderSummary.java" afterPath="$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/OrderSummary.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/RecyclerAdapterMenuItem.java" afterPath="$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/RecyclerAdapterMenuItem.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/RecyclerAdapterOrderDashboard.java" afterPath="$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/RecyclerAdapterOrderDashboard.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/RecyclerAdapterSummary.java" afterPath="$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/RecyclerAdapterSummary.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/home_item_first.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/home_item_first.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/order_dashboard_card.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/order_dashboard_card.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/order_details.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/order_details.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/OrderLayout.java" afterPath="$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/OrderLayoutClass.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/OrderLocation.java" afterPath="$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/OrderDetails.java" />
     </list>
     <ignored path="placeItNow.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -83,26 +71,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FeedAdapter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/FeedAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Feed.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/Feed.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="34" column="10" selection-start-line="34" selection-start-column="10" selection-end-line="34" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="DatePickerFragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/DatePickerFragment.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -136,10 +104,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OrderItem.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="OrderItem.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/OrderItem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
+            <state relative-caret-position="-68">
               <caret line="7" column="70" selection-start-line="7" selection-start-column="70" selection-end-line="7" selection-end-column="70" />
               <folding>
                 <element signature="e#852#853#0" expanded="true" />
@@ -152,18 +120,52 @@
       <file leaf-file-name="RecyclerAdapterSummary.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/RecyclerAdapterSummary.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-156">
-              <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+            <state relative-caret-position="-71">
+              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RecyclerAdapter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/RecyclerAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="490">
+              <caret line="72" column="49" selection-start-line="72" selection-start-column="49" selection-end-line="72" selection-end-column="49" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RecyclerAdapterOrderDashboard.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1108">
+              <caret line="118" column="31" selection-start-line="118" selection-start-column="31" selection-end-line="118" selection-end-column="31" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OrderLayoutClass.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/OrderLayoutClass.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RecyclerAdapterOrderDashboard.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/RecyclerAdapterOrderDashboard.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
-              <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+            <state relative-caret-position="51">
+              <caret line="45" column="8" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -3834,16 +3836,16 @@
         <option value="$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/OrderLocation.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/order_details.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/home_item_first.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/order_dashboard_card.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/RecyclerAdapterOrderDashboard.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/RecyclerAdapterSummary.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/OrderSelection.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/OrderContents.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/OrderDetails.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/OrderSummary.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/RecyclerAdapterMenuItem.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/OrderItem.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/RecyclerAdapterSummary.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/RecyclerAdapterOrderDashboard.java" />
       </list>
     </option>
   </component>
@@ -4685,14 +4687,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/OrderLayoutClass.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/Order.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -4706,16 +4700,6 @@
         <state relative-caret-position="34">
           <caret line="5" column="99" selection-start-line="5" selection-start-column="99" selection-end-line="5" selection-end-column="99" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="190" column="117" selection-start-line="190" selection-start-column="117" selection-end-line="190" selection-end-column="117" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4821,6 +4805,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/OrderItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-68">
+          <caret line="7" column="70" selection-start-line="7" selection-start-column="70" selection-end-line="7" selection-end-column="70" />
+          <folding>
+            <element signature="e#852#853#0" expanded="true" />
+            <element signature="e#892#893#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/OrderLayoutClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/RecyclerAdapterSummary.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-71">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/RecyclerAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="490">
@@ -4829,31 +4842,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/RecyclerAdapterOrderDashboard.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+        <state relative-caret-position="-1108">
+          <caret line="118" column="31" selection-start-line="118" selection-start-column="31" selection-end-line="118" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/RecyclerAdapterSummary.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/RecyclerAdapterOrderDashboard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-156">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/in/placeitnow/placeitnow/OrderItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="70" selection-start-line="7" selection-start-column="70" selection-end-line="7" selection-end-column="70" />
+        <state relative-caret-position="51">
+          <caret line="45" column="8" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="8" />
           <folding>
-            <element signature="e#852#853#0" expanded="true" />
-            <element signature="e#892#893#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

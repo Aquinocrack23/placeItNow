@@ -8,6 +8,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 /**
@@ -17,11 +23,13 @@ import java.util.ArrayList;
 public class RecyclerAdapterOrderDashboard extends RecyclerView.Adapter<RecyclerAdapterOrderDashboard.ViewHolder>{
 
     private Activity activity;
-    private ArrayList<OrderContents> orders;
+    private ArrayList<OrderLayoutClass> orders;
+    private String uid;
 
-    public RecyclerAdapterOrderDashboard(Activity activity,ArrayList<OrderContents> orderContentses){
+    public RecyclerAdapterOrderDashboard(Activity activity,ArrayList<OrderLayoutClass> orderContentses,String uid){
         this.activity =activity;
         this.orders = orderContentses;
+        this.uid = uid;
     }
 
     @Override
@@ -33,9 +41,20 @@ public class RecyclerAdapterOrderDashboard extends RecyclerView.Adapter<Recycler
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.vendor_name.setText(orders.get(position).getVendor());
-        holder.order_id.setText(orders.get(position).getOrderId());
-        holder.order_payment.setText(orders.get(position).getOrder_payment_status());
+        holder.vendor_name.setText(orders.get(position).getDisplayName());
+        holder.order_id.setText(orders.get(position).getOrderID());
+        
+        if(orders.get(position).isPaymentDone()){
+            holder.order_payment.setText("Payment Done");
+        }
+        else {
+            holder.order_payment.setText("Payment Pending");
+        }
+        if(orders.get(position).isOrderDone()){
+            holder.status.setText("DONE");
+        } else {
+            holder.status.setText("PENDING");
+        }
 
     }
 

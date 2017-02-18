@@ -38,25 +38,34 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private String uid;
     private RecyclerAdapterOrderDashboard dashboard;
-    private ArrayList<OrderContents> orderContents;
-    private ArrayList<OrderContents> selectedOrderContents = new ArrayList<>();
+    private ArrayList<OrderLayoutClass> orderContents;
+    private ArrayList<OrderLayoutClass> selectedOrderContents = new ArrayList<>();
     private DatabaseReference rootRef;
     private DatabaseReference vendorRef;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        recyclerView = (RecyclerView) findViewById(R.id.recyle_view);
+
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        rootRef = database.getReference("orders");
+        rootRef = database.getReference("users");
         vendorRef = database.getReference("vendors");
 
         //insantiating the objects
         /** always make sure to instantiate the arraylist before linking it to recycler adapter otherwise no data will be shown
          * */
         orderContents = new ArrayList<>();
-        dashboard = new RecyclerAdapterOrderDashboard(MainActivity.this,orderContents);
 
+        recyclerView.setHasFixedSize(true);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
 
+        /** using function recycler view outside data was crashing the app because we use uid to get data set but this
+         * getting uid is done asynchronously so uid might not be fetch till we get data so using setRecyclerViewData() inside
+         * this completion listener ensures that uid is not null
+         * */
         auth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -65,6 +74,9 @@ public class MainActivity extends AppCompatActivity {
                 if (user != null) {
                     // User is signed in
                     uid = user.getUid();
+                    dashboard = new RecyclerAdapterOrderDashboard(MainActivity.this,orderContents,uid);
+                    recyclerView.setAdapter(dashboard);
+                    setRecyclerViewData();
                 } else {
                     //User is signed out
                     Toast.makeText(MainActivity.this,"Please Sign In First",Toast.LENGTH_SHORT).show();
@@ -75,20 +87,14 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyle_view);
 
-        recyclerView.setHasFixedSize(true);
+
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(dashboard);
-
-        setRecyclerViewData(); //adding data to array list
+        //setRecyclerViewData(); //adding data to array list
 
         // Customize the colors here
         mBottomBar = BottomBar.attach(this, savedInstanceState,
@@ -110,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
                 showToast(menuItemId, true);
             }
         });
-
+         orderContents.clear();
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -180,72 +186,47 @@ public class MainActivity extends AppCompatActivity {
 
     private void setRecyclerViewData() {
 
-        rootRef.addChildEventListener(new ChildEventListener() {
+        rootRef.child(uid).child("orders").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                if(dataSnapshot.getKey().contains(uid)){
-                    String vid =dataSnapshot.getKey().substring(0,28);
-                    vendorRef.child(vid).child("orders").addChildEventListener(new ChildEventListener() {
-                        @Override
-                        public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                            OrderLayoutClass allOrdersWithThatVendor = dataSnapshot.getValue(OrderLayoutClass.class);
-                            if(!allOrdersWithThatVendor.isOrderDone()&&(allOrdersWithThatVendor.getTime()-System.currentTimeMillis()<900000)){
-                                 orderContents.add(new OrderContents(allOrdersWithThatVendor.getOrderID(),
-                                         allOrdersWithThatVendor.getDisplayName(),""));
-                            }
-                            dashboard.notifyDataSetChanged();
-                        }
+                 rootRef.child(uid).child("orders").child(dataSnapshot.getKey()).addChildEventListener(new ChildEventListener() {
+                     @Override
+                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                         String key = dataSnapshot.getKey();
+                         OrderLayoutClass orderLayoutClass = dataSnapshot.getValue(OrderLayoutClass.class);
+                         orderLayoutClass.setOrderKey(key);
+                         orderContents.add(orderLayoutClass);
+                         dashboard.notifyDataSetChanged();
+                     }
 
-                        @Override
-                        public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                     @Override
+                     public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                         String key = dataSnapshot.getKey();
+                         OrderLayoutClass orderLayoutClass = dataSnapshot.getValue(OrderLayoutClass.class);
+                       for (int i=0;i<orderContents.size();i++){
+                           if(orderContents.get(i).getOrderKey().contentEquals(key)){
+                               orderContents.get(i).setOrderDone(orderLayoutClass.isOrderDone());
+                               orderContents.get(i).setPaymentDone(orderLayoutClass.isPaymentDone());
+                               dashboard.notifyDataSetChanged();
+                           }
+                       }
+                         dashboard.notifyDataSetChanged();
+                     }
+                     @Override
+                     public void onChildRemoved(DataSnapshot dataSnapshot) {
 
-                        }
+                     }
 
-                        @Override
-                        public void onChildRemoved(DataSnapshot dataSnapshot) {
+                     @Override
+                     public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
-                        }
+                     }
 
-                        @Override
-                        public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                     @Override
+                     public void onCancelled(DatabaseError databaseError) {
 
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                    });
-                    rootRef.child(dataSnapshot.getKey()).addChildEventListener(new ChildEventListener() {
-                        @Override
-                        public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                            OrderContents ordered = dataSnapshot.getValue(OrderContents.class);
-                            orderContents.add(ordered);
-                            selectedOrderContents.add(ordered);
-                            dashboard.notifyDataSetChanged();
-                        }
-
-                        @Override
-                        public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-                        }
-
-                        @Override
-                        public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-                        }
-
-                        @Override
-                        public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                    });
-                }
+                     }
+                 });
             }
 
             @Override
@@ -324,8 +305,8 @@ public class MainActivity extends AppCompatActivity {
             orderContents.addAll(selectedOrderContents);
 
         } else {
-            for (OrderContents order : selectedOrderContents) {
-                if (charText.length() != 0 && order.getVendor().toLowerCase(Locale.getDefault()).contains(charText)) {
+            for (OrderLayoutClass order : selectedOrderContents) {
+                if (charText.length() != 0 && order.getDisplayName().toLowerCase(Locale.getDefault()).contains(charText)) {
                     orderContents.add(order);
                 }
 

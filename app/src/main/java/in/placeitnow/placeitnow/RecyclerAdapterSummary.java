@@ -5,14 +5,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.NumberPicker;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.List;
-import java.util.StringTokenizer;
 
 /**
  * Created by Pranav Gupta on 12/23/2016.
@@ -42,7 +37,7 @@ public class RecyclerAdapterSummary extends RecyclerView.Adapter<RecyclerAdapter
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
         viewHolder.name.setText(menu.get(position).getItemName());
         viewHolder.price.setText(String.valueOf(menu.get(position).getItemPrice()));
-        viewHolder.quantity.setText(menu.get(position).getItemQuantity());
+        viewHolder.quantity.setText(String.valueOf(menu.get(position).getItemQuantity()));
     }
 
     @Override
