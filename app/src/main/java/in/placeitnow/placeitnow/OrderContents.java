@@ -18,7 +18,7 @@ public class OrderContents{
     private String vendor;
     private String progress_order_number;
     private String orderId;
-    private String order_payment_mode;
+    private String order_payment_status;
     private long epoch;
     private ArrayList<OrderedItemContents> ordercontents;
 
@@ -38,11 +38,21 @@ public class OrderContents{
         this.vendor = vendor;
         this.progress_order_number = progress_order_number;
         this.orderId = orderId;
-        this.order_payment_mode = order_payment_mode;
+        this.order_payment_status = order_payment_mode;
         this.ordercontents = content;
+        this.epoch = epoch;
+    }
+    public OrderContents(){
+
     }
 
+    public long getEpoch() {
+        return epoch;
+    }
 
+    public void setEpoch(long epoch) {
+        this.epoch = epoch;
+    }
     public String getTime() {
         return time;
     }
@@ -83,12 +93,12 @@ public class OrderContents{
         this.progress_order_number = progress_order_number;
     }
 
-    public String getOrder_payment_mode() {
-        return order_payment_mode;
+    public String getOrder_payment_status() {
+        return order_payment_status;
     }
 
-    public void setOrder_payment_mode(String order_payment_mode) {
-        this.order_payment_mode = order_payment_mode;
+    public void setOrder_payment_status(String order_payment_mode) {
+        this.order_payment_status = order_payment_mode;
     }
 
     public String getOrderId() {

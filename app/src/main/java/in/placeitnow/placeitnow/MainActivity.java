@@ -19,6 +19,9 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.roughike.bottombar.BottomBar;
@@ -29,19 +32,26 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private RecyclerAdapter adapter;
-    private ArrayList<Vendor> vendorsArrayList;
     private BottomBar mBottomBar;
     private ArrayList<Vendor> selectedVendorList= new ArrayList<>();
     private FirebaseAuth auth;                         //FirebaseAuthentication
     private FirebaseAuth.AuthStateListener mAuthListener;
     private String uid;
+    private RecyclerAdapterOrderDashboard dashboard;
+    private ArrayList<OrderContents> orderContents;
+    private ArrayList<OrderContents> selectedOrderContents;
+    private DatabaseReference rootRef;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference rootRef = database.getReference("orders");
+        rootRef = database.getReference("orders");
+
+
+        //insantiating the objects
+        dashboard = new RecyclerAdapterOrderDashboard(MainActivity.this,orderContents);
+        orderContents = new ArrayList<>();
 
         auth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -51,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 if (user != null) {
                     // User is signed in
                     uid = user.getUid();
+                    show(uid);
 
                 } else {
                     //User is signed out
@@ -61,8 +72,6 @@ public class MainActivity extends AppCompatActivity {
                 // ...
             }
         };
-
-        vendorsArrayList = new ArrayList<>();
 
         recyclerView = (RecyclerView) findViewById(R.id.recyle_view);
 
@@ -77,8 +86,9 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         setRecyclerViewData(); //adding data to array list
-        adapter = new RecyclerAdapter(this, vendorsArrayList);
-        recyclerView.setAdapter(adapter);
+
+
+        recyclerView.setAdapter(dashboard);
         // Customize the colors here
         mBottomBar = BottomBar.attach(this, savedInstanceState,
                 Color.parseColor("#212121"), // Background Color
@@ -125,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String searchQuery) {
-                filter(searchQuery.toString().trim());
+                filter(searchQuery.trim());
                 recyclerView.invalidate();
                 return true;
             }
@@ -168,11 +178,63 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setRecyclerViewData() {
-        vendorsArrayList.add(new Vendor("Bake Hut",true));
-        vendorsArrayList.add(new Vendor("Treat Kamand",true));
-        vendorsArrayList.add(new Vendor("Priya Fruit Juice",true));
-        vendorsArrayList.add(new Vendor("River Bank",true));
-        selectedVendorList.addAll(vendorsArrayList);
+
+        rootRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                if(dataSnapshot.getKey().contains(uid)){
+                    rootRef.child(dataSnapshot.getKey()).addChildEventListener(new ChildEventListener() {
+                        @Override
+                        public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                            OrderContents ordered = dataSnapshot.getValue(OrderContents.class);
+                            show(ordered.getVendor());
+                            orderContents.add(ordered);
+                            dashboard.notifyDataSetChanged();
+                        }
+
+                        @Override
+                        public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                        }
+
+                        @Override
+                        public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                        }
+
+                        @Override
+                        public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
     private void showToast(int menuId, boolean isReselected) {
         if (menuId == R.id.like) {
@@ -224,28 +286,46 @@ public class MainActivity extends AppCompatActivity {
 
         charText = charText.toLowerCase();
 
-        vendorsArrayList.clear();
+        orderContents.clear();
         if (charText.length() == 0) {
-            vendorsArrayList.addAll(selectedVendorList);
+            orderContents.addAll(selectedOrderContents);
 
         } else {
-            for (Vendor VendorDetail : selectedVendorList) {
-                if (charText.length() != 0 && VendorDetail.getName().toLowerCase(Locale.getDefault()).contains(charText)) {
-                    vendorsArrayList.add(VendorDetail);
+            for (OrderContents order : selectedOrderContents) {
+                if (charText.length() != 0 && order.getVendor().toLowerCase(Locale.getDefault()).contains(charText)) {
+                    orderContents.add(order);
                 }
 
                 else if (charText.length() != 0) {
-                    vendorsArrayList.add(VendorDetail);
+                    orderContents.add(order);
                 }
             }
         }
-        adapter.notifyDataSetChanged();
+        dashboard.notifyDataSetChanged();
     }
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         this.finish();
-//        System.exit(0);
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        auth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        auth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            auth.removeAuthStateListener(mAuthListener);
+        }
     }
 
 

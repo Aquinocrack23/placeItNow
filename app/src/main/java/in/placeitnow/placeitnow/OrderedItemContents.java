@@ -14,6 +14,11 @@ public class OrderedItemContents implements java.io.Serializable {
     private String price;
     private String quantity;
 
+    public OrderedItemContents(){
+
+    }
+
+
     public OrderedItemContents(String item_key, String menu_item, String price, String quantity) {
         this.item_key = item_key;
         this.menu_item = menu_item;

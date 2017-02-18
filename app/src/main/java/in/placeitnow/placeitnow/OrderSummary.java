@@ -218,7 +218,8 @@ public class OrderSummary extends AppCompatActivity {
                             Double.valueOf(orderDetails.get(i).getPrice()),Integer.valueOf(orderDetails.get(i).getQuantity())));
                 }
                 //Creating order
-                final OrderLayout order = new OrderLayout(uid,displayName,orderItems);
+                final OrderLayout order = new OrderLayout(vid.substring(21).toUpperCase()+String.valueOf(newOrder.getEpoch()).substring(6),
+                        uid,displayName,orderItems);
                 //Add order on Vendor side
                 DatabaseReference ref = databaseReference.child("vendors").child(vid).child("orders").push().getRef();
                 ref.setValue(order, new DatabaseReference.CompletionListener() {

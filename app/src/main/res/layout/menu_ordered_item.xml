@@ -2,8 +2,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view"
     android:clickable="true"
-    app:cardElevation="2dp"
+    app:cardElevation="4dp"
     app:cardCornerRadius="6dp"
+    android:layout_marginTop="6dp"
+    android:layout_marginLeft="4dp"
+    android:layout_marginRight="4dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="6dp">

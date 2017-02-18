@@ -16,13 +16,60 @@ public class OrderLayout {
     private String comment;
     private boolean orderDone;
     private boolean paymentDone;
+    private String orderID;
 
 
     public OrderLayout() {
 
     }
 
-    public OrderLayout(String uid, String displayName, ArrayList<OrderItem> orderItems) {
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    public void setItems(ArrayList<OrderItem> items) {
+        this.items = items;
+    }
+
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
+
+    public void setTime(Long time) {
+        this.time = time;
+    }
+
+    public boolean isOrderDone() {
+        return orderDone;
+    }
+
+    public void setOrderDone(boolean orderDone) {
+        this.orderDone = orderDone;
+    }
+
+    public boolean isPaymentDone() {
+        return paymentDone;
+    }
+
+    public void setPaymentDone(boolean paymentDone) {
+        this.paymentDone = paymentDone;
+    }
+
+    public String getOrderID() {
+        return orderID;
+    }
+
+    public void setOrderID(String orderID) {
+        this.orderID = orderID;
+    }
+
+    public OrderLayout(String orderID, String uid, String displayName, ArrayList<OrderItem> orderItems) {
+        this.orderID = orderID;
+
         this.uid = uid;
         this.displayName = displayName;
         this.items = orderItems;
