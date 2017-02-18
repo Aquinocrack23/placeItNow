@@ -15,7 +15,8 @@
         android:name=".PlaceItNow">
         <activity android:name=".MainActivity"
             android:theme="@style/Main"
-            android:label="Order Dashboard">
+            android:label="Order Dashboard"
+            android:windowSoftInputMode="adjustPan">
 
         </activity>
         <activity android:name=".LoginActivity">

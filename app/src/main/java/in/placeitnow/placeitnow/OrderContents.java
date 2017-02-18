@@ -42,13 +42,6 @@ public class OrderContents{
         this.ordercontents = content;
         this.epoch = epoch;
     }
-
-    public OrderContents(String orderID,String username,String progress_order_number ){
-        this.orderId = orderID;
-        this.customer = username;
-        this.progress_order_number = progress_order_number;
-
-    }
     public OrderContents(){
 
     }

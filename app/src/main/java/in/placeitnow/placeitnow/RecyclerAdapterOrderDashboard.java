@@ -43,7 +43,7 @@ public class RecyclerAdapterOrderDashboard extends RecyclerView.Adapter<Recycler
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.vendor_name.setText(orders.get(position).getDisplayName());
         holder.order_id.setText(orders.get(position).getOrderID());
-        
+
         if(orders.get(position).isPaymentDone()){
             holder.order_payment.setText("Payment Done");
         }

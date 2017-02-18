@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<OrderLayoutClass> selectedOrderContents = new ArrayList<>();
     private DatabaseReference rootRef;
     private DatabaseReference vendorRef;
+    private int check = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +63,9 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+        dashboard = new RecyclerAdapterOrderDashboard(MainActivity.this,orderContents,uid);
+        recyclerView.setAdapter(dashboard);
+        dashboard.notifyDataSetChanged();
 
         /** using function recycler view outside data was crashing the app because we use uid to get data set but this
          * getting uid is done asynchronously so uid might not be fetch till we get data so using setRecyclerViewData() inside
@@ -74,8 +79,6 @@ public class MainActivity extends AppCompatActivity {
                 if (user != null) {
                     // User is signed in
                     uid = user.getUid();
-                    dashboard = new RecyclerAdapterOrderDashboard(MainActivity.this,orderContents,uid);
-                    recyclerView.setAdapter(dashboard);
                     setRecyclerViewData();
                 } else {
                     //User is signed out
@@ -116,7 +119,6 @@ public class MainActivity extends AppCompatActivity {
                 showToast(menuItemId, true);
             }
         });
-         orderContents.clear();
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -136,14 +138,13 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextSubmit(String query) {
-
+                filter(query.trim());
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String searchQuery) {
                 filter(searchQuery.trim());
-                dashboard.notifyDataSetChanged();
                 return true;
             }
         });
@@ -175,7 +176,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(i);
 
         }
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_search) {
 
@@ -195,22 +195,21 @@ public class MainActivity extends AppCompatActivity {
                          String key = dataSnapshot.getKey();
                          OrderLayoutClass orderLayoutClass = dataSnapshot.getValue(OrderLayoutClass.class);
                          orderLayoutClass.setOrderKey(key);
-                         orderContents.add(orderLayoutClass);
+                         if(!checkIfPresent(orderLayoutClass)){
+                             orderContents.add(0,orderLayoutClass);
+                             selectedOrderContents.add(0,orderLayoutClass);
+                         }
                          dashboard.notifyDataSetChanged();
                      }
 
                      @Override
                      public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                         String key = dataSnapshot.getKey();
                          OrderLayoutClass orderLayoutClass = dataSnapshot.getValue(OrderLayoutClass.class);
-                       for (int i=0;i<orderContents.size();i++){
-                           if(orderContents.get(i).getOrderKey().contentEquals(key)){
-                               orderContents.get(i).setOrderDone(orderLayoutClass.isOrderDone());
-                               orderContents.get(i).setPaymentDone(orderLayoutClass.isPaymentDone());
-                               dashboard.notifyDataSetChanged();
-                           }
-                       }
-                         dashboard.notifyDataSetChanged();
+                         for (int i=0;i<orderContents.size();i++){
+                             orderContents.get(i).setPaymentDone(orderLayoutClass.isPaymentDone());
+                             orderContents.get(i).setOrderDone(orderLayoutClass.isOrderDone());
+                             dashboard.notifyDataSetChanged();
+                         }
                      }
                      @Override
                      public void onChildRemoved(DataSnapshot dataSnapshot) {
@@ -250,6 +249,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    private boolean checkIfPresent(OrderLayoutClass orderLayoutClass) {
+        for(int i =0;i<orderContents.size();i++){
+            if(orderContents.get(i).getOrderKey().contentEquals(orderLayoutClass.getOrderKey())){
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void showToast(int menuId, boolean isReselected) {
         if (menuId == R.id.like) {
             if (isReselected) {
@@ -307,10 +316,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             for (OrderLayoutClass order : selectedOrderContents) {
                 if (charText.length() != 0 && order.getDisplayName().toLowerCase(Locale.getDefault()).contains(charText)) {
-                    orderContents.add(order);
-                }
-
-                else if (charText.length() != 0) {
                     orderContents.add(order);
                 }
             }
