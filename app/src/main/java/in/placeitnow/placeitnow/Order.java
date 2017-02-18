@@ -47,8 +47,6 @@ public class Order extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View  view=  getActivity().getLayoutInflater().inflate(R.layout.order,container,false);
-
-
         /** getSupportActionBar is only present in AppCompatActivity while getActivity returns FragmentActivity so we first
          * need to cast to AppCompatActivity to use that method
          *
@@ -80,40 +78,13 @@ public class Order extends Fragment {
         vendorsArrayList = new ArrayList<>();
         selectedVendorList = new ArrayList<>();
         recyclerView = (RecyclerView)view.findViewById(R.id.recycler_view);
-
-        recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
 
-        setRecyclerViewData(); //adding data to array list
         adapter = new RecyclerAdapter(getActivity(), vendorsArrayList);
         recyclerView.setAdapter(adapter);
-        return view;
 
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        setHasOptionsMenu(true);
-    }
-
-    @Override
-    public void onCreateOptionsMenu(android.view.Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.dashboard,menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.dashboard:
-                startActivity(new Intent(getActivity(),MainActivity.class));
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void setRecyclerViewData() {
         databaseReference.child("vendors").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -145,7 +116,32 @@ public class Order extends Fragment {
 
             }
         });
+
+        return view;
+
     }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(android.view.Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.dashboard,menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.dashboard:
+                startActivity(new Intent(getActivity(),MainActivity.class));
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     private void show(String msg){
         Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT).show();
     }

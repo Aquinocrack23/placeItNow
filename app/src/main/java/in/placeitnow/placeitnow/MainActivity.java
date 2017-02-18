@@ -1,5 +1,6 @@
 package in.placeitnow.placeitnow;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -33,13 +34,12 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private BottomBar mBottomBar;
-    private ArrayList<Vendor> selectedVendorList= new ArrayList<>();
     private FirebaseAuth auth;                         //FirebaseAuthentication
     private FirebaseAuth.AuthStateListener mAuthListener;
     private String uid;
     private RecyclerAdapterOrderDashboard dashboard;
     private ArrayList<OrderContents> orderContents;
-    private ArrayList<OrderContents> selectedOrderContents;
+    private ArrayList<OrderContents> selectedOrderContents = new ArrayList<>();
     private DatabaseReference rootRef;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +50,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         //insantiating the objects
-        dashboard = new RecyclerAdapterOrderDashboard(MainActivity.this,orderContents);
+        /** always make sure to instantiate the arraylist before linking it to recycler adapter otherwise no data will be shown
+         * */
         orderContents = new ArrayList<>();
+        dashboard = new RecyclerAdapterOrderDashboard(MainActivity.this,orderContents);
+
 
         auth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -61,8 +64,6 @@ public class MainActivity extends AppCompatActivity {
                 if (user != null) {
                     // User is signed in
                     uid = user.getUid();
-                    show(uid);
-
                 } else {
                     //User is signed out
                     Toast.makeText(MainActivity.this,"Please Sign In First",Toast.LENGTH_SHORT).show();
@@ -77,18 +78,17 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setHasFixedSize(true);
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setHomeAsUpIndicator(R.drawable.ic_home_white_24dp);
+        actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(dashboard);
 
         setRecyclerViewData(); //adding data to array list
 
-
-        recyclerView.setAdapter(dashboard);
         // Customize the colors here
         mBottomBar = BottomBar.attach(this, savedInstanceState,
                 Color.parseColor("#212121"), // Background Color
@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String searchQuery) {
                 filter(searchQuery.trim());
-                recyclerView.invalidate();
+                dashboard.notifyDataSetChanged();
                 return true;
             }
         });
@@ -183,12 +183,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 if(dataSnapshot.getKey().contains(uid)){
+                    show(dataSnapshot.getKey());
                     rootRef.child(dataSnapshot.getKey()).addChildEventListener(new ChildEventListener() {
                         @Override
                         public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                             OrderContents ordered = dataSnapshot.getValue(OrderContents.class);
-                            show(ordered.getVendor());
                             orderContents.add(ordered);
+                            selectedOrderContents.add(ordered);
                             dashboard.notifyDataSetChanged();
                         }
 

@@ -15,8 +15,8 @@ import java.util.ArrayList;
 
 public class RecyclerAdapterOrderDashboard extends RecyclerView.Adapter<RecyclerAdapterOrderDashboard.ViewHolder>{
 
-    Activity activity;
-    ArrayList<OrderContents> orders;
+    private Activity activity;
+    private ArrayList<OrderContents> orders;
 
     public RecyclerAdapterOrderDashboard(Activity activity,ArrayList<OrderContents> orderContentses){
         this.activity =activity;
@@ -35,8 +35,6 @@ public class RecyclerAdapterOrderDashboard extends RecyclerView.Adapter<Recycler
         holder.vendor_name.setText(orders.get(position).getVendor());
         holder.order_id.setText(orders.get(position).getOrderId());
         holder.order_payment.setText(orders.get(position).getOrder_payment_status());
-
-
     }
 
     @Override
@@ -44,11 +42,11 @@ public class RecyclerAdapterOrderDashboard extends RecyclerView.Adapter<Recycler
         return ( null!=orders ? orders.size() : 0);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder{
          TextView vendor_name;
         TextView order_id;
         TextView order_payment;
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
             vendor_name = (TextView)itemView.findViewById(R.id.vendor_name);
             order_id = (TextView)itemView.findViewById(R.id.order_id);
