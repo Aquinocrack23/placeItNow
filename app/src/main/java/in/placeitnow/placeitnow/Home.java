@@ -3,6 +3,7 @@ package in.placeitnow.placeitnow;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -29,6 +30,8 @@ import java.util.List;
 
 import me.relex.circleindicator.CircleIndicator;
 
+import static android.app.Activity.RESULT_OK;
+
 /**
  * Created by Pranav Gupta on 12/22/2016.
  */
@@ -47,6 +50,7 @@ public class Home extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView recyclerView2;
     private List<HomeBoxFirst> boxItems,boxItems2;
+    public MySimpleReceiver receiverForSimple;
 
     @Nullable
     @Override
@@ -60,6 +64,8 @@ public class Home extends Fragment {
          *
          * */
         //((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Home");
+        setupServiceReceiver();
+        checkForMessage();
 
         //Firebase Auth
         auth = FirebaseAuth.getInstance();
@@ -70,6 +76,7 @@ public class Home extends Fragment {
                 if (user != null) {
                     // User is signed in
                     uid = user.getUid();
+                    onSimpleService(view);
 
                 } else {
                     //User is signed out
@@ -111,6 +118,7 @@ public class Home extends Fragment {
         CircleIndicator indicator = (CircleIndicator) view.findViewById(R.id.indicator);
         viewpager.setAdapter(new SamplePagerAdapter());
         indicator.setViewPager(viewpager);
+        onSimpleService(view);
     }
 
     private void setData() {
@@ -122,6 +130,45 @@ public class Home extends Fragment {
         boxItems2.add(new HomeBoxFirst("Biryani","Find all biryanis at best price at RiverBank",R.drawable.fried_rice));
         boxItems2.add(new HomeBoxFirst("Parantha","All varieties of parantha are available at AFC",R.drawable.paratha));
     }
+    public void onSimpleService(View v) {
+
+        // Construct our Intent specifying the Service
+        Intent i = new Intent(getActivity(), MySimpleService.class);
+        // Add extras to the bundle
+        i.putExtra("uid",uid);
+        i.putExtra("receiver", receiverForSimple);
+        // Start the service
+        getActivity().startService(i);
+        //Toast.makeText(getActivity(),"onSimpleService",Toast.LENGTH_SHORT).show();
+    }
+
+    // Setup the callback for when data is received from the service
+    public void setupServiceReceiver() {
+        //Toast.makeText(getActivity(),"setupServiceReceiver",Toast.LENGTH_SHORT).show();
+        receiverForSimple = new MySimpleReceiver(new Handler());
+        // This is where we specify what happens when data is received from the
+        // service
+        receiverForSimple.setReceiver(new MySimpleReceiver.Receiver() {
+            @Override
+            public void onReceiveResult(int resultCode, Bundle resultData) {
+                if (resultCode == RESULT_OK) {
+                    String resultValue = resultData.getString("resultValue");
+                    Toast.makeText(getActivity(), resultValue, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    // Checks to see if service passed in a message
+    private void checkForMessage() {
+        //Toast.makeText(getActivity(),"checkForMessage",Toast.LENGTH_SHORT).show();
+        String message = getActivity().getIntent().getStringExtra("message");
+        if (message != null) {
+            Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
 
     //to change content of a viewpager inside fragment class
     private void setViewLayout(int id){

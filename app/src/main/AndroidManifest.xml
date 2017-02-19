@@ -5,6 +5,10 @@
     <uses-feature
         android:name="android.software.leanback"
         android:required="false" />
+    <service
+        android:name=".MySimpleService"
+        android:exported="false">
+        </service>
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"

@@ -18,7 +18,15 @@ public class OrderLayoutClass {
     private boolean orderDone;
     private boolean paymentDone;
     private String orderID;
+    private Integer progress_order_number;
 
+    public Integer getProgress_order_number() {
+        return progress_order_number;
+    }
+
+    public void setProgress_order_number(Integer progress_order_number) {
+        this.progress_order_number = progress_order_number;
+    }
 
     public OrderLayoutClass() {
 

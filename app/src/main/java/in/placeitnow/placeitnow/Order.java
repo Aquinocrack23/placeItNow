@@ -13,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.*;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,6 +31,7 @@ import java.util.ArrayList;
  * Created by Pranav Gupta on 12/22/2016.
  */
 public class Order extends Fragment {
+    private TextView loading;
     private RecyclerView recyclerView;
     private RecyclerAdapter adapter;
     private ArrayList<Vendor> vendorsArrayList;
@@ -77,6 +79,7 @@ public class Order extends Fragment {
 
         vendorsArrayList = new ArrayList<>();
         selectedVendorList = new ArrayList<>();
+        loading = (TextView)view.findViewById(R.id.loading);
         recyclerView = (RecyclerView)view.findViewById(R.id.recycler_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
@@ -93,6 +96,7 @@ public class Order extends Fragment {
                 Boolean status = dataSnapshot.child("details").child("status").getValue(Boolean.class);
                 //show(vid +" "+name+" "+ status);
                 vendorsArrayList.add(new Vendor(vid,name,status));
+                loading.setText("");
                 adapter.notifyDataSetChanged();
             }
 

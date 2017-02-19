@@ -48,11 +48,11 @@ public class Feed extends Fragment {
     }
 
     private void setDatatoView() {
-        itemList.add(new FeedItem(234,"Pranav Gupta","r","This time we are back with a bang and we will soon be looking to sue",
+        itemList.add(new FeedItem(234,"Pranav Gupta","r","This app is just too good",
                 "e","12/12/2019","www.google.com"));
-        itemList.add(new FeedItem(234,"Pranav Gupta","r","This time we are back with a bang and we will soon be looking to sue",
+        itemList.add(new FeedItem(234,"Pranav Gupta","r","This is a great app for browsing your local canteens",
                 "e","12/12/2019","www.google.com"));
-        itemList.add(new FeedItem(234,"Pranav Gupta","null","This time we are back with a bang and we will soon be looking to sue",
+        itemList.add(new FeedItem(234,"Pranav Gupta","null","This is a great app for browsing your local canteens",
                 "e","12/12/2019","www.google.com"));
         itemList.add(new FeedItem(234,"Pranav Gupta","r","This time we are back with a bang and we will soon be looking to sue",
                 "e","12/12/2019","www.google.com"));

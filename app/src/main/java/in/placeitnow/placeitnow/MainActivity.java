@@ -1,11 +1,14 @@
 package in.placeitnow.placeitnow;
 
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
@@ -16,6 +19,7 @@ import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,8 +34,11 @@ import com.roughike.bottombar.OnMenuTabClickListener;
 
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
+
+    private TextView loading;
     private RecyclerView recyclerView;
     private BottomBar mBottomBar;
     private FirebaseAuth auth;                         //FirebaseAuthentication
@@ -49,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         recyclerView = (RecyclerView) findViewById(R.id.recyle_view);
+        loading = (TextView)findViewById(R.id.loading);
 
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -198,18 +206,14 @@ public class MainActivity extends AppCompatActivity {
                          if(!checkIfPresent(orderLayoutClass)){
                              orderContents.add(0,orderLayoutClass);
                              selectedOrderContents.add(0,orderLayoutClass);
+                             loading.setText("");
                          }
                          dashboard.notifyDataSetChanged();
                      }
 
                      @Override
                      public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                         OrderLayoutClass orderLayoutClass = dataSnapshot.getValue(OrderLayoutClass.class);
-                         for (int i=0;i<orderContents.size();i++){
-                             orderContents.get(i).setPaymentDone(orderLayoutClass.isPaymentDone());
-                             orderContents.get(i).setOrderDone(orderLayoutClass.isOrderDone());
-                             dashboard.notifyDataSetChanged();
-                         }
+                         recreate();
                      }
                      @Override
                      public void onChildRemoved(DataSnapshot dataSnapshot) {
@@ -226,7 +230,42 @@ public class MainActivity extends AppCompatActivity {
 
                      }
                  });
+                vendorRef.child(dataSnapshot.getKey()).child("orders").addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                        String key = dataSnapshot.getKey();
+                        OrderLayoutClass orderLayoutClass = dataSnapshot.getValue(OrderLayoutClass.class);
+                        orderLayoutClass.setOrderKey(key);
+                        if(!checkIfPresent(orderLayoutClass)&&!orderLayoutClass.isOrderDone()){
+                            orderContents.add(0,orderLayoutClass);
+                            selectedOrderContents.add(0,orderLayoutClass);
+                            loading.setText("");
+                        }
+                        dashboard.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                        recreate();
+                    }
+
+                    @Override
+                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
             }
+
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
@@ -346,6 +385,5 @@ public class MainActivity extends AppCompatActivity {
             auth.removeAuthStateListener(mAuthListener);
         }
     }
-
 
 }

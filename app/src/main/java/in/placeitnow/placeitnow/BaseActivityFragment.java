@@ -1,10 +1,12 @@
 package in.placeitnow.placeitnow;
 
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,14 +15,17 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 /**
@@ -31,7 +36,10 @@ public class BaseActivityFragment extends AppCompatActivity {
     private TabLayout tabLayout;
     private Toolbar toolbar;
     boolean doubleBackToExitPressedOnce = false;
-
+    public MySimpleReceiver receiverForSimple;
+    private FirebaseAuth auth;             //FirebaseAuthentication
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private String uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +51,35 @@ public class BaseActivityFragment extends AppCompatActivity {
         toolbar.setNavigationIcon(R.drawable.ic_home_white_24dp);
         toolbar.setTitleTextColor(Color.parseColor("#ffffff"));
         toolbar.inflateMenu(R.menu.popup_menu);
+
+        /** What method should I call to know if an Activity has its contentView (once the method setContentView() has been called)?
+         this.getWindow().getDecorView().findViewById(android.R.id.content)
+         or
+         this.findViewById(android.R.id.content)
+         or
+         this.findViewById(android.R.id.content).getRootView()
+         * */
+
+        //Firebase Auth
+        auth = FirebaseAuth.getInstance();
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    // User is signed in
+                    uid = user.getUid();
+                    onSimpleService(BaseActivityFragment.this.findViewById(android.R.id.content));
+
+                } else {
+                    //User is signed out
+                    Toast.makeText(BaseActivityFragment.this,"Please Sign In First",Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(BaseActivityFragment.this,LoginActivity.class);
+                    startActivity(i);
+                }
+                // ...
+            }
+        };
 
         //Viewpager
         final ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
@@ -74,6 +111,7 @@ public class BaseActivityFragment extends AppCompatActivity {
         });
         createTabIcons();
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -156,6 +194,45 @@ public class BaseActivityFragment extends AppCompatActivity {
         tabFour.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_account_circle_white_24dp, 0, 0);
         tabLayout.getTabAt(3).setCustomView(tabFour);
     }
+
+
+    public void onSimpleService(View v) {
+
+        // Construct our Intent specifying the Service
+        Intent i = new Intent(this, MySimpleService.class);
+        // Add extras to the bundle
+        i.putExtra("uid",uid);
+        //i.putExtra("receiver", receiverForSimple);
+        // Start the service
+        startService(i);
+        setupServiceReceiver();
+        checkForMessage();
+    }
+    // Setup the callback for when data is received from the service
+    public void setupServiceReceiver() {
+        receiverForSimple = new MySimpleReceiver(new Handler());
+        // This is where we specify what happens when data is received from the
+        // service
+        receiverForSimple.setReceiver(new MySimpleReceiver.Receiver() {
+            @Override
+            public void onReceiveResult(int resultCode, Bundle resultData) {
+                if (resultCode == RESULT_OK) {
+                    String resultValue = resultData.getString("resultValue");
+                    Toast.makeText(BaseActivityFragment.this, resultValue, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    // Checks to see if service passed in a message
+    private void checkForMessage() {
+        String message = getIntent().getStringExtra("message");
+        if (message != null) {
+            Toast.makeText(BaseActivityFragment.this, message, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
 
     @Override
     public void onBackPressed() {

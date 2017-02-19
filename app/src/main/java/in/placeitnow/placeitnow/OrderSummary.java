@@ -192,10 +192,13 @@ public class OrderSummary extends AppCompatActivity {
                              * */
 
                 String displayName = orderSummary.get("Name");
+                String comment = orderSummary.get("Comment");
 
                 //Creating order
                 final OrderLayoutClass order = new OrderLayoutClass(orderID,
                         uid,displayName,orderDetails);
+                order.setProgress_order_number(order_num);
+                order.setComment(comment);
                 //Add order on Vendor side
                 DatabaseReference ref = databaseReference.child("vendors").child(vid).child("orders").push().getRef();
                 String key = ref.getKey();
@@ -228,6 +231,7 @@ public class OrderSummary extends AppCompatActivity {
                         if(databaseError==null){
                             pg.dismiss();
                             Toast.makeText(OrderSummary.this,"Your order number is "+String.valueOf(order_num+1),Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(OrderSummary.this,MainActivity.class));
                         }
 
                     }
