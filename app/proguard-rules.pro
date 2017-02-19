@@ -15,3 +15,10 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+-keep class com.squareup.picasso.* { *; }
+-dontwarn com.squareup.picasso.**
+-dontwarn javax.xml.**
+-dontwarn javax.xml.stream.events.**
+-dontwarn com.fasterxml.jackson.databind.**
+

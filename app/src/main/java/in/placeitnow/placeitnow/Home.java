@@ -152,8 +152,8 @@ public class Home extends Fragment {
             @Override
             public void onReceiveResult(int resultCode, Bundle resultData) {
                 if (resultCode == RESULT_OK) {
-                    String resultValue = resultData.getString("resultValue");
-                    Toast.makeText(getActivity(), resultValue, Toast.LENGTH_SHORT).show();
+                    //String resultValue = resultData.getString("resultValue");
+                    //Toast.makeText(getActivity(), resultValue, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -177,5 +177,24 @@ public class Home extends Fragment {
         ViewGroup rootView = (ViewGroup) getView();
         rootView.removeAllViews();
         rootView.addView(view);
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        auth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        auth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            auth.removeAuthStateListener(mAuthListener);
+        }
     }
 }

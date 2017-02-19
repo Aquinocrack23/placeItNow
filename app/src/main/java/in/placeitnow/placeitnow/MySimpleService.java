@@ -31,17 +31,17 @@ public class MySimpleService extends IntentService {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Toast.makeText(getApplicationContext(),"Hii",Toast.LENGTH_SHORT).show();
         return super.onStartCommand(intent, flags, startId);
     }
 
     // This describes what will happen when service is triggered
 	@Override
 	protected void onHandleIntent(Intent intent) {
-        Toast.makeText(getApplicationContext(),"Hii",Toast.LENGTH_SHORT).show();
+
 		timestamp =  System.currentTimeMillis();
 	    // Extract additional values from the bundle
 	    uid = intent.getStringExtra("uid");
+        Toast.makeText(getApplicationContext(),uid,Toast.LENGTH_SHORT).show();
 
 		// Extract the receiver passed into the service
 	    ResultReceiver rec = intent.getParcelableExtra("receiver");
@@ -49,8 +49,8 @@ public class MySimpleService extends IntentService {
 	    sleep(3000);
 	    // Send result to activity
 	    sendResultValue(rec, uid);
-        setRecyclerViewData();
-        createNotification(uid);
+        //setRecyclerViewData();
+        //createNotification(uid);
 	}
 
 	// Send result to activity using ResultReceiver
@@ -66,15 +66,15 @@ public class MySimpleService extends IntentService {
 	private void createNotification(String val) {
 		// Construct pending intent to serve as action for notification item
 		Intent intent = new Intent(this, BaseActivityFragment.class);
-		intent.putExtra("message", "Launched via notification with message: " + val + " and timestamp " + timestamp);
+		intent.putExtra("message", "Order Updates");
 		PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, 0);
 		// Create notification
-		String longText = "Intent service has a new message with: " + val + " and a timestamp of: " + timestamp;
+		String longText = "Order Updates";
 		Notification noti =
 		        new NotificationCompat.Builder(this)
-		        .setSmallIcon(R.drawable.ic_launcher)
-		        .setContentTitle("New Result!")
-		        .setContentText("Simple Intent service has a new message")
+		        .setSmallIcon(R.drawable.ic_home_white_24dp)
+		        .setContentTitle("PlaceItNow")
+		        .setContentText("You have Order Updates")
 		        .setStyle(new NotificationCompat.BigTextStyle().bigText(longText))
 		        .setContentIntent(pIntent)
 		        .build();
@@ -131,7 +131,7 @@ public class MySimpleService extends IntentService {
 
 			@Override
 			public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
+                createNotification(uid);
 			}
 
 			@Override
