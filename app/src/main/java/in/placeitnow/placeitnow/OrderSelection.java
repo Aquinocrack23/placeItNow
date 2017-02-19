@@ -140,8 +140,6 @@ public class OrderSelection extends AppCompatActivity implements View.OnClickLis
         RAMItem = new RecyclerAdapterMenuItem(this,menuList,orderedList);
         recyclerView.setAdapter(RAMItem);
 
-        Toast.makeText(OrderSelection.this,vendor,Toast.LENGTH_SHORT).show();
-
 
         /*finalize.setOnClickListener(new View.OnClickListener() {
             @Override

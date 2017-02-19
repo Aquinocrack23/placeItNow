@@ -40,7 +40,7 @@ public class SamplePagerAdapter extends PagerAdapter {
 
         TextView textView = new TextView(view.getContext());
 
-        switch (random.nextInt(8)){
+        switch (position){
             case 0:
                 imageView.setBackgroundResource(R.drawable.food);
                 break;

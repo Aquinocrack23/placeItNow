@@ -22,8 +22,6 @@ public class UserAccount extends Fragment {
          *
          * */
         //((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("User Account");
-
-
         return view;
     }
 }

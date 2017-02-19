@@ -100,6 +100,7 @@ public class OrderDetails extends AppCompatActivity {
                     orderDet.put("amount",i.getStringExtra("amount"));
                     Intent i = new Intent(OrderDetails.this,OrderSummary.class);
                     i.putExtra("details",orderDet);
+                    i.putExtra("vendor_name",i.getStringExtra("vendorname"));
                     i.putExtra("summary",summary);
                     i.putExtra("vid",vid);
                     i.putExtra("status",status);

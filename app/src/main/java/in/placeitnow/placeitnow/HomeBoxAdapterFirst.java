@@ -1,6 +1,8 @@
 package in.placeitnow.placeitnow;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +41,12 @@ public class HomeBoxAdapterFirst extends RecyclerView.Adapter<HomeBoxAdapterFirs
         holder.name.setText(boxFirst.get(position).getName());
         holder.description.setText(boxFirst.get(position).getDes());
         Picasso.with(activity).load(boxFirst.get(position).getThumbnail()).into(holder.imgThumbnail);
+        holder.container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.startActivity(new Intent(activity,VendorProfile.class));
+            }
+        });
     }
 
     @Override
@@ -50,11 +58,13 @@ public class HomeBoxAdapterFirst extends RecyclerView.Adapter<HomeBoxAdapterFirs
         ImageView imgThumbnail;
         TextView name;
         TextView description;
+        CardView container;
         public ViewHolder(View itemView) {
             super(itemView);
             imgThumbnail = (ImageView)itemView.findViewById(R.id.img_thumbnail);
             name = (TextView)itemView.findViewById(R.id.tv_nature);
             description = (TextView)itemView.findViewById(R.id.tv_des_nature);
+            container =(CardView) itemView.findViewById(R.id.vendor_profile);
         }
     }
 }

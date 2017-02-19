@@ -42,7 +42,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
             holder.feedImage.setVisibility(View.GONE);
         }
         else{
-            holder.feedImage.setBackgroundResource(R.drawable.sushi);
+            holder.feedImage.setBackgroundResource(R.drawable.dosa);
         }
         holder.profilePic.setBackgroundResource(R.drawable.burg);
 

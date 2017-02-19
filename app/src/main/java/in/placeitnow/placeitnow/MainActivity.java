@@ -265,6 +265,9 @@ public class MainActivity extends AppCompatActivity {
                                     loading.setText("");
                                     dashboard.notifyDataSetChanged();
                                 }
+                                if(Math.abs(orderContents.get(i).getProgress_order_number()-orderLayoutClass.getProgress_order_number())<=2){
+                                    Toast.makeText(MainActivity.this,"Hurry Up for your order",Toast.LENGTH_SHORT).show();
+                                }
                             }
                         }
                         Collections.sort(orderContents, new Comparator<OrderLayoutClass>(){
@@ -391,7 +394,8 @@ public class MainActivity extends AppCompatActivity {
 
         } else {
             for (OrderLayoutClass order : selectedOrderContents) {
-                if (charText.length() != 0 && order.getDisplayName().toLowerCase(Locale.getDefault()).contains(charText)) {
+                if (charText.length() != 0 && order.getDisplayName().toLowerCase(Locale.getDefault()).contains(charText)
+                        ||charText.length() != 0 && order.getVendor_name().toLowerCase(Locale.getDefault()).contains(charText)) {
                     orderContents.add(order);
                 }
             }

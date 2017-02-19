@@ -12,7 +12,8 @@
         android:layout_marginLeft="9dp"
         android:layout_marginRight="9dp"
         card_view:cardElevation="0.02dp"
-        android:layout_marginBottom="0dp">
+        android:layout_marginBottom="0dp"
+        android:id="@+id/vendor_profile">
         <RelativeLayout
             android:id="@+id/top_layout"
             android:layout_width="fill_parent"

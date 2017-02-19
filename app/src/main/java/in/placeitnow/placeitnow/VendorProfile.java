@@ -15,6 +15,6 @@ public class VendorProfile extends AppCompatActivity {
         CollapsingToolbarLayout collapsingToolbarLayout =
                 (CollapsingToolbarLayout) findViewById(R.id.main_collapsing);
 
-        collapsingToolbarLayout.setTitle("Priya Juice Corner");
+        collapsingToolbarLayout.setTitle("Vendor Name");
     }
 }

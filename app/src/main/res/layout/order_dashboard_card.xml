@@ -47,6 +47,22 @@
                 android:text=""
                 android:textColor="@android:color/holo_green_dark"
                 android:textStyle="bold" />
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/order_id"
+                android:text=""
+                android:textColor="@android:color/holo_green_dark"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/progress_order_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/user_name"
+                android:text=""
+                android:textColor="@android:color/holo_green_dark"
+                android:textStyle="bold" />
             <Button
                 android:text="Status"
                 android:layout_width="80dp"

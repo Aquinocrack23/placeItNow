@@ -19,6 +19,7 @@ public class OrderLayoutClass {
     private boolean paymentDone;
     private String orderID;
     private Integer progress_order_number;
+    private String vendor_name;
 
     public Integer getProgress_order_number() {
         return progress_order_number;
@@ -30,6 +31,14 @@ public class OrderLayoutClass {
 
     public OrderLayoutClass() {
 
+    }
+
+    public String getVendor_name() {
+        return vendor_name;
+    }
+
+    public void setVendor_name(String vendor_name) {
+        this.vendor_name = vendor_name;
     }
 
     public void setUid(String uid) {

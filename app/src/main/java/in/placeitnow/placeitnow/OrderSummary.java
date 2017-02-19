@@ -85,7 +85,7 @@ public class OrderSummary extends AppCompatActivity {
         orderSummary = (HashMap<String,String>)i.getSerializableExtra("details");
         orderDetails = (ArrayList<OrderItem>) i.getSerializableExtra("summary");
         vid = i.getStringExtra("vid");
-        show(vid);
+        //show(vid);
         status = i.getStringExtra("status");
 
         customer_name.setText(orderSummary.get("Name"));
@@ -193,16 +193,19 @@ public class OrderSummary extends AppCompatActivity {
 
                 String displayName = orderSummary.get("Name");
                 String comment = orderSummary.get("Comment");
+                String vendor_name = orderSummary.get("vendorName");
+                show(vendor_name);
 
                 //Creating order
                 final OrderLayoutClass order = new OrderLayoutClass(orderID,
                         uid,displayName,orderDetails);
-                order.setProgress_order_number(order_num);
+                order.setProgress_order_number(order_num+1);
                 order.setComment(comment);
                 //Add order on Vendor side
                 DatabaseReference ref = databaseReference.child("vendors").child(vid).child("orders").push().getRef();
                 String key = ref.getKey();
                 order.setTime(epoch);
+                order.setVendor_name(vendor_name);
                 orderRef = rootRef.child(uid).child("orders").child(vid).child(key);
                 ref.setValue(order, new DatabaseReference.CompletionListener() {
                     @Override
