@@ -87,7 +87,6 @@ public class OrderLayoutClass {
             amount += orderItem.getItemPrice() * orderItem.getItemQuantity();
         this.orderDone = false;
         this.paymentDone = false;
-        this.time = System.currentTimeMillis() / 1000L;
         this.comment = "";
     }
     String getDisplayName() {

@@ -202,6 +202,7 @@ public class OrderSummary extends AppCompatActivity {
                 //Add order on Vendor side
                 DatabaseReference ref = databaseReference.child("vendors").child(vid).child("orders").push().getRef();
                 String key = ref.getKey();
+                order.setTime(epoch);
                 orderRef = rootRef.child(uid).child("orders").child(vid).child(key);
                 ref.setValue(order, new DatabaseReference.CompletionListener() {
                     @Override
@@ -231,7 +232,9 @@ public class OrderSummary extends AppCompatActivity {
                         if(databaseError==null){
                             pg.dismiss();
                             Toast.makeText(OrderSummary.this,"Your order number is "+String.valueOf(order_num+1),Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(OrderSummary.this,MainActivity.class));
+                            Intent i = new Intent(OrderSummary.this,MainActivity.class);
+                            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(i);
                         }
 
                     }

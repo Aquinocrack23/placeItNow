@@ -33,6 +33,8 @@ import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnMenuTabClickListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Locale;
 import java.util.Random;
 
@@ -197,6 +199,9 @@ public class MainActivity extends AppCompatActivity {
         rootRef.child(uid).child("orders").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+
+
                  rootRef.child(uid).child("orders").child(dataSnapshot.getKey()).addChildEventListener(new ChildEventListener() {
                      @Override
                      public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -208,6 +213,18 @@ public class MainActivity extends AppCompatActivity {
                              selectedOrderContents.add(0,orderLayoutClass);
                              loading.setText("");
                          }
+                         dashboard.notifyDataSetChanged();
+                         Collections.sort(orderContents, new Comparator<OrderLayoutClass>(){
+                             public int compare(OrderLayoutClass o1, OrderLayoutClass o2) {
+                                 // ## Ascending order
+                                 return o1.getTime().compareTo(o2.getTime()); // To compare string values
+                                 // return Integer.valueOf(emp1.getId()).compareTo(emp2.getId()); // To compare integer values
+
+                                 // ## Descending order
+                                 // return emp2.getFirstName().compareToIgnoreCase(emp1.getFirstName()); // To compare string values
+                                 // return Integer.valueOf(emp2.getId()).compareTo(emp1.getId()); // To compare integer values
+                             }
+                         });
                          dashboard.notifyDataSetChanged();
                      }
 
@@ -230,17 +247,37 @@ public class MainActivity extends AppCompatActivity {
 
                      }
                  });
+
+
                 vendorRef.child(dataSnapshot.getKey()).child("orders").addChildEventListener(new ChildEventListener() {
                     @Override
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                        //check++;
+                        //show(dataSnapshot.getKey()+" "+check+"");
                         String key = dataSnapshot.getKey();
                         OrderLayoutClass orderLayoutClass = dataSnapshot.getValue(OrderLayoutClass.class);
                         orderLayoutClass.setOrderKey(key);
-                        if(!checkIfPresent(orderLayoutClass)&&!orderLayoutClass.isOrderDone()){
-                            orderContents.add(0,orderLayoutClass);
-                            selectedOrderContents.add(0,orderLayoutClass);
-                            loading.setText("");
+                        if(!checkIfPresent(orderLayoutClass)){
+                            for(int i=0;i<orderContents.size();i++){
+                                if((orderContents.get(i).getTime()>orderLayoutClass.getTime())&&!checkIfPresent(orderLayoutClass)){
+                                    orderContents.add(orderLayoutClass);
+                                    selectedOrderContents.add(orderLayoutClass);
+                                    loading.setText("");
+                                    dashboard.notifyDataSetChanged();
+                                }
+                            }
                         }
+                        Collections.sort(orderContents, new Comparator<OrderLayoutClass>(){
+                            public int compare(OrderLayoutClass o1, OrderLayoutClass o2) {
+                                // ## Ascending order
+                                return o1.getTime().compareTo(o2.getTime()); // To compare string values
+                                // return Integer.valueOf(emp1.getId()).compareTo(emp2.getId()); // To compare integer values
+
+                                // ## Descending order
+                                // return emp2.getFirstName().compareToIgnoreCase(emp1.getFirstName()); // To compare string values
+                                // return Integer.valueOf(emp2.getId()).compareTo(emp1.getId()); // To compare integer values
+                            }
+                        });
                         dashboard.notifyDataSetChanged();
                     }
 
@@ -269,7 +306,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
+                    recreate();
             }
 
             @Override
