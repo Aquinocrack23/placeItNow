@@ -215,4 +215,8 @@ public class BaseActivityFragment extends AppCompatActivity {
         }, 2000);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 }

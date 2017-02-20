@@ -64,8 +64,8 @@ public class Home extends Fragment {
          *
          * */
         //((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Home");
-        setupServiceReceiver();
-        checkForMessage();
+        //setupServiceReceiver();
+        //checkForMessage();
 
         //Firebase Auth
         auth = FirebaseAuth.getInstance();
@@ -76,7 +76,7 @@ public class Home extends Fragment {
                 if (user != null) {
                     // User is signed in
                     uid = user.getUid();
-                    onSimpleService(view);
+                    //onSimpleService(view);
 
                 } else {
                     //User is signed out
@@ -118,7 +118,6 @@ public class Home extends Fragment {
         CircleIndicator indicator = (CircleIndicator) view.findViewById(R.id.indicator);
         viewpager.setAdapter(new SamplePagerAdapter());
         indicator.setViewPager(viewpager);
-        onSimpleService(view);
     }
 
     private void setData() {
