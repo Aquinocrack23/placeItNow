@@ -25,13 +25,14 @@
             android:src="@drawable/acc"
             android:padding="8dp"/>
         <TextView
-            android:text="User Name"
+            android:text="........"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="4dp"
             android:textStyle="bold"
             android:textColor="#000000"
             android:textSize="18sp"
+            android:id="@+id/user_name"
             android:layout_gravity="center_vertical"/>
         </LinearLayout>
     </android.support.v7.widget.CardView>
@@ -47,7 +48,7 @@
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="220dp"
+        android:layout_height="180dp"
         android:foreground="?android:attr/selectableItemBackground"
         android:layout_below="@+id/text_online"
         android:padding="16dp"
@@ -63,7 +64,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:id="@+id/order_history">
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
@@ -156,34 +158,6 @@
                     android:padding="6dp"/>
                 <TextView
                     android:text="Bookmarked Meals"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:padding="8dp"
-                    android:textColor="#000000"
-                    android:textSize="16sp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_gravity="left"/>
-            </LinearLayout>
-
-            <View
-                android:layout_width="330dp"
-                android:layout_gravity="center"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center_horizontal|center_vertical">
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="4dp"
-                    android:src="@drawable/ic_action_order_history"
-                    android:padding="6dp"/>
-                <TextView
-                    android:text="Order History"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"

@@ -50,7 +50,6 @@ public class Home extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView recyclerView2;
     private List<HomeBoxFirst> boxItems,boxItems2;
-    public MySimpleReceiver receiverForSimple;
 
     @Nullable
     @Override
@@ -130,14 +129,6 @@ public class Home extends Fragment {
         boxItems2.add(new HomeBoxFirst("Parantha","All varieties of parantha are available at AFC",R.drawable.paratha));
     }
 
-    //to change content of a viewpager inside fragment class
-    private void setViewLayout(int id){
-        LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        view = inflater.inflate(id, null);
-        ViewGroup rootView = (ViewGroup) getView();
-        rootView.removeAllViews();
-        rootView.addView(view);
-    }
     @Override
     public void onStart() {
         super.onStart();

@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 /**
@@ -39,7 +41,7 @@ public class HomeBoxAdapterFirst extends RecyclerView.Adapter<HomeBoxAdapterFirs
     public void onBindViewHolder(HomeBoxAdapterFirst.ViewHolder holder, int position) {
         holder.name.setText(boxFirst.get(position).getName());
         holder.description.setText(boxFirst.get(position).getDes());
-        holder.imgThumbnail.setImageResource(boxFirst.get(position).getThumbnail());
+        Picasso.with(activity).load(boxFirst.get(position).getThumbnail()).fit().into(holder.imgThumbnail);
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

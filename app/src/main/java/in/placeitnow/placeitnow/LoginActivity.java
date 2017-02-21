@@ -171,6 +171,7 @@ public class LoginActivity extends AppCompatActivity {
     private void showProcessDialog() {
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Login");
+        progressDialog.setCancelable(false);
         progressDialog.setMessage("logging in...");
         progressDialog.show();
     }

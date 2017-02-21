@@ -60,6 +60,12 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recyle_view);
         loading = (TextView)findViewById(R.id.loading);
 
+        /** for back button to work in action bar back implement back button login onOptionsItemSelected
+         * */
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         rootRef = database.getReference("users");
@@ -100,13 +106,6 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-
-
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setHomeButtonEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setDisplayShowHomeEnabled(true);
-
         //setRecyclerViewData(); //adding data to array list
 
         // Customize the colors here
@@ -130,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -181,10 +181,9 @@ public class MainActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if(id==R.id.home){
-            Intent i = new Intent(MainActivity.this,BaseActivityFragment.class);
-            startActivity(i);
-
+        if(id==android.R.id.home){
+            onBackPressed();
+            return true;
         }
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_search) {
@@ -268,9 +267,6 @@ public class MainActivity extends AppCompatActivity {
                                     selectedOrderContents.add(orderLayoutClass);
                                     loading.setText("");
                                     dashboard.notifyDataSetChanged();
-                                }
-                                if(Math.abs(orderContents.get(i).getProgress_order_number()-orderLayoutClass.getProgress_order_number())<=2){
-                                    Toast.makeText(MainActivity.this,"Hurry Up for your order",Toast.LENGTH_SHORT).show();
                                 }
                             }
                         }
