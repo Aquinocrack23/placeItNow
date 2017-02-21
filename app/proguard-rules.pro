@@ -16,9 +16,11 @@
 #   public *;
 #}
 
--keep class com.squareup.picasso.* { *; }
--dontwarn com.squareup.picasso.**
--dontwarn javax.xml.**
--dontwarn javax.xml.stream.events.**
--dontwarn com.fasterxml.jackson.databind.**
+#-keep class in.placeitnow.**
+#-keep class com.squareup.picasso.* { *; }
+#-dontwarn com.squareup.picasso.**
+#-dontwarn javax.xml.**
+#-dontwarn javax.xml.stream.events.**
+#-dontwarn com.fasterxml.jackson.databind.ext.DOMSerializer
+#-dontwarn com.fasterxml.jackson.databind.**
 

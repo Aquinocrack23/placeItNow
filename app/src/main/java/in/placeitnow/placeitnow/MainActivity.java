@@ -230,7 +230,11 @@ public class MainActivity extends AppCompatActivity {
 
                      @Override
                      public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                         recreate();
+                         finish();
+                         overridePendingTransition( 0, 0);
+                         startActivity(getIntent());
+                         overridePendingTransition( 0, 0);
+                         //recreate();
                      }
                      @Override
                      public void onChildRemoved(DataSnapshot dataSnapshot) {
@@ -286,7 +290,11 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                        recreate();
+                        //recreate();
+                        finish();
+                        overridePendingTransition( 0, 0);
+                        startActivity(getIntent());
+                        overridePendingTransition( 0, 0);
                     }
 
                     @Override
@@ -341,7 +349,7 @@ public class MainActivity extends AppCompatActivity {
     private void showToast(int menuId, boolean isReselected) {
         if (menuId == R.id.like) {
             if (isReselected) {
-                show("Tab Reselected!");
+                //show("Tab Reselected!");
             } else {
                 show("Find the live items!");
             }

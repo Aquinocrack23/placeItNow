@@ -45,6 +45,7 @@ public class BaseActivityFragment extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_home);
+        //Toast.makeText(BaseActivityFragment.this,"Hii",Toast.LENGTH_SHORT).show();
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("PlaceItNow");
         setSupportActionBar(toolbar);
@@ -69,6 +70,9 @@ public class BaseActivityFragment extends AppCompatActivity {
                 if (user != null) {
                     // User is signed in
                     uid = user.getUid();
+                    //setupServiceReceiver();
+                    //checkForMessage();
+                    //onSimpleService(BaseActivityFragment.this.findViewById(android.R.id.content));
 
                 } else {
                     //User is signed out
@@ -193,6 +197,44 @@ public class BaseActivityFragment extends AppCompatActivity {
         tabFour.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_account_circle_white_24dp, 0, 0);
         tabLayout.getTabAt(3).setCustomView(tabFour);
     }
+    public void onSimpleService(View v) {
+
+        // Construct our Intent specifying the Service
+        Intent i = new Intent(BaseActivityFragment.this, MySimpleService.class);
+        // Add extras to the bundle
+        i.putExtra("uid",uid);
+        i.putExtra("receiver", receiverForSimple);
+        // Start the service
+        startService(i);
+        //Toast.makeText(getActivity(),"onSimpleService",Toast.LENGTH_SHORT).show();
+    }
+
+    // Setup the callback for when data is received from the service
+    public void setupServiceReceiver() {
+        //Toast.makeText(getActivity(),"setupServiceReceiver",Toast.LENGTH_SHORT).show();
+        receiverForSimple = new MySimpleReceiver(new Handler());
+        // This is where we specify what happens when data is received from the
+        // service
+        receiverForSimple.setReceiver(new MySimpleReceiver.Receiver() {
+            @Override
+            public void onReceiveResult(int resultCode, Bundle resultData) {
+                if (resultCode == RESULT_OK) {
+                    //String resultValue = resultData.getString("resultValue");
+                    //Toast.makeText(getActivity(), resultValue, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    // Checks to see if service passed in a message
+    private void checkForMessage() {
+        //Toast.makeText(getActivity(),"checkForMessage",Toast.LENGTH_SHORT).show();
+        String message = getIntent().getStringExtra("message");
+        if (message != null) {
+            Toast.makeText(BaseActivityFragment.this, message, Toast.LENGTH_SHORT).show();
+        }
+    }
+
     @Override
     public void onBackPressed() {
         if (doubleBackToExitPressedOnce) {

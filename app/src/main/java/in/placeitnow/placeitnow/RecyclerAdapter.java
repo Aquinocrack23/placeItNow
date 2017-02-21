@@ -68,10 +68,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             public void onClick(View v) {
                 Intent intent;
                 intent = new Intent(context,OrderSelection.class);
-                intent.putExtra("vendorname",vendors.get(viewHolder.getAdapterPosition()).getName());
-                intent.putExtra("vid",vendors.get(viewHolder.getAdapterPosition()).getVid());
-                intent.putExtra("status",status);
-                context.startActivity(intent);
+                if(vendors.get(viewHolder.getAdapterPosition()).getStatus()){
+                    intent.putExtra("vendorname",vendors.get(viewHolder.getAdapterPosition()).getName());
+                    intent.putExtra("vid",vendors.get(viewHolder.getAdapterPosition()).getVid());
+                    intent.putExtra("status",status);
+                    context.startActivity(intent);
+                }
+                else {
+                    Toast.makeText(context,"Sorry this vendor is offline and is not ready to take any orders right now",Toast.LENGTH_SHORT).show();
+                }
+
             }
         };
     }

@@ -9,13 +9,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 
 /**
@@ -46,7 +39,7 @@ public class RecyclerAdapterOrderDashboard extends RecyclerView.Adapter<Recycler
         holder.vendor_name.setText(orders.get(position).getVendor_name());
         holder.order_id.setText(orders.get(position).getOrderID());
         holder.user_name.setText(orders.get(position).getDisplayName());
-        Picasso.with(activity).load(R.drawable.ic_launcher).fit().into(holder.imageView);
+        holder.imageView.setImageResource(R.drawable.burger);
         holder.progess_order_number.setText(orders.get(position).getProgress_order_number()+"");
         if(orders.get(position).isPaymentDone()){
             holder.order_payment.setText("Payment Done");

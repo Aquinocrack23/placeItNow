@@ -18,6 +18,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -30,6 +35,8 @@ public class LoginActivity extends AppCompatActivity {
     private String user_email,user_password;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    FirebaseDatabase database;
+    private DatabaseReference rootRef;
     FirebaseUser user;
     String TAG;
     @Override
@@ -41,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
         info2 = (TextView) findViewById(R.id.info2);
         email = (EditText) findViewById(R.id.email);
         password=(EditText)findViewById(R.id.password);
+
         //email.requestFocus();
         login = (Button) findViewById(R.id.register);
         //get firebase auth instance
@@ -53,6 +61,11 @@ public class LoginActivity extends AppCompatActivity {
                  user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     // User is signed in
+
+                    /** value event listeners give a snapshot of whole the data as a single snapshot and it is accessible by looping
+                     * over the snapshot and accessing the children
+                     *
+                     * */
                     Intent intent = new Intent(LoginActivity.this, BaseActivityFragment.class);
                     startActivity(intent);
                     Toast.makeText(LoginActivity.this,"Signed In",Toast.LENGTH_SHORT).show();

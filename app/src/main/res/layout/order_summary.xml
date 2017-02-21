@@ -10,7 +10,6 @@
         android:foreground="?android:attr/selectableItemBackground"
         android:clickable="true"
         card_view:cardElevation="1dp"
-        card_view:cardCornerRadius="6dp"
         card_view:cardUseCompatPadding="true"
         android:id="@+id/details">
         <TextView
@@ -37,8 +36,6 @@
     android:layout_height="400dp"
     android:foreground="?android:attr/selectableItemBackground"
     card_view:cardElevation="1dp"
-    card_view:cardCornerRadius="6dp"
-    card_view:cardUseCompatPadding="true"
     android:id="@+id/order_summary"
     android:layout_below="@id/name_vendor"
     android:layout_marginTop="1dp">

@@ -31,6 +31,7 @@ public class MySimpleService extends IntentService {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+		setRecyclerViewData();
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -46,7 +47,7 @@ public class MySimpleService extends IntentService {
 		// Extract the receiver passed into the service
 	    ResultReceiver rec = intent.getParcelableExtra("receiver");
 	    // Sleep a bit first
-	    sleep(3000);
+	    //sleep(3000);
 	    // Send result to activity
 	    sendResultValue(rec, uid);
         //setRecyclerViewData();

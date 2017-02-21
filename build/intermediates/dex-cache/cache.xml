@@ -7,7 +7,7 @@
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="b1e372471d13a0e681687bc20b63a479f9e3e9c4">
+        sha1="9dab667b117fe45f38a30578c73d95f3cd891f6f">
         <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_7a3bbb1f3d0c12e7b0a6f9f498226f353853ebda\classes.dex" />
     </item>
     <item
@@ -52,7 +52,7 @@
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="e62e4e13664b1412d78c33742eb8fe9d118cea7d">
+        sha1="d51fb656141674a99810f30b706f5d69d8e1278d">
         <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_681307d420840ce7259e50ce5d6ec8936e0b2f77\classes.dex" />
     </item>
     <item
@@ -228,15 +228,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Pranav Gupta\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.5.2\7446d06ec8d4f7ffcc53f1da37c95f200dcb9387\picasso-2.5.2.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
-        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\picasso-2.5.2_51dd1de88f57546e14ce9afc6b87440dfd89a8b5\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.2.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -315,6 +306,15 @@
         revision="23.0.3"
         sha1="be29b24233711c419ce935aa0a1b12ebc49d1c9a">
         <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\firebase-client-android-2.3.1_179f6784f979ab76cf44371a88f4b4d775fe4b63\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\exploded-aar\com.android.support\multidex\1.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
+        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-multidex-1.0.1_3acee82906ff7a9b82af85101c7429c91ff7a25c\classes.dex" />
     </item>
     <item
         is-multidex="true"

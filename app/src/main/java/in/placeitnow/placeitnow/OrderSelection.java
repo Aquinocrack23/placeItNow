@@ -191,14 +191,19 @@ public class OrderSelection extends AppCompatActivity implements View.OnClickLis
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.payment:
-                Intent intent = new Intent(OrderSelection.this,OrderDetails.class);
-                intent.putExtra("vendorname",vendor);
-                intent.putExtra("amount",amount);
-                intent.putExtra("summary",orderedList);
-                intent.putExtra("payment_mode",payment);
-                intent.putExtra("vid",vid);
-                intent.putExtra("status",status);
-                startActivity(intent);
+                if(orderedList.isEmpty()){
+                    Toast.makeText(OrderSelection.this,"Sorry please select some items first",Toast.LENGTH_SHORT).show();
+                }else {
+
+                    Intent intent = new Intent(OrderSelection.this,OrderDetails.class);
+                    intent.putExtra("vendorname",vendor);
+                    intent.putExtra("amount",amount);
+                    intent.putExtra("summary",orderedList);
+                    intent.putExtra("payment_mode",payment);
+                    intent.putExtra("vid",vid);
+                    intent.putExtra("status",status);
+                    startActivity(intent);
+                }
         }
         return super.onOptionsItemSelected(item);
     }
@@ -214,17 +219,26 @@ public class OrderSelection extends AppCompatActivity implements View.OnClickLis
             }
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
+                finish();
+                overridePendingTransition( 0, 0);
+                startActivity(getIntent());
+                overridePendingTransition( 0, 0);
             }
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-
+                finish();
+                overridePendingTransition( 0, 0);
+                startActivity(getIntent());
+                overridePendingTransition( 0, 0);
             }
 
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
+                finish();
+                overridePendingTransition( 0, 0);
+                startActivity(getIntent());
+                overridePendingTransition( 0, 0);
             }
 
             @Override

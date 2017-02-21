@@ -103,8 +103,6 @@ public class OrderSummary extends AppCompatActivity {
 
         RASummary = new RecyclerAdapterSummary(OrderSummary.this,order);
         recycler_view.setAdapter(RASummary);
-        
-
 
 
         //getting database references
@@ -179,6 +177,7 @@ public class OrderSummary extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.payment:
+
                 long epoch;
                 epoch = System.currentTimeMillis();
                 orderID = vid.substring(21).toUpperCase()+String.valueOf(epoch).substring(6);
@@ -194,7 +193,6 @@ public class OrderSummary extends AppCompatActivity {
                 String displayName = orderSummary.get("Name");
                 String comment = orderSummary.get("Comment");
                 String vendor_name = orderSummary.get("vendorName");
-                show(vendor_name);
 
                 //Creating order
                 final OrderLayoutClass order = new OrderLayoutClass(orderID,
