@@ -47,10 +47,19 @@ public class RecyclerAdapterMenuItem extends RecyclerView.Adapter<RecyclerAdapte
         viewHolder.name.setText(menu.get(position).getMenu_item());
         viewHolder.price.setText(""+menu.get(position).getPrice()+"");
         viewHolder.message.setText(menu.get(position).getMessage());
+
+        ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(activity.getBaseContext(),android.R.layout.simple_spinner_item, items);
+        viewHolder.sp.setAdapter(adapter);
+
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //
+        viewHolder.sp.setOnItemSelectedListener(onItemSelectedListener(position,viewHolder));
+
         viewHolder.add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(val ==0){
+                if(menu.get(position).getQuantity() ==0){
                     Toast.makeText(activity,"Please Select Some Quantity first",Toast.LENGTH_SHORT).show();
                 }
                 else {
@@ -62,14 +71,6 @@ public class RecyclerAdapterMenuItem extends RecyclerView.Adapter<RecyclerAdapte
                 }
             }
         });
-
-        ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(activity.getBaseContext(),android.R.layout.simple_spinner_item, items);
-        viewHolder.sp.setAdapter(adapter);
-
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //
-        viewHolder.sp.setOnItemSelectedListener(onItemSelectedListener(position,viewHolder));
     }
 
     private AdapterView.OnItemSelectedListener onItemSelectedListener(final int position, final RecyclerAdapterMenuItem.ViewHolder viewHolder) {

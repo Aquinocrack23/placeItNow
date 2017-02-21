@@ -82,20 +82,16 @@ public class OrderSummary extends AppCompatActivity {
         recycler_view.setHasFixedSize(true);
 
         i =getIntent();
-        orderSummary = (HashMap<String,String>)i.getSerializableExtra("details");
         orderDetails = (ArrayList<OrderItem>) i.getSerializableExtra("summary");
         vid = i.getStringExtra("vid");
-        //show(vid);
+
         status = i.getStringExtra("status");
 
-        customer_name.setText(orderSummary.get("Name"));
-        delivery_add.setText(orderSummary.get("Address"));
-        cn.setText(orderSummary.get("Cont"));
-        date.setText(orderSummary.get("Date"));
-        time.setText(orderSummary.get("Time"));
-        amount.setText(orderSummary.get("amount"));
-
-        ven_name.setText(orderSummary.get("vendorName"));
+        customer_name.setText(i.getStringExtra("user_name"));
+        delivery_add.setText(i.getStringExtra("address"));
+        cn.setText(i.getStringExtra("contact"));
+        amount.setText(i.getStringExtra("amount"));
+        ven_name.setText(i.getStringExtra("vendorname"));
         LinearLayoutManager layoutManager = new LinearLayoutManager(OrderSummary.this);
         recycler_view.setLayoutManager(layoutManager);
 
@@ -156,13 +152,6 @@ public class OrderSummary extends AppCompatActivity {
     private void setRecyclerViewData() {
 
         order.addAll(orderDetails);
-        /*for(int j=0;j<orderDetails.size();j++) {
-                 if(orderDetails.get("menuitem"+String.valueOf(j))!= null ){
-                     if(!orderDetails.get("menuitem" + String.valueOf(j)).contentEquals("")&& !orderDetails.get("quantity"+String.valueOf(j)).contentEquals("") && !orderDetails.get("price"+String.valueOf(j)).contentEquals("") ) {
-                       order.add(new OrderedItemContents(orderDetails.get("menuitem" + String.valueOf(j)), orderDetails.get("quantity" + String.valueOf(j)), orderDetails.get("price" + String.valueOf(j))));
-                     }
-                 }
-             }*/
 
     }
 
@@ -190,15 +179,15 @@ public class OrderSummary extends AppCompatActivity {
                              * value
                              * */
 
-                String displayName = orderSummary.get("Name");
+                String displayName = i.getStringExtra("user_name");
                 String comment = orderSummary.get("Comment");
-                String vendor_name = orderSummary.get("vendorName");
-
+                String vendor_name = i.getStringExtra("vendorname");
+                show(vendor_name);
                 //Creating order
                 final OrderLayoutClass order = new OrderLayoutClass(orderID,
                         uid,displayName,orderDetails);
                 order.setProgress_order_number(order_num+1);
-                order.setComment(comment);
+                order.setComment("");
                 //Add order on Vendor side
                 DatabaseReference ref = databaseReference.child("vendors").child(vid).child("orders").push().getRef();
                 String key = ref.getKey();

@@ -24,6 +24,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,7 +40,7 @@ public class OrderSelection extends AppCompatActivity implements View.OnClickLis
     private RecyclerView recyclerView;
     private RecyclerAdapterMenuItem RAMItem,RAMItemforFilter;
 
-    private CardView all,starters,maincourse,beverages,sweets,dinner;
+    private CardView all,starters,maincourse,beverages,sweets,dinner,snacks;
     private ArrayList<Menu> menuList;
     private ArrayList<OrderItem> orderedList;
     private ArrayList<Menu> filteredMenuList;
@@ -49,6 +50,7 @@ public class OrderSelection extends AppCompatActivity implements View.OnClickLis
 
     private FirebaseAuth auth;             //FirebaseAuthentication
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private HashMap<String,String> orderDet = new HashMap<>();
     private String uid,vendor;
     private Button finalize;
 
@@ -60,7 +62,9 @@ public class OrderSelection extends AppCompatActivity implements View.OnClickLis
     private EditText name,date,time,address,phno,comment;
     private FirebaseDatabase database;
     private DatabaseReference rootRef;
+    private DatabaseReference user_ref;
     private String vid,status;
+    private String user_name,contact_no,user_address;
     private int amount=0;
 
     @Override
@@ -68,12 +72,18 @@ public class OrderSelection extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.order_selection);
 
-        //set on click for all cards
+
         setOnClickCards();
         initialiseEditTexts();
+
         vend_name=(TextView)findViewById(R.id.vendor_name);
         stat=(TextView)findViewById(R.id.status);
-       // finalize= (Button)findViewById(R.id.finalize);
+
+
+        //FireBase References
+        database = FirebaseDatabase.getInstance();
+        rootRef =database.getReference("vendors");
+        user_ref = database.getReference("users");
 
 
         //Firebase Auth
@@ -85,6 +95,7 @@ public class OrderSelection extends AppCompatActivity implements View.OnClickLis
                 if (user != null) {
                     // User is signed in
                     uid = user.getUid();
+                    fetchUserDetails();
 
                 } else {
                     //User is signed out
@@ -95,11 +106,6 @@ public class OrderSelection extends AppCompatActivity implements View.OnClickLis
                 // ...
             }
         };
-
-        //FireBase References
-        database = FirebaseDatabase.getInstance();
-        rootRef =database.getReference("vendors");
-
 
         toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -140,24 +146,23 @@ public class OrderSelection extends AppCompatActivity implements View.OnClickLis
         RAMItem = new RecyclerAdapterMenuItem(this,menuList,orderedList);
         recyclerView.setAdapter(RAMItem);
 
+    }
 
-        /*finalize.setOnClickListener(new View.OnClickListener() {
+    private void fetchUserDetails() {
+
+        user_ref.child(uid).addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View v) {
-                amount= 0;
-                for(int i=0;i<menuList.size();i++){
-                    if(menuList.get(i).getQuantity()>0){
-                        orderList.put("menuitem"+String.valueOf(i),menuList.get(i).getMenu_item());
-                        orderList.put("quantity"+String.valueOf(i),String.valueOf(menuList.get(i).getQuantity()));
-                        orderList.put("price"+String.valueOf(i), String.valueOf(menuList.get(i).getPrice()));
-                        amount+= (menuList.get(i).getQuantity()*menuList.get(i).getPrice());
-                    }
-                }
-                for(int i=0;i<menuList.size();i++) {
-                    Toast.makeText(OrderSelection.this, "Added Items" + menuList.get(i).getMenu_item() + ":" + menuList.get(i).getQuantity() + " worth:" + amount + "", Toast.LENGTH_SHORT).show();
-                }
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                user_name = dataSnapshot.child("Name").getValue(String.class);
+                user_address=dataSnapshot.child("Address").getValue(String.class);
+                contact_no=dataSnapshot.child("Contact").getValue(String.class);
             }
-        });*/
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
     }
 
@@ -172,7 +177,9 @@ public class OrderSelection extends AppCompatActivity implements View.OnClickLis
         sweets = (CardView)findViewById(R.id.sweets);
         dinner = (CardView)findViewById(R.id.dinner);
         maincourse= (CardView)findViewById(R.id.maincourse);
+        snacks=(CardView)findViewById(R.id.snacks);
         all.setOnClickListener(this);
+        snacks.setOnClickListener(this);
         starters.setOnClickListener(this);
         beverages.setOnClickListener(this);
         sweets.setOnClickListener(this);
@@ -194,14 +201,16 @@ public class OrderSelection extends AppCompatActivity implements View.OnClickLis
                 if(orderedList.isEmpty()){
                     Toast.makeText(OrderSelection.this,"Sorry please select some items first",Toast.LENGTH_SHORT).show();
                 }else {
-
-                    Intent intent = new Intent(OrderSelection.this,OrderDetails.class);
+                    Intent intent = new Intent(OrderSelection.this,OrderSummary.class);
                     intent.putExtra("vendorname",vendor);
                     intent.putExtra("amount",amount);
                     intent.putExtra("summary",orderedList);
                     intent.putExtra("payment_mode",payment);
                     intent.putExtra("vid",vid);
                     intent.putExtra("status",status);
+                    intent.putExtra("user_name",user_name);
+                    intent.putExtra("contact",contact_no);
+                    intent.putExtra("address",user_address);
                     startActivity(intent);
                 }
         }
@@ -299,5 +308,23 @@ public class OrderSelection extends AppCompatActivity implements View.OnClickLis
                 filter("starters");
                 break;
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        auth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        auth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        auth.addAuthStateListener(mAuthListener);
     }
 }
