@@ -52,7 +52,8 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<OrderLayoutClass> selectedOrderContents = new ArrayList<>();
     private DatabaseReference rootRef;
     private DatabaseReference vendorRef;
-    private int check = 0;
+    private ArrayList<OrderLayoutClass> order_from_vendor = new ArrayList<>();
+    private int progress = 0;
     private String user_name;
 
     @Override
@@ -99,6 +100,13 @@ public class MainActivity extends AppCompatActivity {
                     uid = user.getUid();
                     setUpFetchingDataForUserFromDatabase();
                     setRecyclerViewData();
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(MainActivity.this,order_from_vendor.size()+"",Toast.LENGTH_SHORT).show();
+                        }
+                    },5000);
                 } else {
                     //User is signed out
                     Toast.makeText(MainActivity.this,"Please Sign In First",Toast.LENGTH_SHORT).show();
@@ -131,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
                 showToast(menuItemId, true);
             }
         });
+
     }
 
     @Override
@@ -200,9 +209,12 @@ public class MainActivity extends AppCompatActivity {
 
         rootRef.child(uid).child("orders").addChildEventListener(new ChildEventListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+            public void onChildAdded(final DataSnapshot dataSnapshot, String s) {
 
                  rootRef.child(uid).child("orders").child(dataSnapshot.getKey()).addChildEventListener(new ChildEventListener() {
+
+                     String vendor_id = dataSnapshot.getKey();
+
                      @Override
                      public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                          String key = dataSnapshot.getKey();
@@ -258,70 +270,32 @@ public class MainActivity extends AppCompatActivity {
                      public void onCancelled(DatabaseError databaseError) {
 
                      }
+
                  });
-
-
                 vendorRef.child(dataSnapshot.getKey()).child("orders").addChildEventListener(new ChildEventListener() {
                     @Override
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                        //check++;
-                        //show(dataSnapshot.getKey()+" "+check+"");
-                        Integer updated_order_number=0;
-                        String key = dataSnapshot.getKey();
+
+                        progress = 0;
+
                         OrderLayoutClass orderLayoutClass = dataSnapshot.getValue(OrderLayoutClass.class);
 
                         for(int i=0;i<orderContents.size();i++){
-                            if((orderContents.get(i).getTime()>orderLayoutClass.getTime())&&!orderLayoutClass.isOrderDone()
-                                    &&(orderContents.get(i).getProgress_order_number()>orderLayoutClass.getProgress_order_number())){
-                                Toast.makeText(MainActivity.this,dataSnapshot.getKey(),Toast.LENGTH_SHORT).show();
-
-                                updated_order_number++;
-
-                                orderContents.get(i).setOrders_before_yours(updated_order_number);
-                                //orderContents.add(orderLayoutClass);
-                                //selectedOrderContents.add(orderLayoutClass);
-                                //loading.setText("");
+                            if(orderLayoutClass.getTime()<orderContents.get(i).getTime()&&(!orderLayoutClass.isOrderDone())){
+                                progress++;
+                                orderContents.get(i).setOrders_before_yours(progress);
                             }
                         }
-                        dashboard.notifyDataSetChanged();
-                        Collections.sort(orderContents, new Comparator<OrderLayoutClass>(){
-                            public int compare(OrderLayoutClass o1, OrderLayoutClass o2) {
-                                // ## Ascending order
-                                return o1.getTime().compareTo(o2.getTime()); // To compare string values
-                                // return Integer.valueOf(emp1.getId()).compareTo(emp2.getId()); // To compare integer values
-
-                                // ## Descending order
-                                // return emp2.getFirstName().compareToIgnoreCase(emp1.getFirstName()); // To compare string values
-                                // return Integer.valueOf(emp2.getId()).compareTo(emp1.getId()); // To compare integer values
-                            }
-                        });
-                        dashboard.notifyDataSetChanged();
                     }
 
                     @Override
                     public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                        /** called when new orders are added in a particular vendor related to user
-                         * */
-                        Integer updated_order_number=0;
-                        String order_key = dataSnapshot.getKey();
 
-                        OrderLayoutClass orderLayoutClass = dataSnapshot.getValue(OrderLayoutClass.class);
+                        finish();
+                        overridePendingTransition( 0, 0);
+                        startActivity(getIntent());
+                        overridePendingTransition( 0, 0);
 
-                        for(int i=0;i<orderContents.size();i++){
-                            if((orderContents.get(i).getOrderKey().contentEquals(order_key))&&(orderContents.get(i).getTime()>orderLayoutClass.getTime())&&!orderLayoutClass.isOrderDone()){
-                                Toast.makeText(MainActivity.this,dataSnapshot.getKey(),Toast.LENGTH_SHORT).show();
-
-                                updated_order_number++;
-                                if(updated_order_number>orderLayoutClass.getProgress_order_number()){
-                                    orderContents.get(i).setOrders_before_yours(orderLayoutClass.getProgress_order_number());
-                                }
-                                orderContents.get(i).setOrders_before_yours(updated_order_number);
-                                //orderContents.add(orderLayoutClass);
-                                //selectedOrderContents.add(orderLayoutClass);
-                                //loading.setText("");
-                            }
-                        }
-                        dashboard.notifyDataSetChanged();
                     }
 
                     @Override
@@ -347,6 +321,10 @@ public class MainActivity extends AppCompatActivity {
 
                 /** this on child change will be invoked whenever an entry is changed in the users own table
                  * */
+                finish();
+                overridePendingTransition( 0, 0);
+                startActivity(getIntent());
+                overridePendingTransition( 0, 0);
 
             }
 
