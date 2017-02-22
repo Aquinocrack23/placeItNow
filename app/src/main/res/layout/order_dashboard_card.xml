@@ -3,26 +3,44 @@
     android:id="@+id/card_view"
     android:clickable="true"
     cardview:cardElevation="2dp"
-    cardview:cardCornerRadius="4dp"
-    cardview:contentPadding="4dp"
+    cardview:cardCornerRadius="2dp"
+    cardview:contentPadding="2dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="4dp"
     android:layout_marginBottom="6dp">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/image"
-            android:layout_width="100dp"
-            android:layout_height="80dp"
-            android:padding="8dp"
-            android:scaleType="fitXY"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/burger"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="100dp"
+                android:layout_height="80dp"
+                android:padding="8dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/burger"/>
+            <TextView
+                android:text="Orders Before Your Order"
+                android:layout_width="100dp"
+                android:gravity="center"
+                android:textColor="@android:color/holo_blue_dark"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="56"
+                android:layout_width="100dp"
+                android:textSize="32sp"
+                android:fontFamily="cursive"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="@android:color/holo_green_dark"
+                android:gravity="center|center_vertical"
+                android:id="@+id/orders_before"/>
+        </LinearLayout>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -30,23 +48,27 @@
                 android:id="@+id/vendor_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=""
+                android:layout_marginTop="8dp"
+                android:text="Loading..."
+                android:textStyle="bold"
                 android:textColor="@android:color/holo_blue_dark" />
             <TextView
                 android:id="@+id/order_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/vendor_name"
-                android:text=""
+                android:layout_marginTop="2dp"
+                android:text="Loading..."
                 android:textColor="@android:color/holo_green_dark"
                 android:textStyle="bold" />
             <TextView
-                android:id="@+id/order_payment"
+                android:id="@+id/amount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
                 android:layout_marginBottom="8dp"
-                android:text=""
+                android:text="Loading..."
                 android:textColor="@android:color/holo_green_dark"
                 android:textStyle="bold" />
             <TextView
@@ -54,27 +76,50 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/order_id"
-                android:text=""
-                android:textColor="@android:color/holo_green_dark"
+                android:layout_marginTop="2dp"
+                android:text="Loading..."
+                android:textColor="@android:color/holo_blue_dark"
                 android:textStyle="bold" />
             <TextView
                 android:id="@+id/progress_order_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/user_name"
-                android:text=""
+                android:layout_marginTop="2dp"
+                android:text="Loading..."
                 android:textColor="@android:color/holo_green_dark"
                 android:textStyle="bold" />
+            <TextView
+                android:id="@+id/order_contents"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/progress_order_number"
+                android:layout_marginBottom="8dp"
+                android:text="Loading..."
+                android:textColor="@android:color/holo_blue_dark"
+                android:textStyle="bold" />
+
             <Button
                 android:text="Status"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="20dp"
-                android:layout_centerVertical="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/add_back"
                 android:textColor="@color/white"
                 android:id="@+id/status"/>
+            <TextView
+                android:text="Order Payment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:textStyle="bold"
+                android:textColor="@android:color/holo_green_dark"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:id="@+id/order_payment"/>
         </RelativeLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>

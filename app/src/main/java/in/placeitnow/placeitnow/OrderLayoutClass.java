@@ -20,6 +20,15 @@ public class OrderLayoutClass {
     private String orderID;
     private Integer progress_order_number;
     private String vendor_name;
+    private Integer orders_before_yours;
+
+    public Integer getOrders_before_yours() {
+        return orders_before_yours;
+    }
+
+    public void setOrders_before_yours(Integer orders_before_yours) {
+        this.orders_before_yours = orders_before_yours;
+    }
 
     public Integer getProgress_order_number() {
         return progress_order_number;
@@ -86,8 +95,8 @@ public class OrderLayoutClass {
     }
 
     public OrderLayoutClass(String orderID, String uid, String displayName, ArrayList<OrderItem> orderItems) {
-        this.orderID = orderID;
 
+        this.orderID = orderID;
         this.uid = uid;
         this.displayName = displayName;
         this.items = orderItems;
@@ -97,6 +106,7 @@ public class OrderLayoutClass {
         this.orderDone = false;
         this.paymentDone = false;
         this.comment = "";
+
     }
     String getDisplayName() {
         return this.displayName;

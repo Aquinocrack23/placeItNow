@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -20,11 +23,13 @@ public class RecyclerAdapterOrderDashboard extends RecyclerView.Adapter<Recycler
     private Activity activity;
     private ArrayList<OrderLayoutClass> orders;
     private String uid;
+    private String order_description;
 
     public RecyclerAdapterOrderDashboard(Activity activity,ArrayList<OrderLayoutClass> orderContentses,String uid){
         this.activity =activity;
         this.orders = orderContentses;
         this.uid = uid;
+        this.order_description="";
     }
 
     @Override
@@ -36,11 +41,19 @@ public class RecyclerAdapterOrderDashboard extends RecyclerView.Adapter<Recycler
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        order_description = "";
         holder.vendor_name.setText(orders.get(position).getVendor_name());
-        holder.order_id.setText(orders.get(position).getOrderID());
+        holder.order_id.setText("ID : "+ orders.get(position).getOrderID());
         holder.user_name.setText(orders.get(position).getDisplayName());
         holder.imageView.setImageResource(R.drawable.burger);
-        holder.progess_order_number.setText(orders.get(position).getProgress_order_number()+"");
+        holder.amount.setText("Total : "+orders.get(position).getAmount()+"");
+        holder.orders_before.setText((orders.get(position).getOrders_before_yours())+"");
+        holder.progess_order_number.setText("Your Order Number : "+orders.get(position).getProgress_order_number()+"");
+        for(int i =0;i<orders.get(position).getItems().size();i++){
+            order_description+= orders.get(position).getItems().get(i).getItemName()+" ("+orders.get(position).getItems().get(i).getItemQuantity() +") : "
+                    +orders.get(position).getItems().get(i).getItemPrice()+"\n";
+        }
+        holder.contents.setText(order_description);
         if(orders.get(position).isPaymentDone()){
             holder.order_payment.setText("Payment Done");
         }
@@ -68,6 +81,9 @@ public class RecyclerAdapterOrderDashboard extends RecyclerView.Adapter<Recycler
         TextView user_name;
         TextView progess_order_number;
         ImageView imageView ;
+        TextView amount;
+        TextView contents;
+        TextView orders_before;
         ViewHolder(View itemView) {
             super(itemView);
             vendor_name = (TextView)itemView.findViewById(R.id.vendor_name);
@@ -77,6 +93,9 @@ public class RecyclerAdapterOrderDashboard extends RecyclerView.Adapter<Recycler
             user_name = (TextView)itemView.findViewById(R.id.user_name);
             progess_order_number=(TextView)itemView.findViewById(R.id.progress_order_number);
             imageView = (ImageView)itemView.findViewById(R.id.image);
+            amount = (TextView)itemView.findViewById(R.id.amount);
+            contents = (TextView)itemView.findViewById(R.id.order_contents);
+            orders_before=(TextView)itemView.findViewById(R.id.orders_before);
         }
     }
 }

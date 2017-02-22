@@ -29,6 +29,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnMenuTabClickListener;
 
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference rootRef;
     private DatabaseReference vendorRef;
     private int check = 0;
+    private String user_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
                 if (user != null) {
                     // User is signed in
                     uid = user.getUid();
+                    setUpFetchingDataForUserFromDatabase();
                     setRecyclerViewData();
                 } else {
                     //User is signed out
@@ -199,14 +202,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
-
-
                  rootRef.child(uid).child("orders").child(dataSnapshot.getKey()).addChildEventListener(new ChildEventListener() {
                      @Override
                      public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                          String key = dataSnapshot.getKey();
                          OrderLayoutClass orderLayoutClass = dataSnapshot.getValue(OrderLayoutClass.class);
+                         orderLayoutClass.setDisplayName(user_name);
                          orderLayoutClass.setOrderKey(key);
+                         orderLayoutClass.setOrders_before_yours(orderLayoutClass.getProgress_order_number()-1);
                          if(!checkIfPresent(orderLayoutClass)){
                              orderContents.add(0,orderLayoutClass);
                              selectedOrderContents.add(0,orderLayoutClass);
@@ -229,11 +232,17 @@ public class MainActivity extends AppCompatActivity {
 
                      @Override
                      public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                         finish();
-                         overridePendingTransition( 0, 0);
-                         startActivity(getIntent());
-                         overridePendingTransition( 0, 0);
-                         //recreate();
+
+                         /** called when changes in user order section for a particular vendor are made
+                          * */
+                         OrderLayoutClass orderLayoutClass = dataSnapshot.getValue(OrderLayoutClass.class);
+                         for(int i=0;i<orderContents.size();i++){
+                             if(orderContents.get(i).getOrderKey().contentEquals(dataSnapshot.getKey())){
+                                 orderContents.get(i).setOrderDone(orderLayoutClass.isOrderDone());
+                                 orderContents.get(i).setPaymentDone(orderLayoutClass.isPaymentDone());
+                             }
+                         }
+                         dashboard.notifyDataSetChanged();
                      }
                      @Override
                      public void onChildRemoved(DataSnapshot dataSnapshot) {
@@ -257,19 +266,24 @@ public class MainActivity extends AppCompatActivity {
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                         //check++;
                         //show(dataSnapshot.getKey()+" "+check+"");
+                        Integer updated_order_number=0;
                         String key = dataSnapshot.getKey();
                         OrderLayoutClass orderLayoutClass = dataSnapshot.getValue(OrderLayoutClass.class);
-                        orderLayoutClass.setOrderKey(key);
-                        if(!checkIfPresent(orderLayoutClass)){
-                            for(int i=0;i<orderContents.size();i++){
-                                if((orderContents.get(i).getTime()>orderLayoutClass.getTime())&&!checkIfPresent(orderLayoutClass)){
-                                    orderContents.add(orderLayoutClass);
-                                    selectedOrderContents.add(orderLayoutClass);
-                                    loading.setText("");
-                                    dashboard.notifyDataSetChanged();
-                                }
+
+                        for(int i=0;i<orderContents.size();i++){
+                            if((orderContents.get(i).getTime()>orderLayoutClass.getTime())&&!orderLayoutClass.isOrderDone()
+                                    &&(orderContents.get(i).getProgress_order_number()>orderLayoutClass.getProgress_order_number())){
+                                Toast.makeText(MainActivity.this,dataSnapshot.getKey(),Toast.LENGTH_SHORT).show();
+
+                                updated_order_number++;
+
+                                orderContents.get(i).setOrders_before_yours(updated_order_number);
+                                //orderContents.add(orderLayoutClass);
+                                //selectedOrderContents.add(orderLayoutClass);
+                                //loading.setText("");
                             }
                         }
+                        dashboard.notifyDataSetChanged();
                         Collections.sort(orderContents, new Comparator<OrderLayoutClass>(){
                             public int compare(OrderLayoutClass o1, OrderLayoutClass o2) {
                                 // ## Ascending order
@@ -286,11 +300,28 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                        //recreate();
-                        finish();
-                        overridePendingTransition( 0, 0);
-                        startActivity(getIntent());
-                        overridePendingTransition( 0, 0);
+                        /** called when new orders are added in a particular vendor related to user
+                         * */
+                        Integer updated_order_number=0;
+                        String order_key = dataSnapshot.getKey();
+
+                        OrderLayoutClass orderLayoutClass = dataSnapshot.getValue(OrderLayoutClass.class);
+
+                        for(int i=0;i<orderContents.size();i++){
+                            if((orderContents.get(i).getOrderKey().contentEquals(order_key))&&(orderContents.get(i).getTime()>orderLayoutClass.getTime())&&!orderLayoutClass.isOrderDone()){
+                                Toast.makeText(MainActivity.this,dataSnapshot.getKey(),Toast.LENGTH_SHORT).show();
+
+                                updated_order_number++;
+                                if(updated_order_number>orderLayoutClass.getProgress_order_number()){
+                                    orderContents.get(i).setOrders_before_yours(orderLayoutClass.getProgress_order_number());
+                                }
+                                orderContents.get(i).setOrders_before_yours(updated_order_number);
+                                //orderContents.add(orderLayoutClass);
+                                //selectedOrderContents.add(orderLayoutClass);
+                                //loading.setText("");
+                            }
+                        }
+                        dashboard.notifyDataSetChanged();
                     }
 
                     @Override
@@ -313,10 +344,10 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                finish();
-                overridePendingTransition( 0, 0);
-                startActivity(getIntent());
-                overridePendingTransition( 0, 0);
+
+                /** this on child change will be invoked whenever an entry is changed in the users own table
+                 * */
+
             }
 
             @Override
@@ -350,22 +381,23 @@ public class MainActivity extends AppCompatActivity {
             if (isReselected) {
                 //show("Tab Reselected!");
             } else {
-                show("Find the live items!");
+                //show("Find the live items!");
             }
         }
         else if (menuId == R.id.love) {
             if (isReselected) {
-                show("Tab Love Reselected!");
+
             }
-            else
-                show("Find new addons!");
+            else{
+
+            }
         }
         else if (menuId == R.id.sad) {
             if (isReselected) {
-                show("Tab Sad Reselected");
+                //show("Tab Sad Reselected");
             }
             else {
-                show("Find coupons");
+                //show("Find coupons");
             }
             }
         else if (isReselected) {
@@ -409,6 +441,22 @@ public class MainActivity extends AppCompatActivity {
         }
         dashboard.notifyDataSetChanged();
     }
+
+    private void setUpFetchingDataForUserFromDatabase() {
+
+        rootRef.child(uid).child("Name").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                user_name = dataSnapshot.getValue(String.class);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
