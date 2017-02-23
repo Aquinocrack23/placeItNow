@@ -95,7 +95,6 @@ public class UserAccount extends Fragment implements View.OnClickListener{
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 user_name = dataSnapshot.getValue(String.class);
-                Toast.makeText(getActivity(),"Welcome "+user_name,Toast.LENGTH_SHORT).show();
                 username.setText(user_name);
             }
 

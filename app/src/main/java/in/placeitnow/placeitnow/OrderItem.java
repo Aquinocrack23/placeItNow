@@ -8,6 +8,7 @@ package in.placeitnow.placeitnow;
  *  it is important to make it serializable to pass it through intents*/
 
 public class OrderItem implements java.io.Serializable {
+
     String itemKey;
     String itemName;
     Double itemPrice;

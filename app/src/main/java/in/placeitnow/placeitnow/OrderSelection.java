@@ -218,6 +218,12 @@ public class OrderSelection extends AppCompatActivity implements View.OnClickLis
         return super.onOptionsItemSelected(item);
     }
 
+    /** in case when we directly take snapshot of POJO from firebase database ensure that your clas has all getter and setter of the type
+     * of which data is present in database
+     *
+     * or either you create your custom POJO and instantiate cbject by using constructor and fetching data by absolute address (i.e get strings)
+     * as described in below example
+     * */
     private void fillMenu() {
 
         menu_list = rootRef.child(vid).child("menuItems");
@@ -226,7 +232,7 @@ public class OrderSelection extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Menu item =new Menu(dataSnapshot.getKey(),dataSnapshot.child("itemName").getValue(String.class),dataSnapshot.child("itemPrice").getValue(Integer.class),
-                        "customizations available",dataSnapshot.child("type").getValue(String.class),0);
+                        "customizations available",dataSnapshot.child("itemType").getValue(String.class),0);
                 menuList.add(item);
                 filteredMenuList.add(item);
             }

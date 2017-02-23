@@ -52,6 +52,9 @@ public class RecyclerAdapterOrderDashboard extends RecyclerView.Adapter<Recycler
         }else {
             holder.orders_before.setText((orders.get(position).getOrders_before_yours())+"");
         }
+        if(orders.get(position).isOrderDone()){
+            holder.orders_before.setText("Done");
+        }
         holder.progess_order_number.setText("Your Order Number : "+orders.get(position).getProgress_order_number()+"");
         for(int i =0;i<orders.get(position).getItems().size();i++){
             order_description+= orders.get(position).getItems().get(i).getItemName()+" ("+orders.get(position).getItems().get(i).getItemQuantity() +") : "

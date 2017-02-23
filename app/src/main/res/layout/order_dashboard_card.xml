@@ -89,16 +89,19 @@
                 android:text="Loading..."
                 android:textColor="@android:color/holo_green_dark"
                 android:textStyle="bold" />
+            <ScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/progress_order_number">
             <TextView
                 android:id="@+id/order_contents"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/progress_order_number"
                 android:layout_marginBottom="8dp"
                 android:text="Loading..."
                 android:textColor="@android:color/holo_blue_dark"
                 android:textStyle="bold" />
-
+            </ScrollView>
             <Button
                 android:text="Status"
                 android:layout_width="80dp"
