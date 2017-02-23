@@ -100,20 +100,12 @@ public class MainActivity extends AppCompatActivity {
                     uid = user.getUid();
                     setUpFetchingDataForUserFromDatabase();
                     setRecyclerViewData();
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(MainActivity.this,order_from_vendor.size()+"",Toast.LENGTH_SHORT).show();
-                        }
-                    },5000);
                 } else {
                     //User is signed out
                     Toast.makeText(MainActivity.this,"Please Sign In First",Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(MainActivity.this,LoginActivity.class);
                     startActivity(i);
                 }
-                // ...
             }
         };
 
@@ -205,7 +197,97 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void setRecyclerViewData() {
+    private void setRecyclerViewData(){
+        rootRef.child(uid).child("orders").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot vendor : dataSnapshot.getChildren()){
+                    String vendor_id = vendor.getKey();
+
+                    rootRef.child(uid).child("orders").child(vendor_id).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            for(DataSnapshot order : dataSnapshot.getChildren()){
+                                String key = order.getKey();
+                                OrderLayoutClass orderLayoutClass = order.getValue(OrderLayoutClass.class);
+                                orderLayoutClass.setDisplayName(user_name);
+                                orderLayoutClass.setOrderKey(key);
+                                orderLayoutClass.setOrders_before_yours(orderLayoutClass.getProgress_order_number()-1);
+                                if(!checkIfPresent(orderLayoutClass)){
+                                    orderContents.add(0,orderLayoutClass);
+                                    selectedOrderContents.add(0,orderLayoutClass);
+                                    loading.setText("");
+                                }
+                                for(int i=0;i<orderContents.size();i++){
+                                    if(orderContents.get(i).getOrderKey().contentEquals(orderLayoutClass.getOrderKey())){
+                                        orderContents.get(i).setOrderDone(orderLayoutClass.isOrderDone());
+                                        orderContents.get(i).setPaymentDone(orderLayoutClass.isPaymentDone());
+                                        dashboard.notifyDataSetChanged();
+                                    }
+                                }
+                                dashboard.notifyDataSetChanged();
+                                Collections.sort(orderContents, new Comparator<OrderLayoutClass>(){
+                                    public int compare(OrderLayoutClass o1, OrderLayoutClass o2) {
+                                        // ## Ascending order
+                                        return o1.getTime().compareTo(o2.getTime()); // To compare string values
+                                        // return Integer.valueOf(emp1.getId()).compareTo(emp2.getId()); // To compare integer values
+
+                                        // ## Descending order
+                                        // return emp2.getFirstName().compareToIgnoreCase(emp1.getFirstName()); // To compare string values
+                                        // return Integer.valueOf(emp2.getId()).compareTo(emp1.getId()); // To compare integer values
+                                    }
+                                });
+                                dashboard.notifyDataSetChanged();
+
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
+                    vendorRef.child(vendor_id).child("orders").addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            for(DataSnapshot orders : dataSnapshot.getChildren()){
+
+                                OrderLayoutClass orderLayoutClass = orders.getValue(OrderLayoutClass.class);
+                                Integer progress =0;
+                                for(int i=0;i<orderContents.size();i++){
+
+                                    if(orderContents.get(i).getVendor_name().contentEquals(orderLayoutClass.getVendor_name())){
+                                        if(orderContents.get(i).getTime()>orderLayoutClass.getTime()){
+                                            if(orderLayoutClass.isOrderDone()){
+                                                progress++;
+                                                orderContents.get(i).setOrders_before_yours(progress);
+                                                dashboard.notifyDataSetChanged();
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void setRecyclerViewData1() {
 
         rootRef.child(uid).child("orders").addChildEventListener(new ChildEventListener() {
             @Override
@@ -272,7 +354,7 @@ public class MainActivity extends AppCompatActivity {
                      }
 
                  });
-                vendorRef.child(dataSnapshot.getKey()).child("orders").addChildEventListener(new ChildEventListener() {
+                vendorRef.child(dataSnapshot.getKey()).child("orders").orderByChild("epoch").addChildEventListener(new ChildEventListener() {
                     @Override
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
@@ -281,7 +363,7 @@ public class MainActivity extends AppCompatActivity {
                         OrderLayoutClass orderLayoutClass = dataSnapshot.getValue(OrderLayoutClass.class);
 
                         for(int i=0;i<orderContents.size();i++){
-                            if(orderLayoutClass.getTime()<orderContents.get(i).getTime()&&(!orderLayoutClass.isOrderDone())){
+                            if(orderLayoutClass.getTime()<orderContents.get(i).getTime()&&(orderLayoutClass.isOrderDone())){
                                 progress++;
                                 orderContents.get(i).setOrders_before_yours(progress);
                             }

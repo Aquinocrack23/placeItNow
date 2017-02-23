@@ -47,7 +47,11 @@ public class RecyclerAdapterOrderDashboard extends RecyclerView.Adapter<Recycler
         holder.user_name.setText(orders.get(position).getDisplayName());
         holder.imageView.setImageResource(R.drawable.burger);
         holder.amount.setText("Total : "+orders.get(position).getAmount()+"");
-        holder.orders_before.setText((orders.get(position).getOrders_before_yours())+"");
+        if(orders.get(position).getOrders_before_yours()==0){
+            holder.orders_before.setText("Ready");
+        }else {
+            holder.orders_before.setText((orders.get(position).getOrders_before_yours())+"");
+        }
         holder.progess_order_number.setText("Your Order Number : "+orders.get(position).getProgress_order_number()+"");
         for(int i =0;i<orders.get(position).getItems().size();i++){
             order_description+= orders.get(position).getItems().get(i).getItemName()+" ("+orders.get(position).getItems().get(i).getItemQuantity() +") : "
