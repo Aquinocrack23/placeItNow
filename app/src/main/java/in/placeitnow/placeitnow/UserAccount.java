@@ -60,7 +60,6 @@ public class UserAccount extends Fragment implements View.OnClickListener{
         setViews();
 
         order_history.setOnClickListener(this);
-
         database = FirebaseDatabase.getInstance();
         rootRef = database.getReference();
 

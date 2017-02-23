@@ -65,13 +65,14 @@ public class OrderSelection extends AppCompatActivity implements View.OnClickLis
     private DatabaseReference user_ref;
     private String vid,status;
     private String user_name,contact_no,user_address;
+    private DatabaseReference menu_list;
+    private ChildEventListener menu_list_listener;
     private int amount=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.order_selection);
-
 
         setOnClickCards();
         initialiseEditTexts();
@@ -218,7 +219,10 @@ public class OrderSelection extends AppCompatActivity implements View.OnClickLis
     }
 
     private void fillMenu() {
-        rootRef.child(vid).child("menuItems").addChildEventListener(new ChildEventListener() {
+
+        menu_list = rootRef.child(vid).child("menuItems");
+        menu_list.keepSynced(true);
+        menu_list_listener = menu_list.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Menu item =new Menu(dataSnapshot.getKey(),dataSnapshot.child("itemName").getValue(String.class),dataSnapshot.child("itemPrice").getValue(Integer.class),
@@ -326,5 +330,8 @@ public class OrderSelection extends AppCompatActivity implements View.OnClickLis
     protected void onDestroy() {
         super.onDestroy();
         auth.addAuthStateListener(mAuthListener);
+        if(menu_list!=null&&menu_list_listener!=null){
+            menu_list.removeEventListener(menu_list_listener);
+        }
     }
 }

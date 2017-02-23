@@ -55,11 +55,14 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<OrderLayoutClass> order_from_vendor = new ArrayList<>();
     private int progress = 0;
     private String user_name;
+    private DatabaseReference order_of_user,orders_common_vendor;
+    private ValueEventListener order_of_user_listener,order_common_vendor_listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         recyclerView = (RecyclerView) findViewById(R.id.recyle_view);
         loading = (TextView)findViewById(R.id.loading);
 
@@ -86,10 +89,29 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(dashboard);
         dashboard.notifyDataSetChanged();
 
+        DatabaseReference connectedRef = FirebaseDatabase.getInstance().getReference(".info/connected");
+        connectedRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                boolean connected = snapshot.getValue(Boolean.class);
+                if (connected) {
+                    System.out.println("connected");
+                } else {
+                    Toast.makeText(MainActivity.this,"Connection Problem",Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                System.err.println("Listener was cancelled");
+            }
+        });
+
         /** using function recycler view outside data was crashing the app because we use uid to get data set but this
          * getting uid is done asynchronously so uid might not be fetch till we get data so using setRecyclerViewData() inside
          * this completion listener ensures that uid is not null
          * */
+
         auth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -198,13 +220,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setRecyclerViewData(){
-        rootRef.child(uid).child("orders").addValueEventListener(new ValueEventListener() {
+
+        order_of_user = rootRef.child(uid).child("orders");
+        order_of_user.keepSynced(true);
+
+        order_of_user_listener = order_of_user.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot vendor : dataSnapshot.getChildren()){
                     String vendor_id = vendor.getKey();
-
-                    rootRef.child(uid).child("orders").child(vendor_id).addValueEventListener(new ValueEventListener() {
+                    DatabaseReference order_particular_vendor = rootRef.child(uid).child("orders");
+                    order_particular_vendor.child(vendor_id).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             for(DataSnapshot order : dataSnapshot.getChildren()){
@@ -247,8 +273,9 @@ public class MainActivity extends AppCompatActivity {
 
                         }
                     });
-
-                    vendorRef.child(vendor_id).child("orders").addValueEventListener(new ValueEventListener() {
+                    orders_common_vendor = vendorRef.child(vendor_id).child("orders");
+                    orders_common_vendor.keepSynced(true);
+                    order_common_vendor_listener = orders_common_vendor.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             for(DataSnapshot orders : dataSnapshot.getChildren()){
@@ -287,6 +314,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
+    /** while using this below way the problem was with child event listeners because they get datasnapshot one by one and we are not
+     * certain when all of then are present and start computing so there was problem with synchronization but addValueEventListener provides
+     * the whole datasnopshot at once so we have all the data once onDataChange() method is called and hence we can start working with
+     * that data
+     * */
     private void setRecyclerViewData1() {
 
         rootRef.child(uid).child("orders").addChildEventListener(new ChildEventListener() {
@@ -540,6 +573,9 @@ public class MainActivity extends AppCompatActivity {
         if (mAuthListener != null) {
             auth.removeAuthStateListener(mAuthListener);
         }
+        if(order_of_user!=null&&order_from_vendor!=null&&order_of_user_listener!=null&&order_common_vendor_listener!=null){
+            order_of_user.removeEventListener(order_of_user_listener);
+            orders_common_vendor.removeEventListener(order_common_vendor_listener);
+        }
     }
-
 }

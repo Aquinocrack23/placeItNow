@@ -24,6 +24,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.roughike.bottombar.BottomBar;
 
 import java.util.ArrayList;
@@ -42,7 +43,9 @@ public class Order extends Fragment {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private String uid;
     private FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
+    private DatabaseReference databaseReference;
+    private DatabaseReference vendors_list;
+    private ChildEventListener vendors_list_listener;
     private Toolbar toolbar;
 
 
@@ -50,11 +53,32 @@ public class Order extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View  view=  getActivity().getLayoutInflater().inflate(R.layout.order,container,false);
+
+
+        DatabaseReference connectedRef = FirebaseDatabase.getInstance().getReference(".info/connected");
+        connectedRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                boolean connected = snapshot.getValue(Boolean.class);
+                if (connected) {
+                    System.out.println("connected");
+                } else {
+                    Toast.makeText(getActivity(),"Connection Problem",Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                System.err.println("Listener was cancelled");
+            }
+        });
+
         /** getSupportActionBar is only present in AppCompatActivity while getActivity returns FragmentActivity so we first
          * need to cast to AppCompatActivity to use that method
          *
          * */
         //((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Order");
+
 
         //Firebase Auth
         auth = FirebaseAuth.getInstance();
@@ -75,6 +99,8 @@ public class Order extends Fragment {
                 // ...
             }
         };
+
+
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
 
@@ -89,7 +115,9 @@ public class Order extends Fragment {
         adapter = new RecyclerAdapter(getActivity(), vendorsArrayList);
         recyclerView.setAdapter(adapter);
 
-        databaseReference.child("vendors").addChildEventListener(new ChildEventListener() {
+        vendors_list = databaseReference.child("vendors");
+        vendors_list.keepSynced(true);
+        vendors_list_listener = vendors_list.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 String vid = dataSnapshot.getKey();
@@ -156,4 +184,24 @@ public class Order extends Fragment {
     private void show(String msg){
         Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(vendors_list!=null&&vendors_list_listener!=null){
+            vendors_list.removeEventListener(vendors_list_listener);
+        }
+    }
 }
+
+
