@@ -96,8 +96,6 @@ public class MainActivity extends AppCompatActivity {
                 boolean connected = snapshot.getValue(Boolean.class);
                 if (connected) {
                     System.out.println("connected");
-                } else {
-                    Toast.makeText(MainActivity.this,"Connection Problem",Toast.LENGTH_SHORT).show();
                 }
             }
 

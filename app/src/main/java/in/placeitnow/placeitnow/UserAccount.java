@@ -20,11 +20,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 /**
  * Created by Pranav Gupta on 12/22/2016.
  */
@@ -50,7 +45,6 @@ public class UserAccount extends Fragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view=  getActivity().getLayoutInflater().inflate(R.layout.account,container,false);
 
-        ButterKnife.bind(this,view);
         /** getSupportActionBar is only present in AppCompatActivity while getActivity returns FragmentActivity so we first
          * need to cast to AppCompatActivity to use that method
          *

@@ -215,6 +215,7 @@ public class OrderSummary extends AppCompatActivity {
         final OrderLayoutClass order = new OrderLayoutClass(orderID,
                 uid,displayName,orderDetails);
         order.setProgress_order_number(order_num+1);
+        order.setDisplayName(displayName);
         order.setComment("");
         //Add order on Vendor side
         DatabaseReference ref = databaseReference.child("vendors").child(vid).child("orders").push().getRef();

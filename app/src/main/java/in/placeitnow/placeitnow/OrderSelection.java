@@ -218,7 +218,7 @@ public class OrderSelection extends AppCompatActivity implements View.OnClickLis
         return super.onOptionsItemSelected(item);
     }
 
-    /** in case when we directly take snapshot of POJO from firebase database ensure that your clas has all getter and setter of the type
+    /** in case when we directly take snapshot of POJO from firebase database ensure that your class has all getter and setter of the type
      * of which data is present in database
      *
      * or either you create your custom POJO and instantiate cbject by using constructor and fetching data by absolute address (i.e get strings)
@@ -231,10 +231,12 @@ public class OrderSelection extends AppCompatActivity implements View.OnClickLis
         menu_list_listener = menu_list.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Menu item =new Menu(dataSnapshot.getKey(),dataSnapshot.child("itemName").getValue(String.class),dataSnapshot.child("itemPrice").getValue(Integer.class),
-                        "customizations available",dataSnapshot.child("itemType").getValue(String.class),0);
-                menuList.add(item);
-                filteredMenuList.add(item);
+                if(dataSnapshot.child("status").getValue(Boolean.class)){
+                    Menu item =new Menu(dataSnapshot.getKey(),dataSnapshot.child("itemName").getValue(String.class),dataSnapshot.child("itemPrice").getValue(Integer.class),
+                            "customizations available",dataSnapshot.child("itemType").getValue(String.class),0);
+                    menuList.add(item);
+                    filteredMenuList.add(item);
+                }
             }
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
@@ -299,7 +301,6 @@ public class OrderSelection extends AppCompatActivity implements View.OnClickLis
                 RAMItem.notifyDataSetChanged();
                 break;
             case R.id.snacks:
-                Toast.makeText(OrderSelection.this,"hii",Toast.LENGTH_LONG).show();
                 filter("snacks");
                 break;
             case R.id.maincourse:

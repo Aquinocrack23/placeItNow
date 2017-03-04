@@ -23,10 +23,4 @@ public class PlaceItNow extends Application{
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
     }
-
-    @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(base);
-        MultiDex.install(this);
-    }
 }
