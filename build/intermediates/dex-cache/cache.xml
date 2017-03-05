@@ -7,26 +7,8 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="59d9197d4cc037ce3796d7b1575656a43203db6b">
+        sha1="6ea80fe56f9598d25e54af1d0812eda787ffb54d">
         <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_681307d420840ce7259e50ce5d6ec8936e0b2f77\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\.android\build-cache\5a6ff4754eecfc5fbb69dcd9cb3140dad424bc25\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
-        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_9d8abbe9780bba91e6ea63fb84fe5b584c94df6b\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.5.2\7446d06ec8d4f7ffcc53f1da37c95f200dcb9387\picasso-2.5.2.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
-        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\picasso-2.5.2_51dd1de88f57546e14ce9afc6b87440dfd89a8b5\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -36,51 +18,6 @@
         revision="25.0.2"
         sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
         <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_7a3bbb1f3d0c12e7b0a6f9f498226f353853ebda\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\.android\build-cache\5a6ff4754eecfc5fbb69dcd9cb3140dad424bc25\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
-        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_9d8abbe9780bba91e6ea63fb84fe5b584c94df6b\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\.android\build-cache\4263b9f45521ffaacc426724cc112f1827b3cb41\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="8f6a8d4535af9c9b91cb253e87c516e716df3dc4">
-        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_6f152f88d08f3af20c7461851a415af6d8b4d328\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
-        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_7a3bbb1f3d0c12e7b0a6f9f498226f353853ebda\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="742545274c1d747d47611be6dcd3b5dd444bc531">
-        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_681307d420840ce7259e50ce5d6ec8936e0b2f77\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Pranav Gupta\.android\build-cache\245b035fc4b6f46fd7bdcbeb153efbd4f6e5a251\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="9be5e957849eb82ad9addf9bdb2896de8bf5654b">
-        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_4c35e9f9d3f1f1ab52acafddb9b67d94dc38ccf4\classes.dex" />
     </item>
 
 </items>

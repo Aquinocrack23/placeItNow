@@ -66,16 +66,18 @@ public class LoginActivity extends AppCompatActivity {
                      * over the snapshot and accessing the children
                      *
                      * */
-                    Intent intent = new Intent(LoginActivity.this, BaseActivityFragment.class);
-                    startActivity(intent);
-                    Toast.makeText(LoginActivity.this,"Signed In",Toast.LENGTH_SHORT).show();
-                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                    if(user.isEmailVerified()){
+                        Intent intent = new Intent(LoginActivity.this, BaseActivityFragment.class);
+                        startActivity(intent);
+                        Toast.makeText(LoginActivity.this,"Signed In",Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                    }
                 } else {
+                    Toast.makeText(getBaseContext(),"Email not verified",Toast.LENGTH_SHORT).show();
                     // User is signed out
                     //Toast.makeText(LoginActivity.this,"You are not logged in, Please LogIn to continue",Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "onAuthStateChanged:signed_out");
                 }
-                // ...
             }
         };
 
@@ -160,9 +162,9 @@ public class LoginActivity extends AppCompatActivity {
                         } else {
                             //When login successful, redirect user to main activity
                             progressDialog.dismiss();
-                            Intent intent = new Intent(LoginActivity.this, BaseActivityFragment.class);
-                            startActivity(intent);
-                            finish();
+                           // Intent intent = new Intent(LoginActivity.this, BaseActivityFragment.class);
+                           // startActivity(intent);
+                          //  finish();
                         }
                     }
                 });

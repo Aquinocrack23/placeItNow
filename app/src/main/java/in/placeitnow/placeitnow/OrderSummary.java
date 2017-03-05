@@ -250,7 +250,7 @@ public class OrderSummary extends AppCompatActivity {
             public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                 if(databaseError==null){
                     pg.dismiss();
-                    Toast.makeText(OrderSummary.this,"Your order number is "+String.valueOf(order_num+1),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(OrderSummary.this,"Your order number is "+String.valueOf(order_num),Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(OrderSummary.this,MainActivity.class);
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(i);

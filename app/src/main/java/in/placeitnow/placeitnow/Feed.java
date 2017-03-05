@@ -48,16 +48,16 @@ public class Feed extends Fragment {
     }
 
     private void setDatatoView() {
-        itemList.add(new FeedItem(234,"Pranav Gupta","r","Designed and crafted by Pranav Gupta @ PlaceItNow",
-                "e","12/12/2019","www.placeitnow.com"));
-        itemList.add(new FeedItem(234,"Pranav Gupta","r","This is a great app for browsing your local canteens",
-                "e","12/12/2019","nowplaceit@gmail.com"));
-        itemList.add(new FeedItem(234,"Pranav Gupta","null","This is a great app for browsing your local canteens",
-                "e","12/12/2019","nowplaceit@gmail.com"));
-        itemList.add(new FeedItem(234,"Pranav Gupta","r","Enjoy delicious food in just one click",
-                "e","12/12/2019","www.placeitnow.com"));
-        itemList.add(new FeedItem(234,"Pranav Gupta","r","Enjoy delicious food in just one click",
-                "e","12/12/2019","www.placeitnow.com"));
+        itemList.add(new FeedItem(234,"PlaceItNow Team","r","Designed and crafted by PlaceItNow",
+                "e","12/12/2017","www.placeitnow.com"));
+        itemList.add(new FeedItem(234,"PlaceItNow Team","r","This is a great app for browsing your local canteens",
+                "e","12/12/2017","nowplaceit@gmail.com"));
+        itemList.add(new FeedItem(234,"PlaceItNow Team","null","This is a great app for browsing your local canteens",
+                "e","12/12/2017","nowplaceit@gmail.com"));
+        itemList.add(new FeedItem(234,"PlaceItNow Team","r","Enjoy delicious food in just one click",
+                "e","12/12/2017","www.placeitnow.com"));
+        itemList.add(new FeedItem(234,"Pranav Gupta","r","Never stand again in a queue ;p",
+                "e","12/12/2017","www.placeitnow.com"));
         feedAdapter.notifyDataSetChanged();
     }
 }

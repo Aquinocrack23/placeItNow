@@ -12,6 +12,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -51,6 +53,7 @@ public class Home extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView recyclerView2;
     private List<HomeBoxFirst> boxItems,boxItems2;
+    private Button dash;
 
     @Nullable
     @Override
@@ -58,6 +61,8 @@ public class Home extends Fragment {
 
 
         view=  getActivity().getLayoutInflater().inflate(R.layout.home,container,false);
+
+        dash = (Button)view.findViewById(R.id.order_dashboard);
 
         /** getSupportActionBar is only present in AppCompatActivity while getActivity returns FragmentActivity so we first
          * need to cast to AppCompatActivity to use that method
@@ -102,6 +107,13 @@ public class Home extends Fragment {
         homeBoxAdapterFirst2 = new HomeBoxAdapterFirst(getActivity(),boxItems2);
         recyclerView.setAdapter(homeBoxAdapterFirst);
         recyclerView2.setAdapter(homeBoxAdapterFirst2);
+
+        dash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),MainActivity.class));
+            }
+        });
         /*imgb = (ImageButton)view.findViewById(R.id.vendor1);
         imgb.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,6 +126,12 @@ public class Home extends Fragment {
         return view;
     }
     @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        /** in case our fragment also wants to contribute to the toolbar for the menu(originally toolbar consists of
+         * menu inflated in the BaseFragmentActivity but if we want to additionally add some menu then to show them this
+         * must be set to true
+         * */
+        setHasOptionsMenu(true);
         LoopViewPager viewpager = (LoopViewPager) view.findViewById(R.id.viewpager);
         CircleIndicator indicator = (CircleIndicator) view.findViewById(R.id.indicator);
         viewpager.setAdapter(new SamplePagerAdapter());
@@ -128,6 +146,21 @@ public class Home extends Fragment {
         boxItems2.add(new HomeBoxFirst("Burger","Find all varieties of burgers at BakeHut",R.drawable.burger1));
         boxItems2.add(new HomeBoxFirst("Biryani","Find all biryanis at best price at RiverBank",R.drawable.fried_rice));
         boxItems2.add(new HomeBoxFirst("Parantha","All varieties of parantha are available at AFC",R.drawable.paratha));
+    }
+
+    @Override
+    public void onCreateOptionsMenu(android.view.Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.dashboard,menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.dashboard:
+                startActivity(new Intent(getActivity(),MainActivity.class));
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

@@ -1,12 +1,10 @@
 package in.placeitnow.placeitnow;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -14,14 +12,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.firebase.client.Firebase;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnFocusChangeListener {
 
@@ -33,7 +34,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnFocusC
     private String name_reg,pass_reg,email_reg,contact_reg,address_reg;
     private FirebaseAuth auth;                         //FirebaseAuthentication
     private FirebaseAuth.AuthStateListener mAuthListener;
-    String TAG;
     String uid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +48,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnFocusC
         //name.requestFocus();
         register = (Button) findViewById(R.id.register);
         info1 = (TextView) findViewById(R.id.info1);
+        register.setEnabled(true);
         progressDialog = new ProgressDialog(RegisterActivity.this);
         //get firebase auth instance
         auth = FirebaseAuth.getInstance();
@@ -65,7 +66,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnFocusC
 
                 if (user != null) {
                      //use for email verification
-                     // user.sendEmailVerification();
+                        user.sendEmailVerification();
 
                     // User is signed in
                         final DatabaseReference name, contact, address, password, email;
@@ -74,11 +75,25 @@ public class RegisterActivity extends AppCompatActivity implements View.OnFocusC
                         name = user_ref.child("Name");
                         contact = user_ref.child("Contact");
                         address = user_ref.child("Address");
-                        name.setValue(name_reg);
-                        contact.setValue(contact_reg);
-                        address.setValue(address_reg);
+                        name.setValue(name_reg, new DatabaseReference.CompletionListener() {
+                            @Override
+                            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+
+                            }
+                        });
+                        contact.setValue(contact_reg, new DatabaseReference.CompletionListener() {
+                            @Override
+                            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+
+                            }
+                        });
+                        address.setValue(address_reg, new DatabaseReference.CompletionListener() {
+                            @Override
+                            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+
+                            }
+                        });
                         //Toast.makeText(RegisterActivity.this,"You are already Registered !",Toast.LENGTH_SHORT).show();
-                        register.setEnabled(false);
                         // Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
 
                 } else {
@@ -103,21 +118,38 @@ public class RegisterActivity extends AppCompatActivity implements View.OnFocusC
                 //requesting Firebase server
                 if (!name_reg.contentEquals("")&&!pass_reg.contentEquals("")&&!email_reg.contentEquals("")&&!contact_reg.contentEquals("")&&!address_reg.contentEquals("")) {
                     showProcessDialog();
-                    auth.createUserWithEmailAndPassword(email_reg, pass_reg)
-                            .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (!task.isSuccessful()) {
-                                        progressDialog.dismiss();
-                                        Toast.makeText(getBaseContext(), "Registration Failed", Toast.LENGTH_SHORT).show();
-                                    } else {
-                                        Toast.makeText(getBaseContext(), "Registered Successfully !", Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-                                        progressDialog.dismiss();
-                                        finish();
+                    String txt=email_reg;
+
+                    String re1="((?:[a-z][a-z0-9_]*))";	// Variable Name 1
+                    String re2="(@)";	// Any Single Character 1
+                    String re3="(students\\.iitmandi\\.ac\\.in)";	// Fully Qualified Domain Name 1
+                    String re4="(iitmandi\\.ac\\.in)";	// Fully Qualified Domain Name 2
+
+                    Pattern p1 = Pattern.compile(re1+re2+re3,Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
+                    Pattern p2 = Pattern.compile(re1+re2+re4,Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
+                    Matcher m1 = p1.matcher(txt);
+                    Matcher m2 = p2.matcher(txt);
+                    if (m1.find() || m2.find()) {
+                        auth.createUserWithEmailAndPassword(email_reg, pass_reg)
+                                .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        if (!task.isSuccessful()) {
+                                            progressDialog.dismiss();
+                                            Toast.makeText(getBaseContext(), "Registration Failed", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Toast.makeText(getBaseContext(), "Please verify the email sent to your email id to login", Toast.LENGTH_SHORT).show();
+                                            //startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                                            progressDialog.dismiss();
+                                            finish();
+                                        }
                                     }
-                                }
-                            });
+                                });
+                    }
+                    else {
+                        progressDialog.dismiss();
+                        Toast.makeText(RegisterActivity.this, "Please enter your college email ID.", Toast.LENGTH_LONG).show();
+                    }
                 }
             }
         });

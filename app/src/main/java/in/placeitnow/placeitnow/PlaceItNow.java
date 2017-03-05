@@ -1,10 +1,6 @@
 package in.placeitnow.placeitnow;
 
 import android.app.Application;
-import android.content.Context;
-import android.support.multidex.MultiDex;
-import android.widget.Toast;
-
 import com.firebase.client.Firebase;
 import com.google.firebase.database.FirebaseDatabase;
 

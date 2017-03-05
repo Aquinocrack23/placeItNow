@@ -46,7 +46,6 @@ public class Order extends Fragment {
     private DatabaseReference databaseReference;
     private DatabaseReference vendors_list;
     private ChildEventListener vendors_list_listener;
-    private Toolbar toolbar;
 
 
     @Nullable
@@ -140,7 +139,10 @@ public class Order extends Fragment {
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-
+                getActivity().finish();
+                getActivity().overridePendingTransition( 0, 0);
+                startActivity(getActivity().getIntent());
+                getActivity().overridePendingTransition( 0, 0);
             }
 
             @Override

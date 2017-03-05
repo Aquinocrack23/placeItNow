@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
     private String user_name;
     private DatabaseReference order_of_user,orders_common_vendor;
     private ValueEventListener order_of_user_listener,order_common_vendor_listener;
+    private Integer j =0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         rootRef = database.getReference("users");
         vendorRef = database.getReference("vendors");
 
-        //insantiating the objects
+        //instantiating the objects
         /** always make sure to instantiate the arraylist before linking it to recycler adapter otherwise no data will be shown
          * */
         orderContents = new ArrayList<>();
@@ -252,8 +253,8 @@ public class MainActivity extends AppCompatActivity {
                                 dashboard.notifyDataSetChanged();
                                 Collections.sort(orderContents, new Comparator<OrderLayoutClass>(){
                                     public int compare(OrderLayoutClass o1, OrderLayoutClass o2) {
-                                        // ## Ascending order
-                                        return o1.getTime().compareTo(o2.getTime()); // To compare string values
+                                        // ## descending
+                                        return o2.getTime().compareTo(o1.getTime()); // To compare string values
                                         // return Integer.valueOf(emp1.getId()).compareTo(emp2.getId()); // To compare integer values
 
                                         // ## Descending order
@@ -273,26 +274,29 @@ public class MainActivity extends AppCompatActivity {
                     });
                     orders_common_vendor = vendorRef.child(vendor_id).child("orders");
                     orders_common_vendor.keepSynced(true);
+
                     order_common_vendor_listener = orders_common_vendor.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            for(DataSnapshot orders : dataSnapshot.getChildren()){
 
-                                OrderLayoutClass orderLayoutClass = orders.getValue(OrderLayoutClass.class);
+                            for(int i=0;i<orderContents.size();i++){
                                 Integer progress =0;
-                                for(int i=0;i<orderContents.size();i++){
+                                for(DataSnapshot orders : dataSnapshot.getChildren()){
+                                    OrderLayoutClass orderLayoutClass = orders.getValue(OrderLayoutClass.class);
 
                                     if(orderContents.get(i).getVendor_name().contentEquals(orderLayoutClass.getVendor_name())){
                                         if(orderContents.get(i).getTime()>orderLayoutClass.getTime()){
-                                            if(orderLayoutClass.isOrderDone()){
+                                            if(!orderLayoutClass.isOrderDone()){
                                                 progress++;
-                                                orderContents.get(i).setOrders_before_yours(progress);
-                                                dashboard.notifyDataSetChanged();
+                                                //dashboard.notifyDataSetChanged();
                                             }
                                         }
                                     }
                                 }
+                                orderContents.get(i).setOrders_before_yours(progress);
+                                dashboard.notifyDataSetChanged();
                             }
+
 
                         }
 
