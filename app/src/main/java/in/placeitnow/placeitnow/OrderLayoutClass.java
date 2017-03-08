@@ -22,52 +22,66 @@ public class OrderLayoutClass {
     private String vendor_name;
     private Integer orders_before_yours;
 
-    public Integer getOrders_before_yours() {
-        return orders_before_yours;
-    }
-
-    public void setOrders_before_yours(Integer orders_before_yours) {
-        this.orders_before_yours = orders_before_yours;
-    }
-
-    public Integer getProgress_order_number() {
-        return progress_order_number;
-    }
-
-    public void setProgress_order_number(Integer progress_order_number) {
-        this.progress_order_number = progress_order_number;
-    }
-
     public OrderLayoutClass() {
 
+    }
+    public OrderLayoutClass(String orderID, String displayName, String uid, ArrayList<OrderItem> orderItems,
+                            String vendor_name, Integer order_number, Long epoch) {
+
+        this.orderID = orderID;
+        this.uid = uid;
+        this.items = orderItems;
+        this.displayName = displayName;
+        this.amount = 0.0;
+        for (OrderItem orderItem : orderItems)
+            amount += orderItem.getItemPrice() * orderItem.getItemQuantity();
+        this.orderDone = false;
+        this.paymentDone = false;
+        this.comment = "";
+        this.vendor_name = vendor_name;
+        this.progress_order_number = order_number;
+        this.time = epoch;
+        this.orders_before_yours = order_number-1;
+
+
+    }
+    public ArrayList<OrderItem> getItems() {
+        return items;
+    }
+
+    public Double getAmount() {
+        return amount;
+    }
+
+    public String getOrderID() {
+        return orderID;
+    }
+
+    public String getDisplayName() {
+
+        return displayName;
     }
 
     public String getVendor_name() {
         return vendor_name;
     }
 
-    public void setVendor_name(String vendor_name) {
-        this.vendor_name = vendor_name;
+    public Long getTime() {
+
+        return time;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
+    public Integer getProgress_order_number() {
+        return progress_order_number;
     }
 
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
+    public String getOrderKey() {
+
+        return orderKey;
     }
 
-    public void setItems(ArrayList<OrderItem> items) {
-        this.items = items;
-    }
-
-    public void setAmount(Double amount) {
-        this.amount = amount;
-    }
-
-    public void setTime(Long time) {
-        this.time = time;
+    public void setOrderKey(String orderKey) {
+        this.orderKey = orderKey;
     }
 
     public boolean isOrderDone() {
@@ -86,61 +100,15 @@ public class OrderLayoutClass {
         this.paymentDone = paymentDone;
     }
 
-    public String getOrderID() {
-        return orderID;
+    public Integer getOrders_before_yours() {
+        return orders_before_yours;
     }
 
-    public void setOrderID(String orderID) {
-        this.orderID = orderID;
+    public void setOrders_before_yours(Integer orders_before_yours) {
+        this.orders_before_yours = orders_before_yours;
+    }
+    public void setProgress_order_number(Integer progress_order_number) {
+        this.progress_order_number = progress_order_number;
     }
 
-    public OrderLayoutClass(String orderID, String uid, String displayName, ArrayList<OrderItem> orderItems) {
-
-        this.orderID = orderID;
-        this.uid = uid;
-        this.displayName = displayName;
-        this.items = orderItems;
-        this.amount = 0.0;
-        for (OrderItem orderItem : orderItems)
-            amount += orderItem.getItemPrice() * orderItem.getItemQuantity();
-        this.orderDone = false;
-        this.paymentDone = false;
-        this.comment = "";
-
-    }
-    String getDisplayName() {
-        return this.displayName;
-    }
-
-    public Double getAmount() {
-        return amount;
-    }
-
-    public ArrayList<OrderItem> getItems() {
-        return this.items;
-    }
-
-    public String getUid() {
-        return this.uid;
-    }
-
-    public String getOrderKey() {
-        return this.orderKey;
-    }
-
-    public void setOrderKey(String orderKey) {
-        this.orderKey = orderKey;
-    }
-
-    public Long getTime() {
-        return Long.valueOf(this.time);
-    }
-
-    String getComment() {
-        return this.comment;
-    }
-
-    void setComment(String comment) {
-        this.comment = comment;
-    }
 }

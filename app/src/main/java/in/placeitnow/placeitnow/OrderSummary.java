@@ -71,6 +71,8 @@ public class OrderSummary extends AppCompatActivity {
     private DatabaseReference orderNumber;
     private String orderID;
     private long epoch;
+    private String displayName;
+    private String vendor_name;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -102,7 +104,6 @@ public class OrderSummary extends AppCompatActivity {
         vendorRef = database.getReference("vendors");
 
 
-
         auth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -118,7 +119,6 @@ public class OrderSummary extends AppCompatActivity {
                     Intent i = new Intent(OrderSummary.this,LoginActivity.class);
                     startActivity(i);
                 }
-                // ...
             }
         };
 
@@ -164,6 +164,8 @@ public class OrderSummary extends AppCompatActivity {
     private void getRevelantData() {
         i =getIntent();
         orderDetails = (ArrayList<OrderItem>) i.getSerializableExtra("summary");
+        displayName = i.getStringExtra("user_name");
+        vendor_name = i.getStringExtra("vendorname");
         vid = i.getStringExtra("vid");
         status = i.getStringExtra("status");
         customer_name.setText(i.getStringExtra("user_name"));
@@ -207,21 +209,14 @@ public class OrderSummary extends AppCompatActivity {
          * uses vendorID either inside this callback function or make some market to make sure that it has gor its
          * value
          * */
-
-        String displayName = i.getStringExtra("user_name");
-        String comment = orderSummary.get("Comment");
-        String vendor_name = i.getStringExtra("vendorname");
         //Creating order
         final OrderLayoutClass order = new OrderLayoutClass(orderID,
-                uid,displayName,orderDetails);
-        order.setProgress_order_number(order_num+1);
-        order.setDisplayName(displayName);
-        order.setComment("");
+                displayName,uid,orderDetails,vendor_name,order_num+1,epoch);
+
+
         //Add order on Vendor side
         DatabaseReference ref = databaseReference.child("vendors").child(vid).child("orders").push().getRef();
         String key = ref.getKey();
-        order.setTime(epoch);
-        order.setVendor_name(vendor_name);
         orderRef = rootRef.child(uid).child("orders").child(vid).child(key);
         ref.setValue(order, new DatabaseReference.CompletionListener() {
             @Override

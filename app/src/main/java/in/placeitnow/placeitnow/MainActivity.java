@@ -235,8 +235,8 @@ public class MainActivity extends AppCompatActivity {
                             for(DataSnapshot order : dataSnapshot.getChildren()){
                                 String key = order.getKey();
                                 OrderLayoutClass orderLayoutClass = order.getValue(OrderLayoutClass.class);
-                                orderLayoutClass.setDisplayName(user_name);
                                 orderLayoutClass.setOrderKey(key);
+                                //Toast.makeText(MainActivity.this,orderLayoutClass.getProgress_order_number()+"",Toast.LENGTH_SHORT).show();
                                 orderLayoutClass.setOrders_before_yours(orderLayoutClass.getProgress_order_number()-1);
                                 if(!checkIfPresent(orderLayoutClass)){
                                     orderContents.add(0,orderLayoutClass);
@@ -336,7 +336,6 @@ public class MainActivity extends AppCompatActivity {
                      public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                          String key = dataSnapshot.getKey();
                          OrderLayoutClass orderLayoutClass = dataSnapshot.getValue(OrderLayoutClass.class);
-                         orderLayoutClass.setDisplayName(user_name);
                          orderLayoutClass.setOrderKey(key);
                          orderLayoutClass.setOrders_before_yours(orderLayoutClass.getProgress_order_number()-1);
                          if(!checkIfPresent(orderLayoutClass)){
