@@ -8,9 +8,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 import java.util.Locale;
@@ -46,6 +49,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         //setting data to view holder elements
         viewHolder.name.setText(vendors.get(position).getName());
         viewHolder.imageView.setImageResource(R.mipmap.ic_launcher);
+        if(vendors.get(position).getOrder_current()!=null){
+            viewHolder.order_current.setText("#"+vendors.get(position).getOrder_current()+"");
+        }
         if(vendors.get(position).getStatus()){
             viewHolder.status.setText("Online");
             status = "Online";
@@ -90,6 +96,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         private TextView name;
         private TextView status;
         private View container;
+        private TextView order_current;
         public ViewHolder(View view) {
             super(view);
 
@@ -98,6 +105,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             name = (TextView) view.findViewById(R.id.name);
             status = (TextView) view.findViewById(R.id.status);
             container = view.findViewById(R.id.card_view);
+            order_current = (TextView)view.findViewById(R.id.order_current);
         }
 
     }

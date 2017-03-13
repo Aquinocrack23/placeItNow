@@ -25,6 +25,15 @@ public class OrderLayoutClass {
     public OrderLayoutClass() {
 
     }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
     public OrderLayoutClass(String orderID, String displayName, String uid, ArrayList<OrderItem> orderItems,
                             String vendor_name, Integer order_number, Long epoch) {
 
@@ -42,6 +51,7 @@ public class OrderLayoutClass {
         this.progress_order_number = order_number;
         this.time = epoch;
         this.orders_before_yours = order_number-1;
+
 
 
     }

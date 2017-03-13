@@ -31,14 +31,25 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:padding="8dp">
-    <Button
-        android:text="Go To Order Dashboard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/order_dashboard"
-        android:textColor="@color/white"
-        android:background="@drawable/add_back"/>
+        <Button
+            android:text="Order Dashboard"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:id="@+id/order_dashboard"
+            android:textColor="@color/white"
+            android:background="@drawable/add_back"/>
+        <Button
+            android:text="Make Order"
+            android:layout_width="0dp"
+            android:layout_marginLeft="4dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:id="@+id/make_order"
+            android:textColor="@color/white"
+            android:background="@drawable/add_back"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"

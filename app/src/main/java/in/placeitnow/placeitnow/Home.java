@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -53,7 +54,7 @@ public class Home extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView recyclerView2;
     private List<HomeBoxFirst> boxItems,boxItems2;
-    private Button dash;
+    private Button dash,make_order;
 
     @Nullable
     @Override
@@ -63,6 +64,7 @@ public class Home extends Fragment {
         view=  getActivity().getLayoutInflater().inflate(R.layout.home,container,false);
 
         dash = (Button)view.findViewById(R.id.order_dashboard);
+        make_order = (Button)view.findViewById(R.id.make_order);
 
         /** getSupportActionBar is only present in AppCompatActivity while getActivity returns FragmentActivity so we first
          * need to cast to AppCompatActivity to use that method
@@ -112,6 +114,13 @@ public class Home extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(),MainActivity.class));
+            }
+        });
+        make_order.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ViewPager pager = (ViewPager) ((BaseActivityFragment)getActivity()).findViewById(R.id.viewpager);
+                pager.setCurrentItem(1);
             }
         });
         /*imgb = (ImageButton)view.findViewById(R.id.vendor1);
@@ -181,5 +190,15 @@ public class Home extends Fragment {
         if (mAuthListener != null) {
             auth.removeAuthStateListener(mAuthListener);
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
     }
 }

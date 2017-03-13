@@ -343,6 +343,7 @@ public class MainActivity extends AppCompatActivity {
                              selectedOrderContents.add(0,orderLayoutClass);
                              loading.setText("");
                          }
+
                          dashboard.notifyDataSetChanged();
                          Collections.sort(orderContents, new Comparator<OrderLayoutClass>(){
                              public int compare(OrderLayoutClass o1, OrderLayoutClass o2) {

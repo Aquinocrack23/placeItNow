@@ -9,7 +9,7 @@ public class Vendor {
     private String vid;
     private String name;
     private Boolean status;
-
+    private Long order_current;
 
     public void setName(String name) {
         this.name = name;
@@ -18,6 +18,7 @@ public class Vendor {
     public void setStatus(Boolean status) {
         this.status = status;
     }
+
 
     public String getVid() {
 
@@ -31,11 +32,19 @@ public class Vendor {
         this.name = name;
         this.status = s;
     }
+
     public Vendor(String vid,String name, Boolean s){
         this.vid=vid;
         this.name = name;
         this.status = s;
     }
+    public Vendor(String vid,String name, Boolean s,Long oc){
+        this.vid=vid;
+        this.name = name;
+        this.status = s;
+        this.order_current = oc;
+    }
+
     public Boolean getStatus() {
         return status;
     }
@@ -44,4 +53,11 @@ public class Vendor {
         return name;
     }
 
+    public Long getOrder_current() {
+        return order_current;
+    }
+
+    public void setOrder_current(Long order_current) {
+        this.order_current = order_current;
+    }
 }

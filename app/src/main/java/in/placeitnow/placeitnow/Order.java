@@ -117,13 +117,29 @@ public class Order extends Fragment {
         vendors_list_listener = vendors_list.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                String vid = dataSnapshot.getKey();
-                String name = dataSnapshot.child("details").child("displayName").getValue(String.class);
-                Boolean status = dataSnapshot.child("details").child("status").getValue(Boolean.class);
+                final String vid = dataSnapshot.getKey();
+                final String name = dataSnapshot.child("details").child("displayName").getValue(String.class);
+                final Boolean status = dataSnapshot.child("details").child("status").getValue(Boolean.class);
                 //show(vid +" "+name+" "+ status);
                 vendorsArrayList.add(new Vendor(vid,name,status));
                 loading.setText("");
                 adapter.notifyDataSetChanged();
+
+                vendors_list.child(vid).child("orders").orderByChild("orderDone").equalTo(false).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for(int i=0;i<vendorsArrayList.size();i++){
+                            if(vendorsArrayList.get(i).getVid().contentEquals(vid)){
+                                vendorsArrayList.get(i).setOrder_current(dataSnapshot.getChildrenCount());
+                                adapter.notifyDataSetChanged();
+                            }
+                        }
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
             }
 
             @Override
