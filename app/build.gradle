@@ -7,8 +7,8 @@ android {
         applicationId "in.placeitnow.placeitnow"
         minSdkVersion 17
         targetSdkVersion 25
-        versionCode 26
-        versionName "3.7"
+        versionCode 30
+        versionName "4.1"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         lintOptions {
@@ -53,7 +53,8 @@ dependencies {
     compile 'com.google.firebase:firebase-database:10.0.1'
     compile 'com.google.firebase:firebase-storage:10.0.1'
     compile 'com.google.firebase:firebase-auth:10.0.1'
-    compile 'com.roughike:bottom-bar:1.4.0.1'
+    compile 'com.roughike:bottom-bar:2.1.1'
+    compile 'com.github.chyrta:AndroidOnboarder:0.6'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile project(':circleindicator')
     compile project(':LoopingViewPager')

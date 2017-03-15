@@ -213,7 +213,6 @@ public class OrderSummary extends AppCompatActivity {
         final OrderLayoutClass order = new OrderLayoutClass(orderID,
                 displayName,uid,orderDetails,vendor_name,order_num+1,epoch);
 
-
         //Add order on Vendor side
         DatabaseReference ref = databaseReference.child("vendors").child(vid).child("orders").push().getRef();
         String key = ref.getKey();

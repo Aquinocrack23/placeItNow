@@ -12,7 +12,10 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * Created by Pranav Gupta on 2/18/2017.
@@ -45,10 +48,14 @@ public class RecyclerAdapterOrderDashboard extends RecyclerView.Adapter<Recycler
         holder.vendor_name.setText(orders.get(position).getVendor_name());
         holder.order_id.setText("ID : "+ orders.get(position).getOrderID());
         holder.user_name.setText(orders.get(position).getDisplayName());
+        long timestamp = Long.parseLong(String.valueOf(orders.get(position).getTime())) / 1000;
+        String date_format = GetHumanReadableDate(timestamp, "dd-MM-yyyy HH:mm:ss aa");
+        holder.date_time.setText(date_format);
         holder.imageView.setImageResource(R.drawable.burger);
         holder.amount.setText("Total : "+orders.get(position).getAmount()+"");
         if(orders.get(position).getOrders_before_yours()==0){
-            holder.orders_before.setText("Ready");
+            holder.orders_before.setTextSize(24);
+            holder.orders_before.setText("In\n Progress");
         }else {
             holder.orders_before.setText((orders.get(position).getOrders_before_yours())+"");
         }
@@ -91,6 +98,7 @@ public class RecyclerAdapterOrderDashboard extends RecyclerView.Adapter<Recycler
         TextView amount;
         TextView contents;
         TextView orders_before;
+        TextView date_time;
         ViewHolder(View itemView) {
             super(itemView);
             vendor_name = (TextView)itemView.findViewById(R.id.vendor_name);
@@ -103,6 +111,15 @@ public class RecyclerAdapterOrderDashboard extends RecyclerView.Adapter<Recycler
             amount = (TextView)itemView.findViewById(R.id.amount);
             contents = (TextView)itemView.findViewById(R.id.order_contents);
             orders_before=(TextView)itemView.findViewById(R.id.orders_before);
+            date_time = (TextView)itemView.findViewById(R.id.date_and_time);
         }
     }
+
+    public static String GetHumanReadableDate(long epochSec, String dateFormatStr) {
+        Date date = new Date(epochSec * 1000);
+        SimpleDateFormat format = new SimpleDateFormat(dateFormatStr,
+                Locale.getDefault());
+        return format.format(date);
+    }
+
 }

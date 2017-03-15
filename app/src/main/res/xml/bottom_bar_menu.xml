@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs xmlns:android="http://schemas.android.com/apk/res/android">
+	<tab
+        android:id="@+id/like"
+        android:icon="@drawable/ic_visibility_black_24dp"
+        android:title="Live" />
+    <tab
+        android:id="@+id/love"
+        android:icon="@drawable/ic_favorite_black_24dp"
+        android:title="New" />
+</tabs>

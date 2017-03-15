@@ -1,11 +1,14 @@
 package in.placeitnow.placeitnow;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,9 +30,8 @@ public class UserAccount extends Fragment implements View.OnClickListener{
 
 
     private TextView username;
-    private LinearLayout order_history;
     private View view;
-
+    private LinearLayout order_history,rate_us,sign_out,how_to_use;
     private FirebaseDatabase database;
     private DatabaseReference rootRef;
 
@@ -54,6 +56,9 @@ public class UserAccount extends Fragment implements View.OnClickListener{
         setViews();
 
         order_history.setOnClickListener(this);
+        rate_us.setOnClickListener(this);
+        how_to_use.setOnClickListener(this);
+        sign_out.setOnClickListener(this);
         database = FirebaseDatabase.getInstance();
         rootRef = database.getReference();
 
@@ -65,6 +70,9 @@ public class UserAccount extends Fragment implements View.OnClickListener{
     private void setViews() {
         username = (TextView)view.findViewById(R.id.user_name);
         order_history=(LinearLayout) view.findViewById(R.id.order_history);
+        rate_us=(LinearLayout) view.findViewById(R.id.rate_us);
+        sign_out=(LinearLayout) view.findViewById(R.id.sign_out);
+        how_to_use=(LinearLayout) view.findViewById(R.id.how_to_use);
     }
 
     private void fetchUserUIDthroughLogin() {
@@ -122,6 +130,34 @@ public class UserAccount extends Fragment implements View.OnClickListener{
         switch (view.getId()){
             case R.id.order_history:
                 startActivity(new Intent(getActivity(),MainActivity.class));
+                break;
+            case R.id.how_to_use:
+                startActivity(new Intent(getActivity(),HowToUse.class));
+                break;
+            case R.id.sign_out:
+                if(FirebaseAuth.getInstance()!=null){
+                    FirebaseAuth.getInstance().signOut();
+                }
+                Toast.makeText(getActivity(),"Signed Out",Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getActivity(),LoginActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(i);
+                break;
+            case R.id.rate_us:
+                Uri uri = Uri.parse("market://details?id=" + getActivity().getPackageName());
+                Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+                // To count with Play market backstack, After pressing back button,
+                // to taken back to our application, we need to add following flags to intent.
+                goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
+                        Intent.FLAG_ACTIVITY_NEW_DOCUMENT |
+                        Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                try {
+                    startActivity(goToMarket);
+                } catch (ActivityNotFoundException e) {
+                    startActivity(new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("http://play.google.com/store/apps/details?id=" + getActivity().getPackageName())));
+                }
+                break;
         }
     }
 }

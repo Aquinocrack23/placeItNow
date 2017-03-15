@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\Pranav Gupta\.android\build-cache\24822557a740e8f68d12bd4349ea51d300240438\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="847ee2c03aff4e2f0e30c9201d0b0b119bbed6dd">
+        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_63a50d64d8206aa6608fc13276ac7bb8fa27e61f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="8fb1d3d0d469bf913eb82520b3c189e1c1a23757">
+        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_681307d420840ce7259e50ce5d6ec8936e0b2f77\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Pranav Gupta\.android\build-cache\a0d9353c687e5977f49c2f412907dd29917b559a\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b034fc34b6f13e95ccaaff6aa76819c34c6bce41">
+        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_3377b57b8b3a90dbd7dd97b2c20c7dc7b3ffadb0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
+        <dex dex="E:\AndroidStudioApps\InBuilding\placeItNow\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_7a3bbb1f3d0c12e7b0a6f9f498226f353853ebda\classes.dex" />
+    </item>
+
+</items>

@@ -50,7 +50,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         viewHolder.name.setText(vendors.get(position).getName());
         viewHolder.imageView.setImageResource(R.mipmap.ic_launcher);
         if(vendors.get(position).getOrder_current()!=null){
-            viewHolder.order_current.setText("#"+vendors.get(position).getOrder_current()+"");
+            viewHolder.order_current.setText("#order after "+vendors.get(position).getOrder_current()+"");
         }
         if(vendors.get(position).getStatus()){
             viewHolder.status.setText("Online");

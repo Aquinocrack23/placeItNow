@@ -1,15 +1,10 @@
 package in.placeitnow.placeitnow;
 
-import android.app.PendingIntent;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -24,20 +19,19 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.roughike.bottombar.BottomBar;
-import com.roughike.bottombar.OnMenuTabClickListener;
+import com.roughike.bottombar.OnTabSelectListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Locale;
-import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -66,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recyle_view);
         loading = (TextView)findViewById(R.id.loading);
+        mBottomBar = (BottomBar)findViewById(R.id.bottomBar);
 
         /** for back button to work in action bar back implement back button login onOptionsItemSelected
          * */
@@ -133,25 +128,13 @@ public class MainActivity extends AppCompatActivity {
         //setRecyclerViewData(); //adding data to array list
 
         // Customize the colors here
-        mBottomBar = BottomBar.attach(this, savedInstanceState,
-                Color.parseColor("#212121"), // Background Color
-                ContextCompat.getColor(this,R.color.cardview_light_background), // Tab Item Color
-                0.25f); // Tab Item Alpha
-        mBottomBar.setItems(R.menu.bottom_bar_menu);
-
-
-        mBottomBar.setOnMenuTabClickListener(new OnMenuTabClickListener() {
-
+        mBottomBar.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
-            public void onMenuTabSelected(@IdRes int menuItemId) {
-                showToast(menuItemId, false);
-            }
-
-            @Override
-            public void onMenuTabReSelected(@IdRes int menuItemId) {
-                showToast(menuItemId, true);
+            public void onTabSelected(@IdRes int tabId) {
             }
         });
+
+
 
     }
 
@@ -229,7 +212,7 @@ public class MainActivity extends AppCompatActivity {
                 for (DataSnapshot vendor : dataSnapshot.getChildren()){
                     String vendor_id = vendor.getKey();
                     DatabaseReference order_particular_vendor = rootRef.child(uid).child("orders");
-                    order_particular_vendor.child(vendor_id).addValueEventListener(new ValueEventListener() {
+                    ValueEventListener v1= new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             for(DataSnapshot order : dataSnapshot.getChildren()){
@@ -241,7 +224,7 @@ public class MainActivity extends AppCompatActivity {
                                 if(!checkIfPresent(orderLayoutClass)){
                                     orderContents.add(0,orderLayoutClass);
                                     selectedOrderContents.add(0,orderLayoutClass);
-                                    loading.setText("");
+                                    loading.setVisibility(View.GONE);
                                 }
                                 for(int i=0;i<orderContents.size();i++){
                                     if(orderContents.get(i).getOrderKey().contentEquals(orderLayoutClass.getOrderKey())){
@@ -271,7 +254,8 @@ public class MainActivity extends AppCompatActivity {
                         public void onCancelled(DatabaseError databaseError) {
 
                         }
-                    });
+                    };
+                    order_particular_vendor.child(vendor_id).limitToLast(8).addValueEventListener(v1);
                     orders_common_vendor = vendorRef.child(vendor_id).child("orders");
                     orders_common_vendor.keepSynced(true);
 
@@ -322,7 +306,7 @@ public class MainActivity extends AppCompatActivity {
      * the whole datasnopshot at once so we have all the data once onDataChange() method is called and hence we can start working with
      * that data
      * */
-    private void setRecyclerViewData1() {
+    /*private void setRecyclerViewData1() {
 
         rootRef.child(uid).child("orders").addChildEventListener(new ChildEventListener() {
             @Override
@@ -362,8 +346,8 @@ public class MainActivity extends AppCompatActivity {
                      @Override
                      public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
-                         /** called when changes in user order section for a particular vendor are made
-                          * */
+                         *//** called when changes in user order section for a particular vendor are made
+                          * *//*
                          OrderLayoutClass orderLayoutClass = dataSnapshot.getValue(OrderLayoutClass.class);
                          for(int i=0;i<orderContents.size();i++){
                              if(orderContents.get(i).getOrderKey().contentEquals(dataSnapshot.getKey())){
@@ -436,8 +420,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
-                /** this on child change will be invoked whenever an entry is changed in the users own table
-                 * */
+                *//** this on child change will be invoked whenever an entry is changed in the users own table
+                 * *//*
                 finish();
                 overridePendingTransition( 0, 0);
                 startActivity(getIntent());
@@ -460,7 +444,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-    }
+    }*/
 
     private boolean checkIfPresent(OrderLayoutClass orderLayoutClass) {
         for(int i =0;i<orderContents.size();i++){
@@ -471,39 +455,6 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
-    private void showToast(int menuId, boolean isReselected) {
-        if (menuId == R.id.like) {
-            if (isReselected) {
-                //show("Tab Reselected!");
-            } else {
-                //show("Find the live items!");
-            }
-        }
-        else if (menuId == R.id.love) {
-            if (isReselected) {
-
-            }
-            else{
-
-            }
-        }
-        else if (menuId == R.id.sad) {
-            if (isReselected) {
-                //show("Tab Sad Reselected");
-            }
-            else {
-                //show("Find coupons");
-            }
-            }
-        else if (isReselected) {
-            FirebaseAuth.getInstance().signOut();
-            //show("Tab Angry Reselected!");
-            show("Signed Out");
-            Intent i = new Intent(MainActivity.this,LoginActivity.class);
-            startActivity(i);
-        }
-        else show("Press again to logout");
-    }
 
     private void show(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
@@ -515,7 +466,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Necessary to restore the BottomBar's state, otherwise we would
         // lose the current tab on orientation change.
-        mBottomBar.onSaveInstanceState(outState);
+        mBottomBar.onSaveInstanceState();
     }
 
     public void filter(String charText) {

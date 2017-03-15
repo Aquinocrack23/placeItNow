@@ -24,29 +24,41 @@
         <activity android:name=".MainActivity"
             android:theme="@style/Main"
             android:label="Order Dashboard"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait">
 
         </activity>
-        <activity android:name=".LoginActivity">
+        <activity android:name=".LoginActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity">
+        <activity android:name=".RegisterActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".BaseActivityFragment">
+        <activity android:name=".BaseActivityFragment"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".VendorProfile">
+        <activity android:name=".VendorProfile"
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".OrderSelection"
             android:label="Order Selection"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".OrderSummary"
             android:label="Order Selection"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".HowToUse"
+            android:label="HowToUse"
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 
