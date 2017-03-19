@@ -211,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
                 for (DataSnapshot vendor : dataSnapshot.getChildren()){
                     String vendor_id = vendor.getKey();
                     DatabaseReference order_particular_vendor = rootRef.child(uid).child("orders");
-                    order_particular_vendor.child(vendor_id).limitToLast(20).addValueEventListener(new ValueEventListener() {
+                    order_particular_vendor.child(vendor_id).limitToLast(7).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             for(DataSnapshot order : dataSnapshot.getChildren()){
@@ -477,8 +477,7 @@ public class MainActivity extends AppCompatActivity {
 
         } else {
             for (OrderLayoutClass order : selectedOrderContents) {
-                if (charText.length() != 0 && order.getDisplayName().toLowerCase(Locale.getDefault()).contains(charText)
-                        ||charText.length() != 0 && order.getVendor_name().toLowerCase(Locale.getDefault()).contains(charText)
+                if (charText.length() != 0 && order.getVendor_name().toLowerCase(Locale.getDefault()).contains(charText)
                         ||charText.length() != 0 && order.getOrderID().toLowerCase(Locale.getDefault()).contains(charText)
                         ||charText.length() != 0 && String.valueOf(order.getAmount()).toLowerCase(Locale.getDefault()).contains(charText)) {
                     orderContents.add(order);

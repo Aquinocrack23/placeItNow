@@ -45,17 +45,28 @@ public class RecyclerAdapterOrderDashboard extends RecyclerView.Adapter<Recycler
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         order_description = "";
-        holder.vendor_name.setText(orders.get(position).getVendor_name());
-        holder.order_id.setText("ID : "+ orders.get(position).getOrderID());
-        holder.user_name.setText(orders.get(position).getDisplayName());
+        if(orders.get(position).getVendor_name()!=null){
+            holder.vendor_name.setText(orders.get(position).getVendor_name());
+        }
+
+        if(orders.get(position).getOrderID()!=null){
+            holder.order_id.setText("ID : "+ orders.get(position).getOrderID());
+        }
+
+        if(orders.get(position).getDisplayName()!=null){
+            holder.user_name.setText(orders.get(position).getDisplayName());
+        }
+
         long timestamp = Long.parseLong(String.valueOf(orders.get(position).getTime())) / 1000;
         String date_format = GetHumanReadableDate(timestamp, "dd-MM-yyyy HH:mm:ss aa");
         holder.date_time.setText(date_format);
         holder.imageView.setImageResource(R.drawable.burger);
-        holder.amount.setText("Total : "+orders.get(position).getAmount()+"");
+        if(orders.get(position).getAmount()!=null){
+            holder.amount.setText("Total : "+orders.get(position).getAmount()+"");
+        }
         if(orders.get(position).getOrders_before_yours()==0){
-            holder.orders_before.setTextSize(24);
-            holder.orders_before.setText("In\n Progress");
+            holder.orders_before.setTextSize(20);
+            holder.orders_before.setText("Making");
         }else {
             holder.orders_before.setText((orders.get(position).getOrders_before_yours())+"");
         }

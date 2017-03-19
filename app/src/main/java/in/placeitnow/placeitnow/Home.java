@@ -1,23 +1,18 @@
 package in.placeitnow.placeitnow;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.NumberPicker;
@@ -26,15 +21,12 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.FirebaseDatabase;
 import com.imbryk.viewPager.LoopViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import me.relex.circleindicator.CircleIndicator;
-
-import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by Pranav Gupta on 12/22/2016.
@@ -152,7 +144,7 @@ public class Home extends Fragment {
         boxItems.add(new HomeBoxFirst("Fresh Juices","Latest Juices",R.drawable.juice));
         boxItems.add(new HomeBoxFirst("Omlette","Bread Omlette",R.drawable.bread_omlette));
         boxItems.add(new HomeBoxFirst("Tea","AFC",R.drawable.chai));
-        boxItems2.add(new HomeBoxFirst("Burger","Find all varieties of burgers at BakeHut",R.drawable.burger1));
+        boxItems2.add(new HomeBoxFirst("Burger","Find all varieties of burgers at BakeHut",R.drawable.burger));
         boxItems2.add(new HomeBoxFirst("Biryani","Find all biryanis at best price at RiverBank",R.drawable.fried_rice));
         boxItems2.add(new HomeBoxFirst("Parantha","All varieties of parantha are available at AFC",R.drawable.paratha));
     }

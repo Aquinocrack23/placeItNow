@@ -45,19 +45,24 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     @Override
     public void onBindViewHolder(RecyclerAdapter.ViewHolder viewHolder, int position) {
 
-        if(vendors.get(position).getName()!=null&&vendors.get(position).getStatus()!=null)
-        //setting data to view holder elements
-        viewHolder.name.setText(vendors.get(position).getName());
-        viewHolder.imageView.setImageResource(R.mipmap.ic_launcher);
-        if(vendors.get(position).getOrder_current()!=null){
-            viewHolder.order_current.setText("#order after "+vendors.get(position).getOrder_current()+"");
+        if(vendors.get(position).getName()!=null){
+            //setting data to view holder elements
+            viewHolder.name.setText(vendors.get(position).getName());
         }
-        if(vendors.get(position).getStatus()){
-            viewHolder.status.setText("Online");
-            status = "Online";
-        }else {
-            viewHolder.status.setText("Offline");
-            status = "Offline";
+
+        viewHolder.imageView.setImageResource(R.mipmap.ic_launcher);
+
+        if(vendors.get(position).getOrder_current()!=null){
+            viewHolder.order_current.setText(vendors.get(position).getOrder_current()+" orders before you");
+        }
+        if(vendors.get(position).getStatus()!=null){
+            if(vendors.get(position).getStatus()){
+                viewHolder.status.setText("Online");
+                status = "Online";
+            }else {
+                viewHolder.status.setText("Offline");
+                status = "Offline";
+            }
         }
         //setting onClickListener for each container
         viewHolder.container.setOnClickListener(onClickListener(viewHolder));

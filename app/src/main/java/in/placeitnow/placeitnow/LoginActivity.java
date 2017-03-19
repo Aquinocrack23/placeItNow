@@ -26,7 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private TextView info1;
+    private TextView info1,how_to_use;
     private TextView info2;
     private EditText email;
     private EditText password;
@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
         info2 = (TextView) findViewById(R.id.info2);
         email = (EditText) findViewById(R.id.email);
         password=(EditText)findViewById(R.id.password);
-
+        how_to_use = (TextView)findViewById(R.id.how_to_use);
         //email.requestFocus();
         login = (Button) findViewById(R.id.register);
         //get firebase auth instance
@@ -81,6 +81,13 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         };
+
+        how_to_use.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this,HowToUse.class));
+            }
+        });
 
         email.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override

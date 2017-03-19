@@ -44,9 +44,14 @@ public class RecyclerAdapterMenuItem extends RecyclerView.Adapter<RecyclerAdapte
 
     @Override
     public void onBindViewHolder(final RecyclerAdapterMenuItem.ViewHolder viewHolder, final int position) {
-        viewHolder.name.setText(menu.get(position).getMenu_item());
+        if(menu.get(position).getMenu_item()!=null){
+            viewHolder.name.setText(menu.get(position).getMenu_item());
+        }
         viewHolder.price.setText(""+menu.get(position).getPrice()+"");
-        viewHolder.message.setText(menu.get(position).getMessage());
+
+        if(menu.get(position).getMessage()!=null){
+            viewHolder.message.setText(menu.get(position).getMessage());
+        }
 
         ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(activity.getBaseContext(),android.R.layout.simple_spinner_item, items);
         viewHolder.sp.setAdapter(adapter);
@@ -91,7 +96,6 @@ public class RecyclerAdapterMenuItem extends RecyclerView.Adapter<RecyclerAdapte
 
     @Override
     public int getItemCount() {
-
         return (null != menu ? menu.size() : 0);
     }
 
