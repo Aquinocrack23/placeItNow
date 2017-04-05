@@ -23,16 +23,16 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:name=".PlaceItNow">
+        android:name=".application.PlaceItNow">
 
-        <activity android:name=".MainActivity"
+        <activity android:name=".activities.MainActivity"
             android:theme="@style/Main"
             android:label="Order Dashboard"
             android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait">
 
         </activity>
-        <activity android:name=".LoginActivity"
+        <activity android:name=".activities.LoginActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,26 +40,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity"
+        <activity android:name=".activities.RegisterActivity"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".BaseActivityFragment"
+        <activity android:name=".activities.BaseActivityFragment"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".VendorProfile"
+        <activity android:name=".activities.VendorProfile"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".OrderSelection"
+        <activity android:name=".activities.OrderSelection"
             android:label="Order Selection"
             android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".OrderSummary"
+        <activity android:name=".activities.OrderSummary"
             android:label="Order Selection"
             android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".HowToUse"
+        <activity android:name=".activities.HowToUse"
             android:label="HowToUse"
             android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait">

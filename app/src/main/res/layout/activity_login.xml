@@ -11,7 +11,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context="in.placeitnow.placeitnow.LoginActivity"
+    tools:context="in.placeitnow.placeitnow.activities.LoginActivity"
     android:background="@color/colorPrimary">
 
     <TextView
