@@ -53,7 +53,7 @@ public class Home extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
 
 
-        view=  getActivity().getLayoutInflater().inflate(R.layout.home,container,false);
+        view=  inflater.inflate(R.layout.home,container,false);
 
         dash = (Button)view.findViewById(R.id.order_dashboard);
         make_order = (Button)view.findViewById(R.id.make_order);

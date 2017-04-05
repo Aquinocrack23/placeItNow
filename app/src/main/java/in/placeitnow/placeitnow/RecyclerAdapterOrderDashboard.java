@@ -8,9 +8,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -21,7 +18,7 @@ import java.util.Locale;
  * Created by Pranav Gupta on 2/18/2017.
  */
 
-public class RecyclerAdapterOrderDashboard extends RecyclerView.Adapter<RecyclerAdapterOrderDashboard.ViewHolder>{
+public class RecyclerAdapterOrderDashboard extends RecyclerView.Adapter<RecyclerAdapterOrderDashboard.ViewHolder> {
 
     private Activity activity;
     private ArrayList<OrderLayoutClass> orders;
@@ -64,7 +61,8 @@ public class RecyclerAdapterOrderDashboard extends RecyclerView.Adapter<Recycler
         if(orders.get(position).getAmount()!=null){
             holder.amount.setText("Total : "+orders.get(position).getAmount()+"");
         }
-        if(orders.get(position).getOrders_before_yours()==0){
+
+        if(orders.get(holder.getAdapterPosition()).getOrders_before_yours()==0){
             holder.orders_before.setTextSize(20);
             holder.orders_before.setText("Making");
         }else {
